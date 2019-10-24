@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gm.hosptial.mapper.visitrecordMapper">
+  <resultMap id="BaseResultMap" type="com.gm.hosptial.pojo.visitrecord">
+    <result column="PatientID" jdbcType="VARCHAR" property="patientid" />
+    <result column="DoctorID" jdbcType="VARCHAR" property="doctorid" />
+    <result column="VisitStatus" jdbcType="INTEGER" property="visitstatus" />
+    <result column="Recipe" jdbcType="VARCHAR" property="recipe" />
+  </resultMap>
+  <insert id="insert" parameterType="com.gm.hosptial.pojo.visitrecord">
+    insert into visitrecord (PatientID, DoctorID, VisitStatus, 
+      Recipe)
+    values (#{patientid,jdbcType=VARCHAR}, #{doctorid,jdbcType=VARCHAR}, #{visitstatus,jdbcType=INTEGER}, 
+      #{recipe,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gm.hosptial.pojo.visitrecord">
+    insert into visitrecord
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="patientid != null">
+        PatientID,
+      </if>
+      <if test="doctorid != null">
+        DoctorID,
+      </if>
+      <if test="visitstatus != null">
+        VisitStatus,
+      </if>
+      <if test="recipe != null">
+        Recipe,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="patientid != null">
+        #{patientid,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorid != null">
+        #{doctorid,jdbcType=VARCHAR},
+      </if>
+      <if test="visitstatus != null">
+        #{visitstatus,jdbcType=INTEGER},
+      </if>
+      <if test="recipe != null">
+        #{recipe,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

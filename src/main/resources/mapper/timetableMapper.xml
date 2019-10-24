@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gm.hosptial.mapper.timetableMapper">
+  <resultMap id="BaseResultMap" type="com.gm.hosptial.pojo.timetable">
+    <id column="tid" jdbcType="INTEGER" property="tid" />
+    <result column="queueNo" jdbcType="VARCHAR" property="queueno" />
+    <result column="queueTimeInfo" jdbcType="VARCHAR" property="queuetimeinfo" />
+    <result column="queueAmOrPm" jdbcType="VARCHAR" property="queueamorpm" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    tid, queueNo, queueTimeInfo, queueAmOrPm
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from timetable
+    where tid = #{tid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from timetable
+    where tid = #{tid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gm.hosptial.pojo.timetable">
+    insert into timetable (tid, queueNo, queueTimeInfo, 
+      queueAmOrPm)
+    values (#{tid,jdbcType=INTEGER}, #{queueno,jdbcType=VARCHAR}, #{queuetimeinfo,jdbcType=VARCHAR}, 
+      #{queueamorpm,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gm.hosptial.pojo.timetable">
+    insert into timetable
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tid != null">
+        tid,
+      </if>
+      <if test="queueno != null">
+        queueNo,
+      </if>
+      <if test="queuetimeinfo != null">
+        queueTimeInfo,
+      </if>
+      <if test="queueamorpm != null">
+        queueAmOrPm,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tid != null">
+        #{tid,jdbcType=INTEGER},
+      </if>
+      <if test="queueno != null">
+        #{queueno,jdbcType=VARCHAR},
+      </if>
+      <if test="queuetimeinfo != null">
+        #{queuetimeinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="queueamorpm != null">
+        #{queueamorpm,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gm.hosptial.pojo.timetable">
+    update timetable
+    <set>
+      <if test="queueno != null">
+        queueNo = #{queueno,jdbcType=VARCHAR},
+      </if>
+      <if test="queuetimeinfo != null">
+        queueTimeInfo = #{queuetimeinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="queueamorpm != null">
+        queueAmOrPm = #{queueamorpm,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where tid = #{tid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gm.hosptial.pojo.timetable">
+    update timetable
+    set queueNo = #{queueno,jdbcType=VARCHAR},
+      queueTimeInfo = #{queuetimeinfo,jdbcType=VARCHAR},
+      queueAmOrPm = #{queueamorpm,jdbcType=VARCHAR}
+    where tid = #{tid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gm.hosptial.mapper.appointrecordMapper">
+  <resultMap id="BaseResultMap" type="com.gm.hosptial.pojo.appointrecord">
+    <result column="AppointNumber" jdbcType="VARCHAR" property="appointnumber" />
+    <result column="PatientID" jdbcType="VARCHAR" property="patientid" />
+    <result column="Appointtime" jdbcType="VARCHAR" property="appointtime" />
+    <result column="AppointStatus" jdbcType="VARCHAR" property="appointstatus" />
+    <result column="number" jdbcType="VARCHAR" property="number" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    PatientID, AppointNumber, Appointtime, AppointStatus, number
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from appointrecord
+    where PatientID = #{patientid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from appointrecord
+    where PatientID = #{patientid,jdbcType=VARCHAR}
+  </delete>
+  <select id="select" parameterType="java.lang.String" resultType="com.gm.hosptial.pojo.appointrecord">
+    select
+    DoctorID,AppointNumber,appointinfo.PatientID,Appointtime,AppointStatus,appointinfo.number
+    from appointinfo ,appointrecord
+    where appointinfo.PatientID=#{patientid}  and appointrecord.PatientID=#{patientid}
+  </select>
+  <insert id="insert" parameterType="com.gm.hosptial.pojo.appointrecord">
+    insert into appointrecord (AppointNumber, PatientID, Appointtime, 
+      AppointStatus, number)
+    values (#{appointnumber,jdbcType=VARCHAR}, #{patientid,jdbcType=VARCHAR}, #{appointtime,jdbcType=VARCHAR}, 
+      #{appointstatus,jdbcType=VARCHAR}, #{number,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gm.hosptial.pojo.appointrecord">
+    insert into appointrecord
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="appointnumber != null">
+        AppointNumber,
+      </if>
+      <if test="patientid != null">
+        PatientID,
+      </if>
+      <if test="appointtime != null">
+        Appointtime,
+      </if>
+      <if test="appointstatus != null">
+        AppointStatus,
+      </if>
+      <if test="number != null">
+        number,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="appointnumber != null">
+        #{appointnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="patientid != null">
+        #{patientid,jdbcType=VARCHAR},
+      </if>
+      <if test="appointtime != null">
+        #{appointtime,jdbcType=VARCHAR},
+      </if>
+      <if test="appointstatus != null">
+        #{appointstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null">
+        #{number,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gm.hosptial.pojo.appointrecord">
+    update appointrecord
+    <set>
+      <if test="appointnumber != null">
+        AppointNumber = #{appointnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="appointtime != null">
+        Appointtime = #{appointtime,jdbcType=VARCHAR},
+      </if>
+      <if test="appointstatus != null">
+        AppointStatus = #{appointstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null">
+        number = #{number,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PatientID = #{patientid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gm.hosptial.pojo.appointrecord">
+    update appointrecord
+    set AppointNumber = #{appointnumber,jdbcType=VARCHAR},
+      Appointtime = #{appointtime,jdbcType=VARCHAR},
+      AppointStatus = #{appointstatus,jdbcType=VARCHAR},
+      number = #{number,jdbcType=VARCHAR}
+    where PatientID = #{patientid,jdbcType=VARCHAR}
+  </update>
+</mapper>

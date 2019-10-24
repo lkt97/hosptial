@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gm.hosptial.mapper.docleaveinfoMapper">
+  <resultMap id="BaseResultMap" type="com.gm.hosptial.pojo.docleaveinfo">
+    <result column="DoctorID" jdbcType="VARCHAR" property="doctorid" />
+    <result column="LeaStaTime" jdbcType="INTEGER" property="leastatime" />
+    <result column="LeaDayNum" jdbcType="INTEGER" property="leadaynum" />
+    <result column="TimeStatus" jdbcType="INTEGER" property="timestatus" />
+    <result column="tbDoctorID" jdbcType="VARCHAR" property="tbdoctorid" />
+  </resultMap>
+  <insert id="insert" parameterType="com.gm.hosptial.pojo.docleaveinfo">
+    insert into docleaveinfo (DoctorID, LeaStaTime, LeaDayNum,
+      TimeStatus, tbDoctorID)
+    values (#{doctorid,jdbcType=VARCHAR}, #{leastatime,jdbcType=INTEGER}, #{leadaynum,jdbcType=INTEGER},
+      #{timestatus,jdbcType=INTEGER}, #{tbdoctorid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gm.hosptial.pojo.docleaveinfo">
+    insert into docleaveinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="doctorid != null">
+        DoctorID,
+      </if>
+      <if test="leastatime != null">
+        LeaStaTime,
+      </if>
+      <if test="leadaynum != null">
+        LeaDayNum,
+      </if>
+      <if test="timestatus != null">
+        TimeStatus,
+      </if>
+      <if test="tbdoctorid != null">
+        tbDoctorID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="doctorid != null">
+        #{doctorid,jdbcType=VARCHAR},
+      </if>
+      <if test="leastatime != null">
+        #{leastatime,jdbcType=INTEGER},
+      </if>
+      <if test="leadaynum != null">
+        #{leadaynum,jdbcType=INTEGER},
+      </if>
+      <if test="timestatus != null">
+        #{timestatus,jdbcType=INTEGER},
+      </if>
+      <if test="tbdoctorid != null">
+        #{tbdoctorid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

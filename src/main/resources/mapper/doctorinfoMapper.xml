@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gm.hosptial.mapper.doctorinfoMapper">
+  <resultMap id="BaseResultMap" type="com.gm.hosptial.pojo.doctorinfo">
+    <id column="DoctorID" jdbcType="VARCHAR" property="doctorid" />
+    <result column="DoctorName" jdbcType="VARCHAR" property="doctorname" />
+    <result column="DoctorPhone" jdbcType="VARCHAR" property="doctorphone" />
+    <result column="DoctorDeptID" jdbcType="VARCHAR" property="doctordeptid" />
+    <result column="DoctorStatus" jdbcType="INTEGER" property="doctorstatus" />
+    <result column="DoctorSpecialty" jdbcType="VARCHAR" property="doctorspecialty" />
+    <result column="DoctorJobTitle" jdbcType="VARCHAR" property="doctorjobtitle" />
+    <result column="DocPassword" jdbcType="VARCHAR" property="docpassword" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    DoctorID, DoctorName, DoctorPhone, DoctorDeptID, DoctorStatus, DoctorSpecialty,
+    DoctorJobTitle, DocPassword
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from doctorinfo
+    where DoctorID = #{doctorid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from doctorinfo
+    where DoctorID = #{doctorid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gm.hosptial.pojo.doctorinfo">
+    insert into doctorinfo (DoctorID,  DoctorName,
+      DoctorPhone, DoctorDeptID, DoctorStatus, 
+      DoctorSpecialty, DoctorJobTitle, DocPassword
+      )
+    values (#{doctorid,jdbcType=VARCHAR}, #{doctorname,jdbcType=VARCHAR},
+      #{doctorphone,jdbcType=VARCHAR}, #{doctordeptid,jdbcType=VARCHAR}, #{doctorstatus,jdbcType=INTEGER}, 
+      #{doctorspecialty,jdbcType=VARCHAR}, #{doctorjobtitle,jdbcType=VARCHAR}, #{docpassword,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gm.hosptial.pojo.doctorinfo">
+    insert into doctorinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="doctorid != null">
+        DoctorID,
+      </if>
+      <if test="doctorname != null">
+        DoctorName,
+      </if>
+      <if test="doctorphone != null">
+        DoctorPhone,
+      </if>
+      <if test="doctordeptid != null">
+        DoctorDeptID,
+      </if>
+      <if test="doctorstatus != null">
+        DoctorStatus,
+      </if>
+      <if test="doctorspecialty != null">
+        DoctorSpecialty,
+      </if>
+      <if test="doctorjobtitle != null">
+        DoctorJobTitle,
+      </if>
+      <if test="docpassword != null">
+        DocPassword,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="doctorid != null">
+        #{doctorid,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorname != null">
+        #{doctorname,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorphone != null">
+        #{doctorphone,jdbcType=VARCHAR},
+      </if>
+      <if test="doctordeptid != null">
+        #{doctordeptid,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorstatus != null">
+        #{doctorstatus,jdbcType=INTEGER},
+      </if>
+      <if test="doctorspecialty != null">
+        #{doctorspecialty,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorjobtitle != null">
+        #{doctorjobtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="docpassword != null">
+        #{docpassword,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gm.hosptial.pojo.doctorinfo">
+    update doctorinfo
+    <set>
+      <if test="doctorname != null">
+        DoctorName = #{doctorname,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorphone != null">
+        DoctorPhone = #{doctorphone,jdbcType=VARCHAR},
+      </if>
+      <if test="doctordeptid != null">
+        DoctorDeptID = #{doctordeptid,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorstatus != null">
+        DoctorStatus = #{doctorstatus,jdbcType=INTEGER},
+      </if>
+      <if test="doctorspecialty != null">
+        DoctorSpecialty = #{doctorspecialty,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorjobtitle != null">
+        DoctorJobTitle = #{doctorjobtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="docpassword != null">
+        DocPassword = #{docpassword,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DoctorID = #{doctorid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gm.hosptial.pojo.doctorinfo">
+    update doctorinfo
+    set
+      DoctorName = #{doctorname,jdbcType=VARCHAR},
+      DoctorPhone = #{doctorphone,jdbcType=VARCHAR},
+      DoctorDeptID = #{doctordeptid,jdbcType=VARCHAR},
+      DoctorStatus = #{doctorstatus,jdbcType=INTEGER},
+      DoctorSpecialty = #{doctorspecialty,jdbcType=VARCHAR},
+      DoctorJobTitle = #{doctorjobtitle,jdbcType=VARCHAR},
+      DocPassword = #{docpassword,jdbcType=VARCHAR}
+    where DoctorID = #{doctorid,jdbcType=VARCHAR}
+  </update>
+</mapper>

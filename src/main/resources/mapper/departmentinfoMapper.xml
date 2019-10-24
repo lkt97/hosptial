@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gm.hosptial.mapper.departmentinfoMapper">
+  <resultMap id="BaseResultMap" type="com.gm.hosptial.pojo.departmentinfo">
+    <id column="DepartmentID" jdbcType="VARCHAR" property="departmentid" />
+    <result column="tid" jdbcType="INTEGER" property="tid" />
+    <result column="DepartmentName" jdbcType="VARCHAR" property="departmentname" />
+    <result column="Departmentintroduction" jdbcType="VARCHAR" property="departmentintroduction" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    DepartmentID, DepartmentName, Departmentintroduction
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from departmentinfo
+    where DepartmentID = #{departmentid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from departmentinfo
+    where DepartmentID = #{departmentid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gm.hosptial.pojo.departmentinfo">
+    insert into departmentinfo (DepartmentID,  DepartmentName,
+      Departmentintroduction)
+    values (#{departmentid,jdbcType=VARCHAR}, #{departmentname,jdbcType=VARCHAR},
+      #{departmentintroduction,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gm.hosptial.pojo.departmentinfo">
+    insert into departmentinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="departmentid != null">
+        DepartmentID,
+      </if>
+      <if test="departmentname != null">
+        DepartmentName,
+      </if>
+      <if test="departmentintroduction != null">
+        Departmentintroduction,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="departmentid != null">
+        #{departmentid,jdbcType=VARCHAR},
+      </if>
+      <if test="tid != null">
+        #{tid,jdbcType=INTEGER},
+      </if>
+      <if test="departmentname != null">
+        #{departmentname,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentintroduction != null">
+        #{departmentintroduction,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gm.hosptial.pojo.departmentinfo">
+    update departmentinfo
+    <set>
+      <if test="departmentname != null">
+        DepartmentName = #{departmentname,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentintroduction != null">
+        Departmentintroduction = #{departmentintroduction,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DepartmentID = #{departmentid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gm.hosptial.pojo.departmentinfo">
+    update departmentinfo
+    set
+      DepartmentName = #{departmentname,jdbcType=VARCHAR},
+      Departmentintroduction = #{departmentintroduction,jdbcType=VARCHAR}
+    where DepartmentID = #{departmentid,jdbcType=VARCHAR}
+  </update>
+</mapper>

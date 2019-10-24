@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--应该写接口的路径-->
+<mapper namespace="com.gm.hosptial.mapper.LoginMapper">
+
+    <select id="login" parameterType="java.util.HashMap" resultType="com.gm.hosptial.pojo.patientinfo">
+
+        select *
+        from patientinfo
+        where PatientID=#{patientid} and Password=#{password}
+
+    </select>
+
+
+</mapper>

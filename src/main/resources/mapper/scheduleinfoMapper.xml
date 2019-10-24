@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gm.hosptial.mapper.scheduleinfoMapper">
+    <resultMap id="BaseResultMap" type="com.gm.hosptial.pojo.scheduleinfo">
+        <id column="DoctorId" jdbcType="VARCHAR" property="doctorid" />
+        <result column="DepartmentName" jdbcType="VARCHAR" property="departmentname" />
+        <result column="DoctorName" jdbcType="VARCHAR" property="doctorname" />
+        <result column="SunAM" jdbcType="INTEGER" property="sunam" />
+        <result column="MonAM" jdbcType="INTEGER" property="monam" />
+        <result column="TueAM" jdbcType="INTEGER" property="tueam" />
+        <result column="WedAM" jdbcType="INTEGER" property="wedam" />
+        <result column="ThurAM" jdbcType="INTEGER" property="thuram" />
+        <result column="FriAM" jdbcType="INTEGER" property="friam" />
+        <result column="SatAM" jdbcType="INTEGER" property="satam" />
+        <result column="SunPM" jdbcType="INTEGER" property="sunpm" />
+        <result column="MonPM" jdbcType="INTEGER" property="monpm" />
+        <result column="TuePM" jdbcType="INTEGER" property="tuepm" />
+        <result column="WedPM" jdbcType="INTEGER" property="wedpm" />
+        <result column="ThurPM" jdbcType="INTEGER" property="thurpm" />
+        <result column="FriPM" jdbcType="INTEGER" property="fripm" />
+        <result column="SatPM" jdbcType="INTEGER" property="satpm" />
+    </resultMap>
+    <sql id="Base_Column_List">
+    DoctorId, DepartmentName, DoctorName, SunAM, MonAM, TueAM, WedAM, ThurAM, FriAM,
+    SatAM, SunPM, MonPM, TuePM, WedPM, ThurPM, FriPM, SatPM
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from scheduleinfo
+        where DoctorId = #{doctorid,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from scheduleinfo
+    where DoctorId = #{doctorid,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.gm.hosptial.pojo.scheduleinfo">
+    insert into scheduleinfo (DoctorId, DepartmentName, DoctorName,
+      SunAM, MonAM, TueAM,
+      WedAM, ThurAM, FriAM,
+      SatAM, SunPM, MonPM,
+      TuePM, WedPM, ThurPM,
+      FriPM, SatPM)
+    values (#{doctorid,jdbcType=VARCHAR}, #{departmentname,jdbcType=VARCHAR}, #{doctorname,jdbcType=VARCHAR},
+      #{sunam,jdbcType=INTEGER}, #{monam,jdbcType=INTEGER}, #{tueam,jdbcType=INTEGER},
+      #{wedam,jdbcType=INTEGER}, #{thuram,jdbcType=INTEGER}, #{friam,jdbcType=INTEGER},
+      #{satam,jdbcType=INTEGER}, #{sunpm,jdbcType=INTEGER}, #{monpm,jdbcType=INTEGER},
+      #{tuepm,jdbcType=INTEGER}, #{wedpm,jdbcType=INTEGER}, #{thurpm,jdbcType=INTEGER},
+      #{fripm,jdbcType=INTEGER}, #{satpm,jdbcType=INTEGER})
+  </insert>
+    <insert id="insertSelective" parameterType="com.gm.hosptial.pojo.scheduleinfo">
+        insert into scheduleinfo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="doctorid != null">
+                DoctorId,
+            </if>
+            <if test="departmentname != null">
+                DepartmentName,
+            </if>
+            <if test="doctorname != null">
+                DoctorName,
+            </if>
+            <if test="sunam != null">
+                SunAM,
+            </if>
+            <if test="monam != null">
+                MonAM,
+            </if>
+            <if test="tueam != null">
+                TueAM,
+            </if>
+            <if test="wedam != null">
+                WedAM,
+            </if>
+            <if test="thuram != null">
+                ThurAM,
+            </if>
+            <if test="friam != null">
+                FriAM,
+            </if>
+            <if test="satam != null">
+                SatAM,
+            </if>
+            <if test="sunpm != null">
+                SunPM,
+            </if>
+            <if test="monpm != null">
+                MonPM,
+            </if>
+            <if test="tuepm != null">
+                TuePM,
+            </if>
+            <if test="wedpm != null">
+                WedPM,
+            </if>
+            <if test="thurpm != null">
+                ThurPM,
+            </if>
+            <if test="fripm != null">
+                FriPM,
+            </if>
+            <if test="satpm != null">
+                SatPM,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="doctorid != null">
+                #{doctorid,jdbcType=VARCHAR},
+            </if>
+            <if test="departmentname != null">
+                #{departmentname,jdbcType=VARCHAR},
+            </if>
+            <if test="doctorname != null">
+                #{doctorname,jdbcType=VARCHAR},
+            </if>
+            <if test="sunam != null">
+                #{sunam,jdbcType=INTEGER},
+            </if>
+            <if test="monam != null">
+                #{monam,jdbcType=INTEGER},
+            </if>
+            <if test="tueam != null">
+                #{tueam,jdbcType=INTEGER},
+            </if>
+            <if test="wedam != null">
+                #{wedam,jdbcType=INTEGER},
+            </if>
+            <if test="thuram != null">
+                #{thuram,jdbcType=INTEGER},
+            </if>
+            <if test="friam != null">
+                #{friam,jdbcType=INTEGER},
+            </if>
+            <if test="satam != null">
+                #{satam,jdbcType=INTEGER},
+            </if>
+            <if test="sunpm != null">
+                #{sunpm,jdbcType=INTEGER},
+            </if>
+            <if test="monpm != null">
+                #{monpm,jdbcType=INTEGER},
+            </if>
+            <if test="tuepm != null">
+                #{tuepm,jdbcType=INTEGER},
+            </if>
+            <if test="wedpm != null">
+                #{wedpm,jdbcType=INTEGER},
+            </if>
+            <if test="thurpm != null">
+                #{thurpm,jdbcType=INTEGER},
+            </if>
+            <if test="fripm != null">
+                #{fripm,jdbcType=INTEGER},
+            </if>
+            <if test="satpm != null">
+                #{satpm,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.gm.hosptial.pojo.scheduleinfo">
+        update scheduleinfo
+        <set>
+            <if test="departmentname != null">
+                DepartmentName = #{departmentname,jdbcType=VARCHAR},
+            </if>
+            <if test="doctorname != null">
+                DoctorName = #{doctorname,jdbcType=VARCHAR},
+            </if>
+            <if test="sunam != null">
+                SunAM = #{sunam,jdbcType=INTEGER},
+            </if>
+            <if test="monam != null">
+                MonAM = #{monam,jdbcType=INTEGER},
+            </if>
+            <if test="tueam != null">
+                TueAM = #{tueam,jdbcType=INTEGER},
+            </if>
+            <if test="wedam != null">
+                WedAM = #{wedam,jdbcType=INTEGER},
+            </if>
+            <if test="thuram != null">
+                ThurAM = #{thuram,jdbcType=INTEGER},
+            </if>
+            <if test="friam != null">
+                FriAM = #{friam,jdbcType=INTEGER},
+            </if>
+            <if test="satam != null">
+                SatAM = #{satam,jdbcType=INTEGER},
+            </if>
+            <if test="sunpm != null">
+                SunPM = #{sunpm,jdbcType=INTEGER},
+            </if>
+            <if test="monpm != null">
+                MonPM = #{monpm,jdbcType=INTEGER},
+            </if>
+            <if test="tuepm != null">
+                TuePM = #{tuepm,jdbcType=INTEGER},
+            </if>
+            <if test="wedpm != null">
+                WedPM = #{wedpm,jdbcType=INTEGER},
+            </if>
+            <if test="thurpm != null">
+                ThurPM = #{thurpm,jdbcType=INTEGER},
+            </if>
+            <if test="fripm != null">
+                FriPM = #{fripm,jdbcType=INTEGER},
+            </if>
+            <if test="satpm != null">
+                SatPM = #{satpm,jdbcType=INTEGER},
+            </if>
+        </set>
+        where DoctorId = #{doctorid,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.gm.hosptial.pojo.scheduleinfo">
+    update scheduleinfo
+    set DepartmentName = #{departmentname,jdbcType=VARCHAR},
+      DoctorName = #{doctorname,jdbcType=VARCHAR},
+      SunAM = #{sunam,jdbcType=INTEGER},
+      MonAM = #{monam,jdbcType=INTEGER},
+      TueAM = #{tueam,jdbcType=INTEGER},
+      WedAM = #{wedam,jdbcType=INTEGER},
+      ThurAM = #{thuram,jdbcType=INTEGER},
+      FriAM = #{friam,jdbcType=INTEGER},
+      SatAM = #{satam,jdbcType=INTEGER},
+      SunPM = #{sunpm,jdbcType=INTEGER},
+      MonPM = #{monpm,jdbcType=INTEGER},
+      TuePM = #{tuepm,jdbcType=INTEGER},
+      WedPM = #{wedpm,jdbcType=INTEGER},
+      ThurPM = #{thurpm,jdbcType=INTEGER},
+      FriPM = #{fripm,jdbcType=INTEGER},
+      SatPM = #{satpm,jdbcType=INTEGER}
+    where DoctorId = #{doctorid,jdbcType=VARCHAR}
+  </update>
+</mapper>
