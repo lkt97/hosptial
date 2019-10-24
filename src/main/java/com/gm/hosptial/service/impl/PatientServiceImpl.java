@@ -1,6 +1,7 @@
 package com.gm.hosptial.service.impl;
 
 import com.gm.hosptial.mapper.LoginMapper;
+import com.gm.hosptial.mapper.docleaveinfoMapper;
 import com.gm.hosptial.mapper.idinfoMapper;
 import com.gm.hosptial.mapper.patientinfoMapper;
 import com.gm.hosptial.pojo.idinfo;
@@ -23,7 +24,8 @@ public class PatientServiceImpl implements PatientService {
 
 //    @Resource(name = "loginMapper")
 //    private LoginMapper loginMapper;
-
+    @Resource(name = "docleaveinfoMapper")
+    private docleaveinfoMapper docleaveinfoMapper;
     @Resource(name = "patientinfoMapper")
     private patientinfoMapper patientinfoMapper;
     @Resource(name ="idinfoMapper" )

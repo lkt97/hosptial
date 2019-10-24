@@ -77,7 +77,6 @@ http://www.springframework.org/schema/context/spring-context-4.0.xsd
         <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
         <property name="mapperInterface" value="com.gm.hosptial.mapper.LoginMapper"></property>
     </bean>
-
     <bean id="patientinfoMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
         <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
         <property name="mapperInterface" value="com.gm.hosptial.mapper.patientinfoMapper"></property>
@@ -93,5 +92,20 @@ http://www.springframework.org/schema/context/spring-context-4.0.xsd
     <bean id="appointrecordMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
         <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
         <property name="mapperInterface" value="com.gm.hosptial.mapper.appointrecordMapper"></property>
+    </bean>
+
+
+    <bean id="doctorinfoMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+        <property name="mapperInterface" value="com.gm.hosptial.mapper.doctorinfoMapper"></property>
+    </bean>
+
+    <bean id="docleaveinfoMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+        <property name="mapperInterface" value="com.gm.hosptial.mapper.docleaveinfoMapper"></property>
+    </bean>
+    <bean id="visitrecordMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+        <property name="mapperInterface" value="com.gm.hosptial.mapper.visitrecordMapper"></property>
     </bean>
 </beans>
