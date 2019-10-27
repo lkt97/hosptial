@@ -3,7 +3,6 @@ package com.gm.hosptial.pojo;
 public class departmentinfo {
     private String departmentid;
 
-
     private String departmentname;
 
     private String departmentintroduction;

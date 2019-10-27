@@ -16,7 +16,7 @@ public interface AdminService {
     //获取排班表
     public scheduleinfo getScheduleinfo(String did);
     //管理员安排医生排班
-    public boolean setDepartment(doctorinfo dinfo,scheduleinfo sinfo);
+    public boolean setDepartment(scheduleinfo sinfo);
     //管理员查看患者信息
     public List<patientinfo> getPatientinfo();
     //管理员查看医生信息
