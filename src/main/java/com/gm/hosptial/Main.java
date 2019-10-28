@@ -48,8 +48,8 @@ public class Main {
 
         AppointService appointService=ac.getBean("appointServiceImpl", AppointServiceImpl.class);
 
-//        patientinfo patientinfo=patientService.Login("111111","123456");
-//        System.out.println(patientinfo.toString());
+        patientinfo patientinfo=patientService.Login("111111","123456");
+        System.out.println(patientinfo.toString());
 
 
 //        patientinfo patientinfo1=new patientinfo();
@@ -66,7 +66,7 @@ public class Main {
 //          appointrecord appointrecord=appointService.select("188");
 //        System.out.println(appointrecord);
 
-        appointService.deappointrecord("188");
+//        appointService.deappointrecord("188");
 
     }
 

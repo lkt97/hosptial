@@ -73,39 +73,39 @@ http://www.springframework.org/schema/context/spring-context-4.0.xsd
     <!-- 配置基于注解的声明式事务 -->
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
-    <bean id="loginMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
-        <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
-        <property name="mapperInterface" value="com.gm.hosptial.mapper.LoginMapper"></property>
-    </bean>
-    <bean id="patientinfoMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
-        <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
-        <property name="mapperInterface" value="com.gm.hosptial.mapper.patientinfoMapper"></property>
-    </bean>
-    <bean id="idinfoMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
-        <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
-        <property name="mapperInterface" value="com.gm.hosptial.mapper.idinfoMapper"></property>
-    </bean>
-    <bean id="appointinfoMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
-        <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
-        <property name="mapperInterface" value="com.gm.hosptial.mapper.appointinfoMapper"></property>
-    </bean>
-    <bean id="appointrecordMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
-        <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
-        <property name="mapperInterface" value="com.gm.hosptial.mapper.appointrecordMapper"></property>
-    </bean>
+    <!--<bean id="loginMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">-->
+        <!--<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>-->
+        <!--<property name="mapperInterface" value="com.gm.hosptial.mapper.LoginMapper"></property>-->
+    <!--</bean>-->
+    <!--<bean id="patientinfoMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">-->
+        <!--<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>-->
+        <!--<property name="mapperInterface" value="com.gm.hosptial.mapper.patientinfoMapper"></property>-->
+    <!--</bean>-->
+    <!--<bean id="idinfoMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">-->
+        <!--<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>-->
+        <!--<property name="mapperInterface" value="com.gm.hosptial.mapper.idinfoMapper"></property>-->
+    <!--</bean>-->
+    <!--<bean id="appointinfoMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">-->
+        <!--<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>-->
+        <!--<property name="mapperInterface" value="com.gm.hosptial.mapper.appointinfoMapper"></property>-->
+    <!--</bean>-->
+    <!--<bean id="appointrecordMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">-->
+        <!--<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>-->
+        <!--<property name="mapperInterface" value="com.gm.hosptial.mapper.appointrecordMapper"></property>-->
+    <!--</bean>-->
 
 
-    <bean id="doctorinfoMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
-        <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
-        <property name="mapperInterface" value="com.gm.hosptial.mapper.doctorinfoMapper"></property>
-    </bean>
+    <!--<bean id="doctorinfoMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">-->
+        <!--<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>-->
+        <!--<property name="mapperInterface" value="com.gm.hosptial.mapper.doctorinfoMapper"></property>-->
+    <!--</bean>-->
 
-    <bean id="docleaveinfoMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
-        <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
-        <property name="mapperInterface" value="com.gm.hosptial.mapper.docleaveinfoMapper"></property>
-    </bean>
-    <bean id="visitrecordMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
-        <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
-        <property name="mapperInterface" value="com.gm.hosptial.mapper.visitrecordMapper"></property>
-    </bean>
+    <!--<bean id="docleaveinfoMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">-->
+        <!--<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>-->
+        <!--<property name="mapperInterface" value="com.gm.hosptial.mapper.docleaveinfoMapper"></property>-->
+    <!--</bean>-->
+    <!--<bean id="visitrecordMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">-->
+        <!--<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>-->
+        <!--<property name="mapperInterface" value="com.gm.hosptial.mapper.visitrecordMapper"></property>-->
+    <!--</bean>-->
 </beans>
