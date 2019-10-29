@@ -16,12 +16,17 @@
     Freezetime
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from patientinfo
     where PatientID = #{patientid,jdbcType=VARCHAR}
   </select>
 
+  <select id="select" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from patientinfo
+  </select>
   <select id="login" parameterType="java.util.HashMap" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />

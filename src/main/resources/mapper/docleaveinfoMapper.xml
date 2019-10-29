@@ -8,6 +8,21 @@
     <result column="TimeStatus" jdbcType="INTEGER" property="timestatus" />
     <result column="tbDoctorID" jdbcType="VARCHAR" property="tbdoctorid" />
   </resultMap>
+  <sql id="Base_Column_List">
+    DoctorID, LeaStaTime, LeaDayNum,TimeStatus, tbDoctorID,Flag
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from patientinfo
+    where DoctorID = #{doctorid,jdbcType=VARCHAR} and Flag = 0
+  </select>
+  <select id="select" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from patientinfo
+  </select>
+
   <insert id="insert" parameterType="com.gm.hosptial.pojo.docleaveinfo">
     insert into docleaveinfo (DoctorID, LeaStaTime, LeaDayNum,
       TimeStatus, tbDoctorID)
@@ -51,4 +66,14 @@
       </if>
     </trim>
   </insert>
+  <update id="update" parameterType="com.gm.hosptial.pojo.docleaveinfo">
+     update docleaveinfo
+      set
+      DoctorID=#{doctorid,jdbcType=VARCHAR},
+      LeaStaTime=#{leastatime,jdbcType=INTEGER},
+      LeaDayNum#{leadaynum,jdbcType=INTEGER},
+      TimeStatus=#{timestatus,jdbcType=INTEGER},
+      tbDoctorID=#{tbdoctorid,jdbcType=VARCHAR}
+    where DoctorID = #{doctorid,jdbcType=VARCHAR}
+  </update>
 </mapper>
