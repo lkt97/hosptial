@@ -28,8 +28,7 @@ public class PatientServiceImpl implements PatientService {
     private docleaveinfoMapper docleaveinfoMapper;
     @Resource(name = "patientinfoMapper")
     private patientinfoMapper patientinfoMapper;
-    @Resource(name ="idinfoMapper" )
-    private idinfoMapper idinfoMapper;
+
 
     /**
      * 患者登录
@@ -54,21 +53,22 @@ public class PatientServiceImpl implements PatientService {
      */
     @Override
     public boolean register(patientinfo patientinfo) {
-        patientinfo patientinfo1=new patientinfo("188","ll","18750382729","男",1,"352203199710163713","123456");
-       idinfo idinfo=new idinfo(patientinfo1.getId(),patientinfo1.getPatientname(),"fj");
-        idinfo idinfo1=new idinfo();
-        idinfo1=idinfoMapper.selectByPrimaryKey("123456");
-        if (idinfo1==null)
+
+        boolean f=false;
+        patientinfo patientinfo1=patientinfoMapper.selectByPrimaryKey(patientinfo.getPatientid());
+        if (patientinfo1==null)
         {
-            idinfoMapper.insert(idinfo);
-            patientinfoMapper.insert(patientinfo1);
+
+            int i=patientinfoMapper.insertSelective(patientinfo);
+            System.out.println(i);
+            f=true;
         }
-        else if (idinfo1!=null)
+        else if (patientinfo1!=null)
         {
             System.out.println("error!");
         }
 
-        return false;
+        return f;
     }
 
     /**

@@ -154,7 +154,7 @@
     <div class="panel panel-default">
 
 
-        <form class="form-login" action="LoginAndRegisterServlet?op=register" method="post">
+        <form class="form-login" action="/register.do" method="post">
             <div class="register-box">
                 <label for="registerName" class="username_label">用 户 名
                     <input id="registerName"  name="registerName" maxlength="20" type="text" autofocus required placeholder="您的登录名" onkeyup="value=value.replace(/[\W]/g,'') "onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"/>
@@ -348,11 +348,11 @@
                 $(this).parent().next().next("div").text("");
             }
         })
-        //	提交按钮
-        $("#submit").click(function(e){
-            alert("注册成功");
-            window.location.href="http://localhost:8080/jsp/login.jsp";
-        })
+        // //	提交按钮
+        // $("#submit").click(function(e){
+        //     alert("注册成功");
+        //     window.location.href="http://localhost:8080/jsp/login.jsp";
+        // })
     })
 
 </script>
