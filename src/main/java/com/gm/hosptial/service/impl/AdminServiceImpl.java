@@ -28,6 +28,9 @@ public class AdminServiceImpl implements AdminService {
 
     @Resource(name = "scheduleinfoMapper")
     private scheduleinfoMapper schM;
+
+    @Resource(name = "patientinfoMapper")
+    private patientinfoMapper paM;
     @Override
     public boolean addepaDrtment(departmentinfo dep) {
         int n=0;
@@ -100,26 +103,41 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public List<patientinfo> getPatientinfo() {
-        return null;
+        List<patientinfo> palist=paM.select();
+        return palist;
     }
 
     @Override
     public List<doctorinfo> getDoctorinfo() {
-        return null;
+        List<doctorinfo> doclist=docM.select();
+        return doclist;
     }
 
     @Override
-    public boolean setPatientinfotime(patientinfo pinfo, String time) {
+    public boolean setPatientinfotime(patientinfo pinfo, int time) {
+        pinfo.setFreezetime(time);
+        int n=paM.updateByPrimaryKey(pinfo);
+        if(n==0)
         return false;
+        else
+            return true;
     }
 
     @Override
     public List<docleaveinfo> getDocleaveinfo() {
-        return null;
+        List<docleaveinfo> doclist=docL.select();
+        return doclist;
     }
 
     @Override
     public boolean setDocleaveinfo(docleaveinfo docl) {
+        int n=0;
+        if(docL.selectByPrimaryKey(docl)!=null) {
+            n=docL.update(docl);
+        }
+        if (n==0)
         return false;
+        else
+            return true;
     }
 }

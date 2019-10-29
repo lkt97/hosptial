@@ -22,7 +22,7 @@ public interface AdminService {
     //管理员查看医生信息
     public List<doctorinfo> getDoctorinfo();
     //管理员解冻/冻结用户
-    public boolean setPatientinfotime(patientinfo pinfo,String time);
+    public boolean setPatientinfotime(patientinfo pinfo,int time);
     //管理员查看未审批假条
     public List<docleaveinfo> getDocleaveinfo();
     //管理员审批假条

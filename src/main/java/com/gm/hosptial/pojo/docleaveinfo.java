@@ -4,6 +4,8 @@ public class docleaveinfo {
 
     private String doctorid;
 
+    private Integer flag;
+
     private Integer leastatime;
 
     private Integer leadaynum;
@@ -12,6 +14,13 @@ public class docleaveinfo {
 
     private String tbdoctorid;
 
+    public Integer getFlag() {
+        return flag;
+    }
+
+    public void setFlag(Integer flag) {
+        this.flag = flag;
+    }
 
     public String getDoctorid() {
         return doctorid;
