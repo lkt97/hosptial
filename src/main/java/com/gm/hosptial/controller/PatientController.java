@@ -1,6 +1,8 @@
 package com.gm.hosptial.controller;
 
+import com.gm.hosptial.pojo.doctorinfo;
 import com.gm.hosptial.pojo.patientinfo;
+import com.gm.hosptial.service.DoctorService;
 import com.gm.hosptial.service.PatientService;
 import com.gm.hosptial.service.impl.PatientServiceImpl;
 import org.springframework.context.ApplicationContext;
@@ -18,7 +20,8 @@ import javax.annotation.Resource;
 public class PatientController {
     @Resource(name = "patientServiceImpl")
     private PatientService patientService;
-
+    @Resource(name = "doctorServiceImpl")
+    private DoctorService doctorService;
     @RequestMapping("register")
     public String PRegister(String registerName,String password,String mobile)
     {
@@ -48,20 +51,21 @@ public class PatientController {
             {
                 s="";
             }
-
-
         }
         else if (type.equals("d")){
-
+            doctorinfo doc=doctorService.getDoctor(usename);
+            if (doc!=null&&doc.getDocpassword().equals(password)){
+                s="";
+            }
 
         }
         else if (type.equals("g"))
         {
-
+            doctorinfo doc=doctorService.getDoctor(usename);
+            if (doc!=null&&doc.getDocpassword().equals(password)&&doc.getDoctorjobtitle().equals("主任")){
+                s="";
+            }
         }
-
-
-
         return s;
     }
 }

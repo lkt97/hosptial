@@ -4,9 +4,11 @@ import com.gm.hosptial.mapper.LoginMapper;
 import com.gm.hosptial.mapper.patientinfoMapper;
 import com.gm.hosptial.pojo.appointinfo;
 import com.gm.hosptial.pojo.appointrecord;
+import com.gm.hosptial.pojo.doctorinfo;
 import com.gm.hosptial.pojo.patientinfo;
 
 import com.gm.hosptial.service.AppointService;
+import com.gm.hosptial.service.DoctorService;
 import com.gm.hosptial.service.PatientService;
 
 import com.gm.hosptial.service.impl.AppointServiceImpl;
@@ -38,9 +40,13 @@ public class Main {
     PatientService patientService;
     @Resource(name = "appointServiceImpl")
     AppointService appointService;
-
+    @Resource(name = "DoctorServiceImpl")
+    DoctorService doctorService;
     @Test
     public void test(){
+//        doctorinfo doc=doctorService.getDoctor("0001");
+//        System.out.println(doc.getDoctorname());
+
 //        patientinfo patientinfo=loginService.Login("111111","123456");
 //        System.out.println(patientinfo);
         ApplicationContext ac = new ClassPathXmlApplicationContext("spring/applicationContext.xml");

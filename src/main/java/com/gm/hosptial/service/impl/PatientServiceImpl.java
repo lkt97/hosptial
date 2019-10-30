@@ -2,9 +2,7 @@ package com.gm.hosptial.service.impl;
 
 import com.gm.hosptial.mapper.LoginMapper;
 import com.gm.hosptial.mapper.docleaveinfoMapper;
-import com.gm.hosptial.mapper.idinfoMapper;
 import com.gm.hosptial.mapper.patientinfoMapper;
-import com.gm.hosptial.pojo.idinfo;
 import com.gm.hosptial.pojo.patientinfo;
 
 import com.gm.hosptial.service.PatientService;
