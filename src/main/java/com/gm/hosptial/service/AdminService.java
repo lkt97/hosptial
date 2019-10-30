@@ -7,8 +7,10 @@ import java.util.List;
 public interface AdminService {
     //管理员增加科室
     public boolean addepaDrtment(departmentinfo dep);
+    //管理员增加科室
+    public departmentinfo getdepaDrtment(String dep);
     //管理员增加医生
-    public boolean addDoctor(doctorinfo dinfo,String id);
+    public boolean addDoctor(doctorinfo dinfo);
     //管理员删除医生
     public boolean deleteDoctor(String did);
     //管理员修改医生

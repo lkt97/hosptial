@@ -3,10 +3,11 @@ package com.gm.hosptial.service.impl;
 import com.gm.hosptial.mapper.*;
 import com.gm.hosptial.pojo.*;
 import com.gm.hosptial.service.AdminService;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
-
+@Service("adminServiceImpl")
 public class AdminServiceImpl implements AdminService {
     @Resource(name = "docleaveinfoMapper")
     private docleaveinfoMapper docL;
@@ -45,7 +46,13 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public boolean addDoctor(doctorinfo dinfo, String id) {
+    public departmentinfo getdepaDrtment(String dep) {
+
+        return depM.selectByPrimaryKey(dep);
+    }
+
+    @Override
+    public boolean addDoctor(doctorinfo dinfo) {
         int n =0;
         if (depM.selectByPrimaryKey(dinfo.getDocpassword())!=null){
             if(docM.selectByPrimaryKey(dinfo.getDoctorid())==null){
