@@ -1,14 +1,13 @@
 package com.gm.hosptial.service.impl;
 
-import com.gm.hosptial.mapper.LoginMapper;
 import com.gm.hosptial.mapper.docleaveinfoMapper;
 import com.gm.hosptial.mapper.patientinfoMapper;
 import com.gm.hosptial.pojo.patientinfo;
 
 import com.gm.hosptial.service.PatientService;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
 
 import javax.annotation.Resource;
 import java.util.HashMap;
