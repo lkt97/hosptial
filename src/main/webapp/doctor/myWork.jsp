@@ -1,17 +1,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="bean.WorkDay" %>
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>首页--在线预约挂号系统</title>
-    <jsp:include page="include/headtag.jsp"/>
 </head>
 <body>
-<jsp:include page="include/head.jsp"/>
-<jsp:include page="include/menu.jsp"/>
 
-<div style="margin-top: 100px;margin-left: 300px">
+<div >
     <div wid="page-inner">
         <div class="container">
             <div class="h3 alert-info info">我的信息</div>
@@ -19,17 +14,17 @@
             <div class="ysjs ">
                 <div class="title">
                     <div class="t">
-                        <span><a href="showWeek?wid=${doctor.did}">${doctor.dname}</a></span>
-                        <span class="gender">${doctor.gender}</span>
-                        <span class="career">${doctor.career}</span>
-                        <span class="career">${doctor.age}岁</span>
+                        <span>${doctor.doctorname}</span>
+                        <span class="gender">${doctor.doctordeptid}</span>
+                        <span class="career">${doctor.doctorjobtitle}</span>
+                        <span class="career">${doctor.doctorstatus==1?"正常":"请假"}</span>
                     </div>
-                    <img src="${doctor.picpath}">
+                    <%--<img src="${doctor.picpath}">--%>
                 </div>
                 <div class="content">
                     <div >
                         <div>介绍：</div>
-                        <div>${doctor.description}</div>
+                        <div>${doctor.doctorspecialty}</div>
                     </div>
                 </div>
                 <style>
@@ -95,49 +90,40 @@
             <div class="schedule">
                 <div class="week">
                     <div class="ysjj1">
-                        <div style="width: 30%;">
-                            <div class="ysjj">
-                                <div class="title1">医生介绍</div>
-                                <img src="${doctor.picpath}">
-                                <div class="title">
-                                    <div><span class="name">${doctor.dname}</span><span class="career">${doctor.career}</span><span class="gender">${doctor.gender}</span></div>
-                                    <p>介绍：${doctor.description}</p>
-                                </div>
-                                <div class="work">
-                                    <div>上午</div>
-                                    <div>下午</div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <div class="title2">
-                        <%
-                            List<WorkDay> workDays= (List<WorkDay>) request.getAttribute("workDays");
-                            StringBuffer sb=new StringBuffer();
-                            for(int i=0;i<7;i++){
-                                sb.append("<ul><li class='date'>");
-                                sb.append("星期");
-                                if("0".equals(workDays.get(i*2).getWorktime())){
-                                    sb.append("天");
-                                }else {
-                                    sb.append(workDays.get(i*2).getWorktime());
-                                }
-                                sb.append("</li>");
-                                for(int j=0;j<2;j++){
-                                    sb.append("<li class='");
-                                    sb.append(workDays.get(i*2+j).getState());
-                                    sb.append("'><a style='display:block; height=100%' data-toggle=\"modal\" data-target=\"#myModal\" data-wid='");
-                                    sb.append(workDays.get(i*2+j).getWid());
-                                    sb.append("'><br>");
-                                    sb.append(workDays.get(i*2+j).getState());
-                                    sb.append("<br>号源数");
-                                    sb.append(workDays.get(i*2+j).getNsnum());
-                                    sb.append("</a></li>");
-                                }
-                                sb.append("</ul>");
-                            }
-                            out.write(sb.toString());
-                        %>
+                        <table>
+                            <tr>
+                                <th></th>
+                                <th>星期日</th>
+                                <th>星期一</th>
+                                <th>星期二</th>
+                                <th>星期三</th>
+                                <th>星期四</th>
+                                <th>星期五</th>
+                                <th>星期六</th>
+                            </tr>
+                            <tr>
+                                <th><a>上午</a></th>
+                                <th><a href="">${doctorsch.sunam==1?"有":"无"}</a></th>
+                                <th><a>${doctorsch.monam==1?"有":"无"}</a></th>
+                                <th><a>${doctorsch.tueam==1?"有":"无"}</a></th>
+                                <th><a>${doctorsch.wedam==1?"有":"无"}</a></th>
+                                <th><a>${doctorsch.thuram==1?"有":"无"}</a></th>
+                                <th><a>${doctorsch.friam==1?"有":"无"}</a></th>
+                                <th><a>${doctorsch.satam==1?"有":"无"}</a></th>
+                            </tr>
+                            <tr>
+                                <th>下午</th>
+                                <th><a>${doctorsch.sunpm==1?"有":"无"}</a></th>
+                                <th><a>${doctorsch.monpm==1?"有":"无"}</a></th>
+                                <th><a>${doctorsch.tuepm==1?"有":"无"}</a></th>
+                                <th><a>${doctorsch.wedpm==1?"有":"无"}</a></th>
+                                <th><a>${doctorsch.thurpm==1?"有":"无"}</a></th>
+                                <th><a>${doctorsch.fripm==1?"有":"无"}</a></th>
+                                <th><a>${doctorsch.satpm==1?"有":"无"}</a></th>
+                            </tr>
+                        </table>
                     </div>
                 </div>
                 <style>
@@ -285,43 +271,7 @@
                         color: rgb(20, 82, 205)!important;
                     }
                 </style>
-                <%--修改排班--%>
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                    <div class="modal-dialog" style="margin-top: 200px;" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">申请</h4>
-                            </div>
-                            <form class="form-horizontal" action='applyWork' method='post'>
-                                <input id="action" hidden value="alter" name="action">
-                                <input id="wid" hidden  name="wid">
-                                <input  hidden  name="did" value="${doctor.did}">
-                                <div class="modal-body">
-                                    <div class="form-group">
-                                        <label for="state" class="col-sm-2 control-label">状态</label>
-                                        <div class="col-sm-10" >
-                                            <select class="form-control" id="state" name="request">
-                                                <option>申请出诊</option>
-                                                <option>申请停诊</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="reason" class="col-sm-2 control-label">原因</label>
-                                        <div class="col-sm-10" >
-                                            <textarea id="reason" name="reason" class="form-control" rows="3" placeholder="请输入原因,例如请病假"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                                    <button  type="submit" class="btn btn-primary order">提交申请</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+
                 <script>
                     $(function () {
                         $('#myModal').on('show.bs.modal', function (event) {

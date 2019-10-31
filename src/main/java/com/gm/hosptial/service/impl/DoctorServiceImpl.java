@@ -24,6 +24,9 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Resource(name = "visitrecordMapper")
     private  visitrecordMapper visM;
+
+    @Resource(name = "scheduleinfoMapper")
+    private scheduleinfoMapper schM;
     @Override
     public boolean doctorLogin(String user, String password) {
         doctorinfo docinfo = docM.selectByPrimaryKey(user);
@@ -38,8 +41,13 @@ public class DoctorServiceImpl implements DoctorService {
     @Override
     public doctorinfo getDoctor(String id) {
         doctorinfo docinfo = docM.selectByPrimaryKey(id);
-
         return docinfo;
+    }
+
+    @Override
+    public scheduleinfo getsche(doctorinfo dinfo) {
+        scheduleinfo sch=schM.selectByPrimaryKey(dinfo.getDoctorid());
+        return sch;
     }
 
     @Override
@@ -65,7 +73,20 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    public boolean appointAffirm(appointrecord apoint,String did) {
+    public List<appointinfo> getappoint(String docid) {
+        List<appointinfo> app=appM.select(docid);
+        return app;
+    }
+
+    @Override
+    public appointrecord appointAffirm(String did) {
+        appointrecord apps=appdM.selectByPrimaryKey(did);
+        return apps;
+    }
+
+
+    @Override
+    public boolean setappointAffirm(appointrecord apoint,String did) {
         appointrecord apprfo = appdM.select(apoint.getPatientid());
         appointinfo appfo = appM.selectByPrimaryKey(apoint.getPatientid());
         visitrecord vis = new visitrecord() ;

@@ -11,10 +11,16 @@ public interface DoctorService {
     public doctorinfo getDoctor(String id);
     //更新医生资料
     public boolean upDoctor(doctorinfo dinfo);
+    //获得医生排班
+    public scheduleinfo getsche(doctorinfo dinfo);
     //提交医生请假
     public boolean leaveDoctor(docleaveinfo dlinfo);
+    //获取预约
+    public List<appointinfo> getappoint(String docid);
     //确认预约，并生成就诊信息（）
-    public boolean appointAffirm(appointrecord apoint,String did);
+    public appointrecord appointAffirm(String did);
+    //确认预约，并生成就诊信息（）
+    public boolean setappointAffirm(appointrecord apoint,String did);
     //根据患者id和医生id获得就诊信息
     public List<visitrecord> getVisitrecord(String aid, String did);
 }

@@ -3,7 +3,6 @@ package com.gm.hosptial.pojo;
 public class doctorinfo {
     private String doctorid;
 
-
     private String doctorname;
 
     private String doctorphone;

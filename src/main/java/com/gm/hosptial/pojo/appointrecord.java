@@ -5,14 +5,6 @@ public class appointrecord {
 
     private  String doctorid;
 
-    public String getDoctorid() {
-        return doctorid;
-    }
-
-    public void setDoctorid(String doctorid) {
-        this.doctorid = doctorid;
-    }
-
     private String patientid;
 
     private String appointtime;
@@ -30,6 +22,14 @@ public class appointrecord {
         this.appointtime = appointtime;
         this.appointstatus = appointstatus;
         this.number = number;
+    }
+
+    public String getDoctorid() {
+        return doctorid;
+    }
+
+    public void setDoctorid(String doctorid) {
+        this.doctorid = doctorid;
     }
 
     @Override
