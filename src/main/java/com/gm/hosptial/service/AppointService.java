@@ -3,14 +3,16 @@ package com.gm.hosptial.service;
 import com.gm.hosptial.pojo.appointinfo;
 import com.gm.hosptial.pojo.appointrecord;
 
+import java.util.List;
+
 public interface AppointService {
     /**
      * 插入预约信息
-     * @param appointinfo
+
      * @param appointrecord
      * @return
      */
-    public boolean insertappoint(appointinfo appointinfo, appointrecord appointrecord);
+    public boolean insertappoint(appointrecord appointrecord);
 
     /**
      * 查询信息
@@ -33,4 +35,14 @@ public interface AppointService {
      * @return
      */
     public boolean deappointrecord(String patientid);
+
+    /**
+     * 查询预约号
+     * @param doctor
+     * @return
+     */
+    public int countnum(String doctor);
+
+    public boolean upnum(int tid);
+
 }

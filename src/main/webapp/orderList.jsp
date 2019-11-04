@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: mi
-  Date: 2019/1/8
-  Time: 15:00
-  To change this template use File | Settings | File Templates.
---%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -19,7 +12,7 @@
 
 <div style="margin-top: 100px;margin-left: 300px">
     <div id="page-inner">
-        <c:if test="${requestScope.list != null}">
+        <%--<c:if test="${record != null}">--%>
             <div class="container1">
                 <style>
                     .yyjj{
@@ -80,32 +73,34 @@
                     </script>
                     ${sessionScope.remove("message")}
                 </c:if>
-                <c:forEach var="item" items="${requestScope.list}">
+                <%--<c:forEach items="${record}" var="record" >--%>
                     <div class="box">
-                        <div class="pic"><img src="${item.picpath}"></div>
+                        <%--<div class="pic"><img src="${item.picpath}"></div>--%>
                         <table style="width: 28%">
-                            <tr><td>医生：</td><td><a href="showWeek?did=${item.did}">${item.dname}</a></td></tr>
-                            <tr><td>科室：</td><td><a href="searchOffice?office=${item.office}">${item.office}</a></td></tr>
-                            <tr><td>诊室：</td><td>${item.room}</td></tr>
-                            <tr><td>诊费：</td><td>${item.fee}.00元</td></tr>
+                            <tr><td>医生：</td><td><a href="showWeek?did=${item.did}">${doctor.doctorname}</a></td></tr>
+                            <tr><td>职称：</td><td><a href="searchOffice?office=${item.office}">${doctor.doctorjobtitle}</a></td></tr>
+                            <%--<tr><td>诊室：</td><td>${item.room}</td></tr>--%>
+                            <%--<tr><td>诊费：</td><td>${item.fee}.00元</td></tr>--%>
                         </table>
+
                         <table>
-                            <tr><td>预约时间：</td><td>${item.ordertime}</td></tr>
-                            <tr><td>就诊时间：</td><td>${item.visitdate} ${item.visitnoon} ${item.visittime}</td></tr>
-                            <tr><td>序号：</td><td>${item.serialnumber}号</td></tr>
-                            <tr><td>状态：</td><td>${item.state}</td></tr>
+                            <tr><td>预约时间：</td><td>${record.appointtime}</td></tr>
+                            <%--<tr><td>就诊时间：</td><td>${item.visitdate} ${item.visitnoon} ${item.visittime}</td></tr>--%>
+                            <tr><td>序号：</td><td>${record.number}号</td></tr>
+                            <tr><td>状态：</td><td>${record.appointstatus}</td></tr>
                         </table>
-                        <c:if test="${item.state=='成功'}">
+                        <%--<c:if test="${item.state=='1'}">--%>
                         <div class="operate">
                             <div><button type="button" data-ampm="${item.visitnoon}" data-date="${item.visitdate}" data-rid="${item.rid}" data-wid="${item.wid}" class="btn btn-primary btn-xs" style="margin-top: 20px;" data-toggle="modal" data-target="#myModal">
                                 修改预约
                             </button></div>
-                            <div><button type="button" data-rid="${item.rid}"  class="btn btn-warning btn-xs" style="margin-top: 20px;" data-toggle="modal" data-target="#myModal">
+                            <div><button type="button" data-rid="${record.appointnumber}"  class="btn btn-warning btn-xs" style="margin-top: 20px;" data-toggle="modal" data-target="#myModal">
                                 取消预约
                             </button></div>
-                        </div></c:if>
+                        </div>
+                            <%--</c:if>--%>
                     </div>
-                </c:forEach>
+                <%--</c:forEach>--%>
 
 
                 <%--修改预约和取消--%>
@@ -209,7 +204,7 @@
                 </script>
 
             </div>
-        </c:if>
+        <%--</c:if>--%>
 
 
     </div>

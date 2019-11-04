@@ -24,11 +24,45 @@ public class Page {
     //后一页
     private Integer nextPage;
 
+    private Integer beginIndex;
+
+    private String office;
+
+    public String getOffice() {
+        return office;
+    }
+
+    public void setOffice(String office) {
+        this.office = office;
+    }
+
+    public Integer getBeginIndex() {
+        return beginIndex;
+    }
+
+    public void setBeginIndex(Integer beginIndex) {
+        this.beginIndex = beginIndex;
+    }
+
     //每页显示记录数
     private Integer pageSize;
     //数据
     private List<?> datas;
 
+    @Override
+    public String toString() {
+        return "Page{" +
+                "totalRecords=" + totalRecords +
+                ", totalPages=" + totalPages +
+                ", currentPage=" + currentPage +
+                ", firstPage=" + firstPage +
+                ", lastPage=" + lastPage +
+                ", prePage=" + prePage +
+                ", nextPage=" + nextPage +
+                ", pageSize=" + pageSize +
+                ", datas=" + datas +
+                '}';
+    }
 
     public Page() {
     }

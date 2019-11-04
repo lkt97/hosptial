@@ -7,6 +7,15 @@ public class numberinfo {
 
     private Integer sumnumber;
 
+    @Override
+    public String toString() {
+        return "numberinfo{" +
+                "doctorid='" + doctorid + '\'' +
+                ", number='" + number + '\'' +
+                ", sumnumber=" + sumnumber +
+                '}';
+    }
+
     public String getDoctorid() {
         return doctorid;
     }

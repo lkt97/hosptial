@@ -11,11 +11,31 @@ public class doctorinfo {
 
     private Integer doctorstatus;
 
+    public String getDoctorsex() {
+        return doctorsex;
+    }
+
+    public void setDoctorsex(String doctorsex) {
+        this.doctorsex = doctorsex;
+    }
+
+    private String doctorsex;
+
     private String doctorspecialty;
 
     private String doctorjobtitle;
 
     private String docpassword;
+
+    private String doctorage;
+
+    public String getDoctorage() {
+        return doctorage;
+    }
+
+    public void setDoctorage(String doctorage) {
+        this.doctorage = doctorage;
+    }
 
     public String getDoctorid() {
         return doctorid;

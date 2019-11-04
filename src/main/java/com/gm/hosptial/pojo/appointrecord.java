@@ -16,12 +16,13 @@ public class appointrecord {
     public appointrecord() {
     }
 
-    public appointrecord(String appointnumber, String patientid, String appointtime, String appointstatus, String number) {
+    public appointrecord(String appointnumber, String patientid, String appointtime, String appointstatus, String number,String doctorid) {
         this.appointnumber = appointnumber;
         this.patientid = patientid;
         this.appointtime = appointtime;
         this.appointstatus = appointstatus;
         this.number = number;
+        this.doctorid=doctorid;
     }
 
     public String getDoctorid() {

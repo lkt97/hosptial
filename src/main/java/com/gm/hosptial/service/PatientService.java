@@ -1,6 +1,8 @@
 package com.gm.hosptial.service;
 
-import com.gm.hosptial.pojo.patientinfo;
+import com.gm.hosptial.pojo.*;
+
+import java.util.List;
 
 public interface PatientService {
     /**
@@ -31,5 +33,44 @@ public interface PatientService {
      * @return
      */
     public boolean upPsw(patientinfo patientinfo);
+
+    /**
+     * 查找部门
+     * @return
+     */
+    public List<departmentinfo> searchde(Page page);
+
+    /**
+     * 查询部门数量
+     * @return
+     */
+    public int countde();
+
+    /**
+     * 查找部门
+     * @return
+     */
+    public List<doctorinfo> searchdo(Page page);
+
+    /**
+     * 查询部门数量
+     * @return
+     */
+    public int countdo(Page page);
+
+    /**
+     * 查询排班信息
+     * @param doctorid
+     * @return
+     */
+    public scheduleinfo searchsc(String doctorid);
+
+    /**
+     * 查询号源
+     * @param doctorid
+     * @return
+     */
+    public List<numberinfo> searchnum(String doctorid);
+
 
 }

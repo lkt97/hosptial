@@ -3,6 +3,7 @@
 <mapper namespace="com.gm.hosptial.mapper.appointrecordMapper">
   <resultMap id="BaseResultMap" type="com.gm.hosptial.pojo.appointrecord">
     <result column="AppointNumber" jdbcType="VARCHAR" property="appointnumber" />
+    <result column="DoctorID" jdbcType="VARCHAR" property="doctorid" />
     <result column="PatientID" jdbcType="VARCHAR" property="patientid" />
     <result column="Appointtime" jdbcType="VARCHAR" property="appointtime" />
     <result column="AppointStatus" jdbcType="VARCHAR" property="appointstatus" />
@@ -10,13 +11,20 @@
   </resultMap>
 
   <sql id="Base_Column_List">
-    PatientID, AppointNumber, Appointtime, AppointStatus, number
+    PatientID, AppointNumber, Appointtime, AppointStatus, number, DoctorID
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from appointrecord
     where PatientID = #{patientid,jdbcType=VARCHAR}
+  </select>
+
+  <select id="count" resultType="java.lang.Integer">
+    select
+    count(*)
+    from appointrecord
+    where DoctorID=#{doctorid}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from appointrecord
@@ -30,9 +38,9 @@
   </select>
   <insert id="insert" parameterType="com.gm.hosptial.pojo.appointrecord">
     insert into appointrecord (AppointNumber, PatientID, Appointtime, 
-      AppointStatus, number)
+      AppointStatus, number,DoctorID)
     values (#{appointnumber,jdbcType=VARCHAR}, #{patientid,jdbcType=VARCHAR}, #{appointtime,jdbcType=VARCHAR}, 
-      #{appointstatus,jdbcType=VARCHAR}, #{number,jdbcType=VARCHAR})
+      #{appointstatus,jdbcType=VARCHAR}, #{number,jdbcType=VARCHAR}), #{doctorid,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.gm.hosptial.pojo.appointrecord">
     insert into appointrecord
@@ -52,6 +60,9 @@
       <if test="number != null">
         number,
       </if>
+      <if test="doctorid != null">
+        DoctorID,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="appointnumber != null">
@@ -69,6 +80,9 @@
       <if test="number != null">
         #{number,jdbcType=VARCHAR},
       </if>
+      <if test="doctorid != null">
+        #{doctorid,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.gm.hosptial.pojo.appointrecord">
@@ -85,6 +99,9 @@
       </if>
       <if test="number != null">
         number = #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorid != null">
+        DoctorID = #{doctorid,jdbcType=VARCHAR},
       </if>
     </set>
     where PatientID = #{patientid,jdbcType=VARCHAR}

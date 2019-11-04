@@ -145,7 +145,7 @@
 
     </div>
     <div class="form-bottom">
-        <form role="form" action="register" method="post" class="login-form">
+        <form role="form" action="/register.do" method="post" class="login-form">
             <div class="form-group col-xs-12">
                 <label class="sr-only" for="userEmail">userEmail</label>账号(*):<input
                     style="font-weight: bold" type="text" name="account"
@@ -153,7 +153,7 @@
                     required onkeyup="isCheckEmail()" /><span id="accountTip"></span>
             </div>
             <div class="form-group col-xs-12">
-                <label class="sr-only" for="userEmail">userEmail</label>邮箱(*):<input
+                <label class="sr-only" for="userEmail">userEmail</label>电话(*):<input
                     style="font-weight: bold" type="text" name="email"
                     id="userEmail" class="form-control input-control clearfix"
                     required onkeyup="isCheckEmail()" /><span id="emailTip"></span>
@@ -175,15 +175,15 @@
                     id="pwd2" required onkeyup="isCheckPwd()" /> <span id="pwdTip"></span>
             </div>
 
-            <div class="form-group col-xs-12">
-                <input id="sendcode" type="button" class="btn " value="发送验证码">
-            </div>
-            <div class="form-group col-xs-12">
-                <label class="sr-only" for="userEmail">code</label>验证码(*):<input
-                    style="font-weight: bold" type="text" name="checkCode"
-                    id="code" class="form-control input-control clearfix"
-                    required onkeyup="isCheckEmail()" /><span id=""></span>
-            </div>
+            <%--<div class="form-group col-xs-12">--%>
+                <%--<input id="sendcode" type="button" class="btn " value="发送验证码">--%>
+            <%--</div>--%>
+            <%--<div class="form-group col-xs-12">--%>
+                <%--<label class="sr-only" for="userEmail">code</label>验证码(*):<input--%>
+                    <%--style="font-weight: bold" type="text" name="checkCode"--%>
+                    <%--id="code" class="form-control input-control clearfix"--%>
+                    <%--required onkeyup="isCheckEmail()" /><span id=""></span>--%>
+            <%--</div>--%>
             <div class="form-group col-xs-12">
                 <button type="submit" class="btn" id="btn">立即注册</button>
             </div>
@@ -228,15 +228,15 @@
             var email = document.getElementById("userEmail").value;
             document.getElementById("errorTip").innerHTML = "";
             if (email != "") {
-                var reg = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
+                var reg = /^1(3|4|5|7|8)\d{9}$/;
                 isok = reg.test(email);
                 if (isok) {
-                    document.getElementById("emailTip").innerHTML = "邮箱格式正确";
+                    document.getElementById("emailTip").innerHTML = "电话号码正确";
                     document.getElementById("btn").disabled = false;
                     return true;
                 } else {
                     document.getElementById("btn").disabled = true;
-                    document.getElementById("emailTip").innerHTML = "邮箱格式不正确";
+                    document.getElementById("emailTip").innerHTML = "电话号码不正确";
                     return false;
                 }
             } else {

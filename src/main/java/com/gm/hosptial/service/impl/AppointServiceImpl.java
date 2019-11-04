@@ -2,12 +2,15 @@ package com.gm.hosptial.service.impl;
 
 import com.gm.hosptial.mapper.appointinfoMapper;
 import com.gm.hosptial.mapper.appointrecordMapper;
+import com.gm.hosptial.mapper.numberinfoMapper;
 import com.gm.hosptial.pojo.appointinfo;
 import com.gm.hosptial.pojo.appointrecord;
 import com.gm.hosptial.service.AppointService;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author lkt
@@ -21,18 +24,30 @@ public class AppointServiceImpl implements AppointService {
 
     @Resource(name = "appointrecordMapper")
     private appointrecordMapper appointrecordMapper;
+    @Resource(name = "numberinfoMapper")
+    private numberinfoMapper numberinfoMapper;
+    @Override
+    public boolean upnum(int tid) {
+        boolean f=false;
+        int i=numberinfoMapper.updateByPrimaryKeySelective(tid);
+        if (i==1)
+        {
+            f=true;
+        }
+        return f;
+    }
+
     /**
      * 插入预约信息
-     * @param appointinfo
      * @param appointrecord
      * @return
      */
     @Override
-    public boolean insertappoint(appointinfo appointinfo, appointrecord appointrecord) {
+    public boolean insertappoint( appointrecord appointrecord) {
         boolean boolen=false;
-        int i=appointinfoMapper.insertSelective(appointinfo);
+
         int j=appointrecordMapper.insertSelective(appointrecord);
-        if (i==1 && j==1)
+        if ( j==1)
         {
             boolen=true;
         }
@@ -41,7 +56,7 @@ public class AppointServiceImpl implements AppointService {
 
     @Override
     public appointrecord select(String patientid) {
-        appointrecord appointrecord=appointrecordMapper.select(patientid);
+        appointrecord appointrecord=appointrecordMapper.selectByPrimaryKey(patientid);
         return appointrecord;
     }
 
@@ -81,5 +96,17 @@ public class AppointServiceImpl implements AppointService {
 
         }
         return f;
+    }
+
+    /**
+     * 查询预约号
+     *
+     * @param doctor
+     * @return
+     */
+    @Override
+    public int countnum(String doctorid) {
+        int i=appointrecordMapper.count(doctorid);
+        return i;
     }
 }

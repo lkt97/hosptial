@@ -4,7 +4,6 @@
     <resultMap id="BaseResultMap" type="com.gm.hosptial.pojo.scheduleinfo">
         <id column="DoctorId" jdbcType="VARCHAR" property="doctorid" />
         <result column="DepartmentName" jdbcType="VARCHAR" property="departmentname" />
-        <result column="DoctorName" jdbcType="VARCHAR" property="doctorname" />
         <result column="SunAM" jdbcType="INTEGER" property="sunam" />
         <result column="MonAM" jdbcType="INTEGER" property="monam" />
         <result column="TueAM" jdbcType="INTEGER" property="tueam" />
@@ -21,7 +20,7 @@
         <result column="SatPM" jdbcType="INTEGER" property="satpm" />
     </resultMap>
     <sql id="Base_Column_List">
-    DoctorId, DepartmentName, DoctorName, SunAM, MonAM, TueAM, WedAM, ThurAM, FriAM,
+    DoctorId, DepartmentName, SunAM, MonAM, TueAM, WedAM, ThurAM, FriAM,
     SatAM, SunPM, MonPM, TuePM, WedPM, ThurPM, FriPM, SatPM
   </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -35,13 +34,13 @@
     where DoctorId = #{doctorid,jdbcType=VARCHAR}
   </delete>
     <insert id="insert" parameterType="com.gm.hosptial.pojo.scheduleinfo">
-    insert into scheduleinfo (DoctorId, DepartmentName, DoctorName,
+    insert into scheduleinfo (DoctorId, DepartmentName,
       SunAM, MonAM, TueAM,
       WedAM, ThurAM, FriAM,
       SatAM, SunPM, MonPM,
       TuePM, WedPM, ThurPM,
       FriPM, SatPM)
-    values (#{doctorid,jdbcType=VARCHAR}, #{departmentname,jdbcType=VARCHAR}, #{doctorname,jdbcType=VARCHAR},
+    values (#{doctorid,jdbcType=VARCHAR}, #{departmentname,jdbcType=VARCHAR},
       #{sunam,jdbcType=INTEGER}, #{monam,jdbcType=INTEGER}, #{tueam,jdbcType=INTEGER},
       #{wedam,jdbcType=INTEGER}, #{thuram,jdbcType=INTEGER}, #{friam,jdbcType=INTEGER},
       #{satam,jdbcType=INTEGER}, #{sunpm,jdbcType=INTEGER}, #{monpm,jdbcType=INTEGER},
@@ -57,9 +56,7 @@
             <if test="departmentname != null">
                 DepartmentName,
             </if>
-            <if test="doctorname != null">
-                DoctorName,
-            </if>
+
             <if test="sunam != null">
                 SunAM,
             </if>
@@ -109,9 +106,6 @@
             </if>
             <if test="departmentname != null">
                 #{departmentname,jdbcType=VARCHAR},
-            </if>
-            <if test="doctorname != null">
-                #{doctorname,jdbcType=VARCHAR},
             </if>
             <if test="sunam != null">
                 #{sunam,jdbcType=INTEGER},
@@ -163,9 +157,7 @@
             <if test="departmentname != null">
                 DepartmentName = #{departmentname,jdbcType=VARCHAR},
             </if>
-            <if test="doctorname != null">
-                DoctorName = #{doctorname,jdbcType=VARCHAR},
-            </if>
+
             <if test="sunam != null">
                 SunAM = #{sunam,jdbcType=INTEGER},
             </if>
@@ -214,7 +206,6 @@
     <update id="updateByPrimaryKey" parameterType="com.gm.hosptial.pojo.scheduleinfo">
     update scheduleinfo
     set DepartmentName = #{departmentname,jdbcType=VARCHAR},
-      DoctorName = #{doctorname,jdbcType=VARCHAR},
       SunAM = #{sunam,jdbcType=INTEGER},
       MonAM = #{monam,jdbcType=INTEGER},
       TueAM = #{tueam,jdbcType=INTEGER},

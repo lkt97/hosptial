@@ -7,6 +7,16 @@ public class departmentinfo {
 
     private String departmentintroduction;
 
+    private String doctornum;
+
+    public String getDoctornum() {
+        return doctornum;
+    }
+
+    public void setDoctornum(String doctornum) {
+        this.doctornum = doctornum;
+    }
+
     public String getDepartmentid() {
         return departmentid;
     }

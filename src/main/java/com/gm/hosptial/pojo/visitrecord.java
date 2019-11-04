@@ -9,6 +9,16 @@ public class visitrecord {
 
     private String recipe;
 
+    private String AppointNumber;
+
+    public String getAppointNumber() {
+        return AppointNumber;
+    }
+
+    public void setAppointNumber(String appointNumber) {
+        AppointNumber = appointNumber;
+    }
+
     public String getPatientid() {
         return patientid;
     }

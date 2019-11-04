@@ -1,11 +1,11 @@
-<%@ page import="bean.WorkDay" %>
+<%--<%@ page import="bean.WorkDay" %>--%>
 <%@ page import="java.util.List" %>
-<%@ page import="util.Util" %>
+<%--<%@ page import="util.Util" %>--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>${doctor.dname}--在线预约挂号系统</title>
+    <title>${doctor.doctorname}--在线预约挂号系统</title>
     <jsp:include page="include/headtag.jsp"/>
 </head>
 <body>
@@ -26,27 +26,27 @@
 
             <div class="title">
                 <div class="t">
-                    <span>${doctor.dname}</span>
-                    <span class="gender">${doctor.gender}</span>
-                    <span class="career">${doctor.career}</span>
-                    <span class="career">${doctor.age}岁</span>
+                    <span>${doctor.doctorname}</span>
+                    <span class="gender">${doctor.doctorsex}</span>
+                    <span class="career">${doctor.doctorjobtitle}</span>
+                    <span class="career">${doctor.doctorage}岁</span>
                 </div>
                 <div class="b">
-                    <span>${doctor.office} （${doctor.room}）</span><span>出诊费：${doctor.fee}</span>
+                    <%--<span>${doctor.office} （${doctor.room}）</span><span>出诊费：${doctor.fee}</span>--%>
                 </div>
-                <img src="${doctor.picpath}">
+                <%--<img src="${doctor.picpath}">--%>
             </div>
             <div class="content">
                 <div >
                     <div>介绍：</div>
-                    <div>${doctor.description}</div>
+                    <div>${doctor.doctorspecialty}</div>
                 </div>
             </div>
             <style>
                 .ysjs{
                     margin: 20px;
                     border-radius: 8px;
-                    width: 680px;
+                    width: 780px;
                     border: 1px #000 solid;
                 }
                 .ysjs .title{
@@ -97,6 +97,32 @@
                 .ysjs .content div{
                     padding-top: 10px;
                 }
+                .div11{
+                    display: -webkit-flex;
+                    display: flex;
+                    width: 800px;
+                    padding-left: 30px;
+                }
+                .div12{
+                    width: 110px;
+                    height: 180px;
+
+                    text-align: center;
+                }
+                .div121{
+                    width: 110px;
+                    height: 70px;
+                    background-color: #4bc7ff;
+                    text-align: center;
+                    border: 1px #000000 solid;
+                }
+                .div122{
+                    width: 110px;
+                    height: 70px;
+                    background-color: rgba(44,125,255,0.29);
+                    text-align: center;
+                    border: 1px #000000 solid;
+                }
             </style>
         </div>
         <%--显示医生排班--%>
@@ -107,62 +133,112 @@
         <div class="schedule">
             <div class="week">
                 <div class="ysjj1">
-                    <div style="width: 30%;">
-                        <div class="ysjj">
-                            <div class="title1">医生介绍</div>
-                            <img src="${doctor.picpath}">
-                            <div class="title">
-                                <div><span class="name">${doctor.dname}</span><span class="career">${doctor.career}</span><span class="gender">${doctor.gender}</span></div>
-                                <p>介绍：${doctor.description}</p>
-                            </div>
-                            <div class="work">
-                                <div>上午</div>
-                                <div>下午</div>
-                            </div>
-                        </div>
+                    <div style="width: 800px;">
+                        <%--<div class="div11">--%>
+
+                            <%--<c:forEach items="${week}" var="week">--%>
+
+                                <%--<div class="div12">--%>
+                                    <%--<div>${week}</div><div>1</div><div>2</div>--%>
+
+                                <%--</div>--%>
+
+
+                            <%--</c:forEach>--%>
+                    <%--</div>--%>
+
+
+
+                            <table width="800" align="center" border="1"><tr><td></td>
+                                <c:forEach items="${week}" var="week">
+                                    <td  align="center">${week}</td>
+                                </c:forEach>
+                            </tr>
+
+  <%--//                              <td align="center">${week.get(0)}<br>${date.get(0)}</td><td>${week.get(1)}<br>${date.get(1)}</td><td>${week.get(2)}<br>${date.get(2)}</td><td>${week.get(3)}<br>${date.get(3)}</td><td>${week.get(4)}<br>${date.get(4)}</td><td>${week.get(5)}<br>${date.get(5)}</td><td>${week.get(6)}<br>${date.get(6)}</td></tr>--%>
+
+
+                                <tr align="center"><td height="90">上午</td>
+                                       <c:forEach items="${am}" var="am" varStatus="i">
+                                           <%--href="/order.do?data=${dates.get(i.count-1)}&week=${date.get(i.count-1)}"--%>
+                                           <c:if test="${am ne 0}">
+                                                   <td align="center"><a href="/order.do?data=${dates.get(i.count-1)}&week=${date.get(i.count-1)}&am=上午&did=${doctor.doctorid}">可预约<br>号源${am}个</a></td>
+                                               </c:if>
+                                               <c:if test="${am eq 0}">
+                                                   <td align="center">不可预约<br></td>
+                                               </c:if>
+
+                                        </c:forEach>
+                                        </tr>
+                                    <tr align="center"><td height="90">下午</td>
+                                    <c:forEach items="${pm}" var="pm">
+                                        <c:if test="${pm ne 0}">
+                                            <td align="center"><a href="">可预约<br>号源${pm}个</a></td>
+                                        </c:if>
+                                        <c:if test="${pm eq 0}">
+                                            <td align="center">不可预约<br></td>
+                                        </c:if>
+                                    </c:forEach>
+                                </tr>
+
+                            </table>
+                        <%--<div class="ysjj">--%>
+                            <%--<div class="title1">医生介绍</div>--%>
+                            <%--<img src="${doctor.doctorage}">--%>
+                            <%--<div class="title">--%>
+                                <%--<div><span class="name">${doctor.doctorname}</span><span class="career">${doctor.doctorjobtitle}</span><span class="gender">${doctor.doctorsex}</span></div>--%>
+                                <%--<p>介绍：${doctor.doctorspecialty}</p>--%>
+                            <%--</div>--%>
+                            <%--<div class="work">--%>
+                                <%--<div>上午</div>--%>
+                                <%--<div>下午</div>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
                     </div>
                 </div>
 
                 <div class="title2">
-                    <%
-                        List<WorkDay> workDays= (List<WorkDay>) request.getAttribute("workDays");
-                        StringBuilder sb=new StringBuilder();
-                        for(int i=0;i<7;i++){
-                            sb.append("<ul><li class='date'>");
-                            sb.append(Util.getWeek(Integer.parseInt(workDays.get(i*2).getWorktime())));
-                            sb.append("<br>");
-                            sb.append(Util.getDate(Integer.parseInt(workDays.get(i*2).getWorktime())));
-                            sb.append("</li>");
-                            for(int j=0;j<2;j++){
-                                sb.append("<li class='");
-                                sb.append(workDays.get(i*2+j).getState());
-                                if("预约".equals(workDays.get(i*2+j).getState())&&!"今天".equals(Util.getWeek(Integer.parseInt(workDays.get(i*2).getWorktime())))){
-                                    sb.append("'><a style='    height: 100%; display: block;' data-toggle=\"modal\" data-target=\"#myModal\" data-wid='");
-                                }else {
-                                    sb.append("'><a  data-wid='");
-                                }
-                                sb.append(workDays.get(i*2+j).getWid());
-                                sb.append("' data-ampm='");
-                                sb.append(workDays.get(i*2+j).getAmpm());
-                                sb.append("' data-date='");
-                                sb.append(Util.getDate(Integer.parseInt(workDays.get(i*2).getWorktime())));
-                                sb.append("'><br>");
-                                sb.append(workDays.get(i*2+j).getState());
-                                sb.append("<br>号源数");
-                                sb.append(workDays.get(i*2+j).getNsnum());
-                                sb.append("</a></li>");
-                            }
-                            sb.append("</ul>");
-                        }
-                        out.write(sb.toString());
-                    %>
+
+
+                    <%--<%--%>
+<%--//                        List<WorkDay> workDays= (List<WorkDay>) request.getAttribute("workDays");--%>
+                        <%--StringBuilder sb=new StringBuilder();--%>
+                        <%--for(int i=0;i<7;i++){--%>
+                            <%--sb.append("<ul><li class='date'>");--%>
+<%--//                            sb.append(Util.getWeek(Integer.parseInt(workDays.get(i*2).getWorktime())));--%>
+                            <%--sb.append("<br>");--%>
+<%--//                            sb.append(Util.getDate(Integer.parseInt(workDays.get(i*2).getWorktime())));--%>
+                            <%--sb.append("</li>");--%>
+                            <%--for(int j=0;j<2;j++){--%>
+                                <%--sb.append("<li class='");--%>
+<%--//                                sb.append(workDays.get(i*2+j).getState());--%>
+<%--//                                if("预约".equals(workDays.get(i*2+j).getState())&&!"今天".equals(Util.getWeek(Integer.parseInt(workDays.get(i*2).getWorktime())))){--%>
+                                    <%--sb.append("'><a style='    height: 100%; display: block;' data-toggle=\"modal\" data-target=\"#myModal\" data-wid='");--%>
+ <%--//                               }else {--%>
+ <%--//                                   sb.append("'><a  data-wid='");--%>
+ <%--//                               }--%>
+ <%--//                               sb.append(workDays.get(i*2+j).getWid());--%>
+                                <%--sb.append("' data-ampm='");--%>
+ <%--//                               sb.append(workDays.get(i*2+j).getAmpm());--%>
+                                <%--sb.append("' data-date='");--%>
+<%--//                                sb.append(Util.getDate(Integer.parseInt(workDays.get(i*2).getWorktime())));--%>
+                                <%--sb.append("'><br>");--%>
+ <%--//                               sb.append(workDays.get(i*2+j).getState());--%>
+                                <%--sb.append("<br>号源数");--%>
+ <%--//                               sb.append(workDays.get(i*2+j).getNsnum());--%>
+                                <%--sb.append("</a></li>");--%>
+                            <%--}--%>
+                            <%--sb.append("</ul>");--%>
+                        <%--}--%>
+                        <%--out.write(sb.toString());--%>
+                    <%--%>--%>
                 </div>
             </div>
             <style>
                 .schedule{
                     text-align: center;
-                    width: 80%;
-                    border: 1px #0065AF solid;
+                    width: 800px;
+                    /*border: 1px #0065AF solid;*/
                 }
                 .schedule:after{
                     content:"";
@@ -309,54 +385,66 @@
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             <h4 class="modal-title" id="myModalLabel">预约号源</h4>
+                            <div>
+                                <c:forEach var="i" begin="1" end="10" varStatus="status">
+                                    <input type="radio" value="${status.index}">${status.index}号<br>
+                                </c:forEach>
+                            </div>
+                            <div class="modal-footer">
+
+                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                <button id="doalert" type="submit" class="btn btn-primary order">确定</button>
+                            </div>
+
                         </div>
-                        <form class="form-horizontal" action='order' method='post'>
-                            <input id="action" hidden value="order" name="action">
-                            <input id="wid" hidden  name="wid">
-                            <input  hidden  name="did" value="${doctor.did}">
+
+                            <%--<input id="action" hidden value="order" name="action">--%>
+                            <%--<input id="wid" hidden  name="wid">--%>
+                            <input  name="did" value="${doctor.did}">
                             <div class="modal-body">
                                 <%--显示预约的号源信息--%>
                                 <div class="haoyuan">
                                     <ul>
+                                        1111
                                     </ul>
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                                <button id="doalert" type="submit" class="btn btn-primary order">确定</button>
+                                <%--<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>--%>
+                                <%--<button id="doalert" type="submit" class="btn btn-primary order">确定</button>--%>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
             <script>
-                $(function () {
-                    $('#myModal').on('show.bs.modal', function (event) {
-                        var  a=$(event.relatedTarget);
-                        var wid =a .data('wid');
-                        var ampm =a .data('ampm');
-                        var date =a .data('date');
-                        $("#wid").val(wid);
-                        $.post("<%=request.getContextPath()%>/queryNumSource",{wid:wid,ampm:ampm,date:date},
-                            function(data){
-                                console.log(data);
-                                var options="";
-                                for(var i=0;i<data.length;i++){
-                                    options+="<li class='"+data[i].state+"' ><label>" +
-                                        "<input  type='radio' name='data' value='"+data[i].serialnumber+","+data[i].date+","+data[i].ampm+","+data[i].time+"'>" +
-                                        "就诊序号-"+data[i].serialnumber+"号 号源时间 - "+data[i].date+data[i].ampm+data[i].time+" "+data[i].state+"</label></li>"
-                                }
-                                $(".haoyuan ul").empty();
-                                ($(options)).appendTo($(".haoyuan ul"));
-                                $('.已被预约 input').attr("disabled","true");
-                            });
-                        $('#doalert').click(function () {
-                            if($("input[type=radio]:checked").length==1){
-                                $("form").submit();
-                            }else {$('#myModal').modal('hide')}
-                        })
-                    });
-                })
+                <%--$(function () {--%>
+                    <%--$('#myModal').on('show.bs.modal', function (event) {--%>
+                        <%--var  a=$(event.relatedTarget);--%>
+                        <%--var wid =a .data('wid');--%>
+                        <%--var ampm =a .data('ampm');--%>
+                        <%--var date =a .data('date');--%>
+                        <%--$("#wid").val(wid);--%>
+                        <%--$.post("<%=request.getContextPath()%>/queryNumSource",{wid:wid,ampm:ampm,date:date},--%>
+                            <%--function(data){--%>
+                                <%--console.log(data);--%>
+                                <%--var options="";--%>
+                                <%--for(var i=0;i<data.length;i++){--%>
+                                    <%--options+="<li class='"+data[i].state+"' ><label>" +--%>
+                                        <%--"<input  type='radio' name='data' value='"+data[i].serialnumber+","+data[i].date+","+data[i].ampm+","+data[i].time+"'>" +--%>
+                                        <%--"就诊序号-"+data[i].serialnumber+"号 号源时间 - "+data[i].date+data[i].ampm+data[i].time+" "+data[i].state+"</label></li>"--%>
+                                <%--}--%>
+                                <%--$(".haoyuan ul").empty();--%>
+                                <%--($(options)).appendTo($(".haoyuan ul"));--%>
+                                <%--$('.已被预约 input').attr("disabled","true");--%>
+                            <%--});--%>
+                        <%--$('#doalert').click(function () {--%>
+                            <%--if($("input[type=radio]:checked").length==1){--%>
+                                <%--$("form").submit();--%>
+                            <%--}else {$('#myModal').modal('hide')}--%>
+                        <%--})--%>
+                    <%--});--%>
+                <%--})--%>
             </script>
         </div>
 

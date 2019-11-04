@@ -15,6 +15,14 @@
     from numberinfo
     where DoctorID = #{doctorid,jdbcType=VARCHAR}
   </select>
+
+  <select id="select" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from numberinfo
+    where DoctorID = #{doctorid,jdbcType=VARCHAR}
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from numberinfo
     where DoctorID = #{doctorid,jdbcType=VARCHAR}
@@ -50,17 +58,12 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.gm.hosptial.pojo.numberinfo">
+  <update id="updateByPrimaryKeySelective" parameterType="java.lang.Integer">
     update numberinfo
     <set>
-      <if test="number != null">
-        Number = #{number,jdbcType=VARCHAR},
-      </if>
-      <if test="sumnumber != null">
-        Sumnumber = #{sumnumber,jdbcType=INTEGER},
-      </if>
+        Sumnumber = sumnumber-1,
     </set>
-    where DoctorID = #{doctorid,jdbcType=VARCHAR}
+    where tid = #{tid}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.gm.hosptial.pojo.numberinfo">
     update numberinfo

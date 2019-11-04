@@ -47,14 +47,14 @@
 
         <div class="office-info">
             <h3 class="office-name">
-                ${office.officename}
+                ${department.departmentname}
             </h3>
             <h2>科室简介</h2>
             <div>
-                ${office.description}
+                ${department.departmentintroduction}
             </div>
             <div>
-                该科室有${office.doctornum}位医生
+                该科室有${department.doctornum}位医生
             </div>
         <style>
             .office-info{
@@ -76,17 +76,17 @@
                 <div class="ysjs">
                     <div class="title">
                         <div class="t">
-                            <span><a href="showWeek?did=${item.did}">${item.dname}</a></span>
-                            <span class="gender">${item.gender}</span>
-                            <span class="career">${item.career}</span>
-                            <span class="career">${item.age}岁</span>
+                            <span><a href="showWeek?did=${item.doctorid}">${item.doctorname}</a></span>
+                            <span class="gender">${item.doctorsex}</span>
+                            <span class="career">${item.doctorjobtitle}</span>
+                            <span class="career">${item.doctorage}岁</span>
                         </div>
-                        <img src="${item.picpath}">
+                        <%--<img src="${item.picpath}">--%>
                     </div>
                     <div class="content">
                         <div >
                             <div>介绍：</div>
-                            <div>${item.description}</div>
+                            <div>${item.doctorspecialty}</div>
                         </div>
                     </div>
                 </div>
@@ -157,7 +157,7 @@
     <ul class="pagination">
         <li <c:if test="${pages.currentPage < 1}">class="disabled"</c:if>><a
                 onclick="jump('${pages.prePage }')">&laquo;</a></li>
-        <c:forEach begin="${pages.pageNumStart }" end="${pages.pageNumEnd }"
+        <c:forEach begin="${pages.firstPage}" end="${pages.lastPage}"
                    varStatus="status">
             <li>
                 <a <c:if test="${status.index == pages.currentPage }">class="disabled"</c:if>
@@ -166,12 +166,12 @@
             </li>
         </c:forEach>
         <li
-                <c:if test="${pages.currentPage> pages.totalPage}">class="disabled"</c:if>>
+                <c:if test="${pages.currentPage> pages.totalPages}">class="disabled"</c:if>>
             <a onclick="jump('${pages.nextPage }')">&raquo;</a>
         </li>
         <li><input class="text-input" id="index"></li>
         <li><a onclick="jumpInput()">Go</a></li>
-        <li><a class="disabled">共${pages.totalPage}页${pages.totalRecord}条记录</a>
+        <li><a class="disabled">共${pages.totalPages}页${pages.totalRecords}条记录</a>
 
         <script>
             function jump(index) {

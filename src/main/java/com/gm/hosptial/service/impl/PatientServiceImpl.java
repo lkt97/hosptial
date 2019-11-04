@@ -1,16 +1,15 @@
 package com.gm.hosptial.service.impl;
 
-import com.gm.hosptial.mapper.docleaveinfoMapper;
-import com.gm.hosptial.mapper.patientinfoMapper;
-import com.gm.hosptial.pojo.patientinfo;
+import com.gm.hosptial.mapper.*;
+import com.gm.hosptial.pojo.*;
 
 import com.gm.hosptial.service.PatientService;
-
 import org.springframework.stereotype.Service;
 
-
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * @author lkt
@@ -25,6 +24,14 @@ public class PatientServiceImpl implements PatientService {
     private docleaveinfoMapper docleaveinfoMapper;
     @Resource(name = "patientinfoMapper")
     private patientinfoMapper patientinfoMapper;
+    @Resource(name = "departmentinfoMapper")
+    private departmentinfoMapper departmentinfoMapper;
+    @Resource(name = "doctorinfoMapper")
+    private doctorinfoMapper doctorinfoMapper;
+    @Resource(name = "scheduleinfoMapper")
+    private scheduleinfoMapper scheduleinfoMapper;
+    @Resource(name = "numberinfoMapper")
+    private numberinfoMapper numberinfoMapper;
 
 
     /**
@@ -88,8 +95,65 @@ public class PatientServiceImpl implements PatientService {
      */
     @Override
     public boolean upPsw(patientinfo patientinfo) {
+        boolean f=false;
         int i=patientinfoMapper.updateByPrimaryKeySelective(patientinfo);
-        return false;
+        if (i==1)
+        {
+            f=true;
+        }
+        return f;
     }
+
+    @Override
+    public List<departmentinfo> searchde(Page page) {
+
+
+        List<departmentinfo> departments=departmentinfoMapper.select(page);
+        return departments;
+
+    }
+
+    @Override
+    public int countde() {
+        int i=0;
+        i=departmentinfoMapper.count();
+        return i;
+    }
+
+    @Override
+    public List<doctorinfo> searchdo(Page page) {
+
+        List<doctorinfo> doctors=doctorinfoMapper.selectp(page);
+
+
+
+        return doctors;
+    }
+
+    @Override
+    public int countdo(Page page) {
+        int i=0;
+        i=doctorinfoMapper.count(page);
+        return i;
+    }
+
+    @Override
+    public scheduleinfo searchsc(String doctorid) {
+        scheduleinfo list= scheduleinfoMapper.selectByPrimaryKey(doctorid);
+        return list;
+    }
+
+    /**
+     * 查询号源
+     *
+     * @param doctorid
+     * @return
+     */
+    @Override
+    public List<numberinfo> searchnum(String doctorid) {
+        List<numberinfo> list=numberinfoMapper.select(doctorid);
+        return list;
+    }
+
 
 }

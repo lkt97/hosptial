@@ -5,7 +5,7 @@ public class scheduleinfo {
 
     private String departmentname;
 
-    private String doctorname;
+
 
     private Integer sunam;
 
@@ -51,13 +51,6 @@ public class scheduleinfo {
         this.departmentname = departmentname == null ? null : departmentname.trim();
     }
 
-    public String getDoctorname() {
-        return doctorname;
-    }
-
-    public void setDoctorname(String doctorname) {
-        this.doctorname = doctorname == null ? null : doctorname.trim();
-    }
 
     public Integer getSunam() {
         return sunam;

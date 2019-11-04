@@ -47,21 +47,21 @@
 
 
         <div class="doctors">
-            <c:forEach items="${doctors}" var="item">
+            <c:forEach items="${page.datas}" var="doctor">
                 <div class="ysjs">
                     <div class="title">
                         <div class="t">
-                            <span><a href="showWeek?did=${item.did}">${item.dname}</a></span>
-                            <span class="gender">${item.gender}</span>
-                            <span class="career">${item.career}</span>
-                            <span class="career">${item.age}岁</span>
+                            <span><a href="/doctorInfo.do?did=${doctor.doctorid}">${doctor.doctorname}</a></span>
+                            <span class="gender">${doctor.doctorsex}</span><br>
+                            <span class="career">${doctor.doctorjobtitle}</span>
+                            <span class="career">${doctor.doctorage}岁</span>
                         </div>
-                        <img src="${item.picpath}">
+                        <%--<img src="${item.picpath}">--%>
                     </div>
                     <div class="content">
                         <div >
                             <div>介绍：</div>
-                            <div>${item.description}</div>
+                            <div>${doctor.doctorspecialty}</div>
                         </div>
                     </div>
                 </div>
@@ -78,7 +78,7 @@
                     margin: 20px;
                     height: 300px;
                     border-radius: 8px;
-                    width: 680px;
+                    width: 300px;
                     border: 1px #000 solid;
                 }
                 .ysjs .title{
