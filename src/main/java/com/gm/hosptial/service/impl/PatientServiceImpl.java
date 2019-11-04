@@ -18,8 +18,6 @@ import java.util.List;
 @Service("patientServiceImpl")
 public class PatientServiceImpl implements PatientService {
 
-//    @Resource(name = "loginMapper")
-//    private LoginMapper loginMapper;
     @Resource(name = "docleaveinfoMapper")
     private docleaveinfoMapper docleaveinfoMapper;
     @Resource(name = "patientinfoMapper")

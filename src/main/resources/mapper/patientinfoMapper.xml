@@ -7,12 +7,11 @@
     <result column="PatientPhone" jdbcType="VARCHAR" property="patientphone" />
     <result column="PatientSex" jdbcType="VARCHAR" property="patientsex" />
     <result column="PatientStatus" jdbcType="INTEGER" property="patientstatus" />
-    <result column="ID" jdbcType="VARCHAR" property="id" />
     <result column="Password" jdbcType="VARCHAR" property="password" />
     <result column="Freezetime" jdbcType="INTEGER" property="freezetime" />
   </resultMap>
   <sql id="Base_Column_List">
-    PatientID, PatientName, PatientPhone, PatientSex, PatientStatus, ID, Password,
+    PatientID, PatientName, PatientPhone, PatientSex, PatientStatus,Password,
     Freezetime
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -41,11 +40,11 @@
   <insert id="insert" parameterType="com.gm.hosptial.pojo.patientinfo">
     insert into patientinfo (PatientID,  PatientName,
       PatientPhone, PatientSex, PatientStatus, 
-      ID, Password, Freezetime
+       Password, Freezetime
       )
     values (#{patientid,jdbcType=VARCHAR}, #{patientname,jdbcType=VARCHAR},
       #{patientphone,jdbcType=VARCHAR}, #{patientsex,jdbcType=VARCHAR}, #{patientstatus,jdbcType=INTEGER}, 
-      #{id,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{freezetime,jdbcType=INTEGER}
+      #{password,jdbcType=VARCHAR}, #{freezetime,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.gm.hosptial.pojo.patientinfo">
@@ -65,9 +64,6 @@
       </if>
       <if test="patientstatus != null">
         PatientStatus,
-      </if>
-      <if test="id != null">
-        ID,
       </if>
       <if test="password != null">
         Password,
@@ -119,9 +115,6 @@
       <if test="patientstatus != null">
         PatientStatus = #{patientstatus,jdbcType=INTEGER},
       </if>
-      <if test="id != null">
-        ID = #{id,jdbcType=VARCHAR},
-      </if>
       <if test="password != null">
         Password = #{password,jdbcType=VARCHAR},
       </if>
@@ -138,7 +131,6 @@
       PatientPhone = #{patientphone,jdbcType=VARCHAR},
       PatientSex = #{patientsex,jdbcType=VARCHAR},
       PatientStatus = #{patientstatus,jdbcType=INTEGER},
-      ID = #{id,jdbcType=VARCHAR},
       Password = #{password,jdbcType=VARCHAR},
       Freezetime = #{freezetime,jdbcType=INTEGER}
     where PatientID = #{patientid,jdbcType=VARCHAR}
