@@ -17,9 +17,15 @@
     select
     <include refid="Base_Column_List" />
     from appointrecord
-    where PatientID = #{patientid,jdbcType=VARCHAR}
+    where AppointNumber = #{appointnumber,jdbcType=VARCHAR}
   </select>
 
+  <select id="selectpa" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from appointrecord
+    where DoctorID = #{doctorid,jdbcType=VARCHAR}
+  </select>
   <select id="count" resultType="java.lang.Integer">
     select
     count(*)

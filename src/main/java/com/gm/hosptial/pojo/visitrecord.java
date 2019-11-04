@@ -5,7 +5,7 @@ public class visitrecord {
 
     private String doctorid;
 
-    private Integer visitstatus;
+    private String visitstatus;
 
     private String recipe;
 
@@ -35,11 +35,11 @@ public class visitrecord {
         this.doctorid = doctorid == null ? null : doctorid.trim();
     }
 
-    public Integer getVisitstatus() {
+    public String getVisitstatus() {
         return visitstatus;
     }
 
-    public void setVisitstatus(Integer visitstatus) {
+    public void setVisitstatus(String visitstatus) {
         this.visitstatus = visitstatus;
     }
 

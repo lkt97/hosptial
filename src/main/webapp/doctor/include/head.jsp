@@ -14,8 +14,8 @@
             <ul class="navbar-right1">
                 <li>
                     <div>
-                        <c:if test="${sessionScope.doctor != null}">
-                            <a class="navbar-brand1" style="font-size: 12px;" href=""><strong><font color="#fff">欢迎您,${sessionScope.doctor.dname }</font></strong></a>
+                        <c:if test="${session.doctor != null}">
+                            <a class="navbar-brand1" style="font-size: 12px;" href=""><strong><font color="#fff">欢迎您,${session.doctor.dname }</font></strong></a>
                             <a class="navbar-brand1" style="font-size: 12px;"
                                href="<%=request.getContextPath()%>/logout"><strong>注销</strong></a>
                         </c:if>

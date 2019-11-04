@@ -3,10 +3,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
 </head>
 <body>
 
-<div >
+<div style="margin-top: 100px">
     <div wid="page-inner">
         <div class="container">
             <div class="h3 alert-info info">我的信息</div>
@@ -105,23 +106,23 @@
                             </tr>
                             <tr>
                                 <th><a>上午</a></th>
-                                <th><a href="">${doctorsch.sunam==1?"有":"无"}</a></th>
-                                <th><a>${doctorsch.monam==1?"有":"无"}</a></th>
-                                <th><a>${doctorsch.tueam==1?"有":"无"}</a></th>
-                                <th><a>${doctorsch.wedam==1?"有":"无"}</a></th>
-                                <th><a>${doctorsch.thuram==1?"有":"无"}</a></th>
-                                <th><a>${doctorsch.friam==1?"有":"无"}</a></th>
-                                <th><a>${doctorsch.satam==1?"有":"无"}</a></th>
+                                <th><a href="">${doctorsch.sunam==0?"无":doctorsch.sunam}</a></th>
+                                <th><a>${doctorsch.monam==0?"无":doctorsch.monam}</a></th>
+                                <th><a>${doctorsch.tueam==0?"无":doctorsch.tueam}</a></th>
+                                <th><a>${doctorsch.wedam==0?"无":doctorsch.wedam}</a></th>
+                                <th><a>${doctorsch.thuram==0?"无":doctorsch.thuram}</a></th>
+                                <th><a>${doctorsch.friam==0?"无":doctorsch.friam}</a></th>
+                                <th><a>${doctorsch.satam==0?"无":doctorsch.satam}</a></th>
                             </tr>
                             <tr>
-                                <th>下午</th>
-                                <th><a>${doctorsch.sunpm==1?"有":"无"}</a></th>
-                                <th><a>${doctorsch.monpm==1?"有":"无"}</a></th>
-                                <th><a>${doctorsch.tuepm==1?"有":"无"}</a></th>
-                                <th><a>${doctorsch.wedpm==1?"有":"无"}</a></th>
-                                <th><a>${doctorsch.thurpm==1?"有":"无"}</a></th>
-                                <th><a>${doctorsch.fripm==1?"有":"无"}</a></th>
-                                <th><a>${doctorsch.satpm==1?"有":"无"}</a></th>
+                                <th><a>下午</a></th>
+                                <th><a>${doctorsch.sunpm==0?"无":doctorsch.sunpm}</a></th>
+                                <th><a>${doctorsch.monpm==0?"无":doctorsch.monpm}</a></th>
+                                <th><a>${doctorsch.tuepm==0?"无":doctorsch.tuepm}</a></th>
+                                <th><a>${doctorsch.wedpm==0?"无":doctorsch.wedpm}</a></th>
+                                <th><a>${doctorsch.thurpm==0?"无":doctorsch.thurpm}</a></th>
+                                <th><a>${doctorsch.fripm==0?"无":doctorsch.fripm}</a></th>
+                                <th><a>${doctorsch.satpm==0?"无":doctorsch.satpm}</a></th>
                             </tr>
                         </table>
                     </div>

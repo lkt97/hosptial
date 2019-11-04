@@ -4,13 +4,13 @@
   <resultMap id="BaseResultMap" type="com.gm.hosptial.pojo.visitrecord">
     <result column="PatientID" jdbcType="VARCHAR" property="patientid" />
     <result column="DoctorID" jdbcType="VARCHAR" property="doctorid" />
-    <result column="VisitStatus" jdbcType="INTEGER" property="visitstatus" />
+    <result column="VisitStatus" jdbcType="VARCHAR" property="visitstatus" />
     <result column="Recipe" jdbcType="VARCHAR" property="recipe" />
   </resultMap>
   <insert id="insert" parameterType="com.gm.hosptial.pojo.visitrecord">
     insert into visitrecord (PatientID, DoctorID, VisitStatus, 
       Recipe)
-    values (#{patientid,jdbcType=VARCHAR}, #{doctorid,jdbcType=VARCHAR}, #{visitstatus,jdbcType=INTEGER}, 
+    values (#{patientid,jdbcType=VARCHAR}, #{doctorid,jdbcType=VARCHAR}, #{visitstatus,jdbcType=VARCHAR},
       #{recipe,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.gm.hosptial.pojo.visitrecord">
@@ -37,7 +37,7 @@
         #{doctorid,jdbcType=VARCHAR},
       </if>
       <if test="visitstatus != null">
-        #{visitstatus,jdbcType=INTEGER},
+        #{visitstatus,jdbcType=VARCHAR},
       </if>
       <if test="recipe != null">
         #{recipe,jdbcType=VARCHAR},

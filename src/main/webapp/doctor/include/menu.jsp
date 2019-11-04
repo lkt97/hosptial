@@ -1,5 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
 <!--右边菜单栏-->
 <div id="wrapper" class="toggled1 ">
 
@@ -9,12 +8,12 @@
             <br />
             <br />
             <br />
-            <li><a class="list-group-item1" href="<%=request.getContextPath()%>/doctor/myWork" target="iframedoctor"><font color="#fff">排班信息</font></a></li>
-            <li><a class="list-group-item1" href="<%=request.getContextPath()%>/doctor/myApply" target="iframedoctor"><font color="#fff">我的申请</font></a></li>
-            <li><a class="list-group-item1" href="<%=request.getContextPath()%>/doctor/patientList" target="iframedoctor"><font color="#fff">患者队列</font></a></li>
-            <li><a class="list-group-item1" href="doctor/myInfo.jsp" target="iframedoctor"><font color="#fff">我的信息</font></a></li>
+            <li><a class="list-group-item1" href="/myWork.do" target="iframedoctor"><font color="#fff">排班信息</font></a></li>
+            <li><a class="list-group-item1" href="/DocL.do" target="iframedoctor"><font color="#fff">我的申请</font></a></li>
+            <li><a class="list-group-item1" href="/palist.do" target="iframedoctor"><font color="#fff">患者队列</font></a></li>
+            <li><a class="list-group-item1" href="/myinfo.do" target="iframedoctor"><font color="#fff">我的信息</font></a></li>
             <!-- <li><a class="list-group-item1" href="/ssm_pro/orderIndex"><font color="#fff">快速预约</font></a></li> -->
-            <li><a class="list-group-item1" href="<%=request.getContextPath()%>/doctor/modifyPwd.jsp"><font color="#fff">修改密码</font></a></li>
+            <li><a class="list-group-item1" href="modifyPwd.jsp" target="iframedoctor"><font color="#fff">修改密码</font></a></li>
         </ul>
     </div>
 </div>

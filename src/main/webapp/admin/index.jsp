@@ -7,7 +7,7 @@
 <body>
 <jsp:include page="include/head.jsp"/>
 <jsp:include page="include/menu.jsp"/>
-<script src="<%=request.getContextPath()%>/scripts/echarts.min.js"></script>
+<script src="scripts/echarts.min.js"></script>
 <div style="margin-top: 100px;margin-left: 300px">
     <div id="page-inner">
         <div ><button class="btn btn-success">打印</button></div>

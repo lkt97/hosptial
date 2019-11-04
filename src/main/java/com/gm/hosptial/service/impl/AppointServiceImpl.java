@@ -1,16 +1,12 @@
 package com.gm.hosptial.service.impl;
 
-import com.gm.hosptial.mapper.appointinfoMapper;
 import com.gm.hosptial.mapper.appointrecordMapper;
 import com.gm.hosptial.mapper.numberinfoMapper;
-import com.gm.hosptial.pojo.appointinfo;
 import com.gm.hosptial.pojo.appointrecord;
 import com.gm.hosptial.service.AppointService;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * @author lkt
@@ -18,9 +14,6 @@ import java.util.List;
  */
 @Service("appointServiceImpl")
 public class AppointServiceImpl implements AppointService {
-
-    @Resource(name = "appointinfoMapper")
-    private appointinfoMapper appointinfoMapper;
 
     @Resource(name = "appointrecordMapper")
     private appointrecordMapper appointrecordMapper;
@@ -61,16 +54,14 @@ public class AppointServiceImpl implements AppointService {
     }
 
     @Override
-    public boolean upappointrecord(appointinfo appointinfo, appointrecord appointrecord) {
+    public boolean upappointrecord( appointrecord appointrecord) {
         boolean bool=false;
-        appointinfo appointinfo1=appointinfoMapper.selectByPrimaryKey(appointinfo.getPatientid());
         appointrecord appointrecord1=appointrecordMapper.selectByPrimaryKey(appointrecord.getPatientid());
-        if (appointinfo1!=null && appointrecord1!=null)
+        if (appointrecord1!=null)
         {
             int i,j;
-            i=appointinfoMapper.updateByPrimaryKeySelective(appointinfo);
             j=appointrecordMapper.updateByPrimaryKeySelective(appointrecord);
-            if(i==1&&j==1)
+            if(j==1)
             {
                 bool=true;
             }
@@ -82,14 +73,14 @@ public class AppointServiceImpl implements AppointService {
     @Override
     public boolean deappointrecord(String patientid) {
         boolean f=false;
-        appointinfo appointinfo=appointinfoMapper.selectByPrimaryKey(patientid);
+
         appointrecord appointrecord=appointrecordMapper.selectByPrimaryKey(patientid);
-        if (appointinfo!=null && appointrecord!=null)
+        if ( appointrecord!=null)
         {
             int i,j;
-            i=appointinfoMapper.deleteByPrimaryKey(patientid);
+
             j=appointrecordMapper.deleteByPrimaryKey(patientid);
-            if(i==1&&j==1)
+            if(j==1)
             {
                 f=true;
             }
@@ -101,7 +92,7 @@ public class AppointServiceImpl implements AppointService {
     /**
      * 查询预约号
      *
-     * @param doctor
+     * @param doctorid
      * @return
      */
     @Override

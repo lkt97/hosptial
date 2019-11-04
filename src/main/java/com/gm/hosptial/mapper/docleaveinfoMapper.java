@@ -15,4 +15,6 @@ public interface docleaveinfoMapper {
     int update(docleaveinfo record);
 
     int insertSelective(docleaveinfo record);
+
+    int deleteByPrimaryKey(docleaveinfo record);
 }

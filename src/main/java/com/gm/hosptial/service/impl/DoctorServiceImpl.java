@@ -15,10 +15,6 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Resource(name = "doctorinfoMapper")
     private doctorinfoMapper docM;
-
-    @Resource(name = "appointinfoMapper")
-    private appointinfoMapper appM;
-
     @Resource(name = "appointrecordMapper")
     private appointrecordMapper appdM;
 
@@ -73,8 +69,24 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    public List<appointinfo> getappoint(String docid) {
-        List<appointinfo> app=appM.select(docid);
+    public boolean deleleaveDoctor(docleaveinfo dlinfo) {
+        int n = 0;
+        n = docL.deleteByPrimaryKey(dlinfo);
+        if(n == 0)
+            return false;
+        else
+            return  true;
+    }
+
+    @Override
+    public docleaveinfo getleaveDoctor(String did) {
+
+        return null;
+    }
+
+    @Override
+    public List<appointrecord> getappoint(String docid) {
+        List<appointrecord> app=appdM.selectpa(docid);
         return app;
     }
 
@@ -86,15 +98,9 @@ public class DoctorServiceImpl implements DoctorService {
 
 
     @Override
-    public boolean setappointAffirm(appointrecord apoint,String did) {
-        appointrecord apprfo = appdM.select(apoint.getPatientid());
-        appointinfo appfo = appM.selectByPrimaryKey(apoint.getPatientid());
-        visitrecord vis = new visitrecord() ;
-        vis.setDoctorid(appfo.getDoctorid());
-        vis.setPatientid(appfo.getPatientid());
-        vis.setRecipe(did);
-        vis.setVisitstatus(1);
+    public boolean setappointAffirm(visitrecord vis) {
         int n=visM.insert(vis);
+        appdM.deleteByPrimaryKey(vis.getAppointNumber());
         if (n==0)
             return false;
         else

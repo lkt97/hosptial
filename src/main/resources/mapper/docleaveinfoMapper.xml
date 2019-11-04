@@ -11,23 +11,28 @@
   <sql id="Base_Column_List">
     DoctorID, LeaStaTime, LeaDayNum,TimeStatus, tbDoctorID,Flag
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="com.gm.hosptial.pojo.doctorinfo" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
-    from patientinfo
+    from docleaveinfo
     where DoctorID = #{doctorid,jdbcType=VARCHAR} and Flag = 0
   </select>
   <select id="select" parameterType="java.lang.String" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
-    from patientinfo
+    from docleaveinfo
   </select>
-
+  <delete id="deleteByPrimaryKey" parameterType="com.gm.hosptial.pojo.docleaveinfo">
+    delete from docleaveinfo
+    where DoctorID=#{doctorid,jdbcType=VARCHAR}
+     and LeaStaTime= #{leastatime,jdbcType=INTEGER} and LeaDayNum= #{leadaynum,jdbcType=INTEGER}
+     and tbDoctorID= #{tbdoctorid,jdbcType=VARCHAR} and Flag = 0
+  </delete>
   <insert id="insert" parameterType="com.gm.hosptial.pojo.docleaveinfo">
     insert into docleaveinfo (DoctorID, LeaStaTime, LeaDayNum,
-      TimeStatus, tbDoctorID)
+      TimeStatus, tbDoctorID, Flag)
     values (#{doctorid,jdbcType=VARCHAR}, #{leastatime,jdbcType=INTEGER}, #{leadaynum,jdbcType=INTEGER},
-      #{timestatus,jdbcType=INTEGER}, #{tbdoctorid,jdbcType=VARCHAR})
+      #{timestatus,jdbcType=INTEGER}, #{tbdoctorid,jdbcType=VARCHAR}, #{flag,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.gm.hosptial.pojo.docleaveinfo">
     insert into docleaveinfo
@@ -74,6 +79,6 @@
       LeaDayNum#{leadaynum,jdbcType=INTEGER},
       TimeStatus=#{timestatus,jdbcType=INTEGER},
       tbDoctorID=#{tbdoctorid,jdbcType=VARCHAR}
-    where DoctorID = #{doctorid,jdbcType=VARCHAR}
+    where DoctorID = #{doctorid,jdbcType=VARCHAR} and Flag = 0
   </update>
 </mapper>

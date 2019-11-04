@@ -15,9 +15,6 @@ public class AdminServiceImpl implements AdminService {
     @Resource(name = "doctorinfoMapper")
     private doctorinfoMapper docM;
 
-    @Resource(name = "appointinfoMapper")
-    private appointinfoMapper appM;
-
     @Resource(name = "appointrecordMapper")
     private appointrecordMapper appdM;
 

@@ -20,5 +20,6 @@ public interface appointrecordMapper {
 
     appointrecord select(String patientid);
 
+    List<appointrecord> selectpa(String docid);
     int count(String doctorid);
 }

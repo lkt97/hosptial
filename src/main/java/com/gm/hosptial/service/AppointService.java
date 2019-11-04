@@ -1,9 +1,6 @@
 package com.gm.hosptial.service;
 
-import com.gm.hosptial.pojo.appointinfo;
 import com.gm.hosptial.pojo.appointrecord;
-
-import java.util.List;
 
 public interface AppointService {
     /**
@@ -23,15 +20,14 @@ public interface AppointService {
 
     /**
      * 修改预约信息
-     * @param appointinfo
      * @param appointrecord
      * @return
      */
-    public boolean upappointrecord(appointinfo appointinfo,appointrecord appointrecord);
+    public boolean upappointrecord(appointrecord appointrecord);
 
     /**
      * 删除预约信息
-     * @param patients
+     * @param patientid
      * @return
      */
     public boolean deappointrecord(String patientid);
