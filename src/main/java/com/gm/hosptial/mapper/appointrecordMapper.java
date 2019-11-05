@@ -12,7 +12,7 @@ public interface appointrecordMapper {
 
     int insertSelective(appointrecord record);
 
-    appointrecord selectByPrimaryKey(String patientid);
+    appointrecord selectByPrimaryKey(String number);
 
     int updateByPrimaryKeySelective(appointrecord record);
 

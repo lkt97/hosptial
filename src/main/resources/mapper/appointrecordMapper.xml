@@ -17,7 +17,7 @@
     select
     <include refid="Base_Column_List" />
     from appointrecord
-    where PatientID = #{patientid,jdbcType=VARCHAR}
+    where AppointNumber = #{number,jdbcType=VARCHAR}
   </select>
 
   <select id="selectpa" parameterType="java.lang.String" resultMap="BaseResultMap">

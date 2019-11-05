@@ -16,7 +16,7 @@ public interface AppointService {
      * @param patientid
      * @return
      */
-    public appointrecord select(String patientid);
+    public appointrecord select(String number);
 
     /**
      * 修改预约信息

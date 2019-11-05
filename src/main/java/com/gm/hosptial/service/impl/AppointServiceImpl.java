@@ -48,8 +48,8 @@ public class AppointServiceImpl implements AppointService {
     }
 
     @Override
-    public appointrecord select(String patientid) {
-        appointrecord appointrecord=appointrecordMapper.selectByPrimaryKey(patientid);
+    public appointrecord select(String number) {
+        appointrecord appointrecord=appointrecordMapper.selectByPrimaryKey(number);
         return appointrecord;
     }
 

@@ -486,7 +486,7 @@ public class PatientController {
                 j=14;
             }
         }
-        appointrecord appointrecord=appointService.select(patientinfo.getPatientid());
+        appointrecord appointrecord=appointService.select(patientinfo.getPatientid()+did);
         if (appointrecord==null)
         {
             boolean f=appointService.insertappoint(appointrecord1);
