@@ -13,7 +13,7 @@ public interface numberinfoMapper {
 
     numberinfo selectByPrimaryKey(String doctorid);
 
-    int updateByPrimaryKeySelective(Integer tid);
+    int updateByPrimaryKeySelective(numberinfo record);
 
     int updateByPrimaryKey(numberinfo record);
 

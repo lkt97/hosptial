@@ -58,17 +58,19 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="java.lang.Integer">
-    update numberinfo
-    <set>
-        Sumnumber = sumnumber-1,
-    </set>
-    where tid = #{tid}
+  <update id="updateByPrimaryKeySelective" parameterType="com.gm.hosptial.pojo.numberinfo">
+   update numberinfo
+    set
+      Sumnumber = sumnumber+1
+    where DoctorID = #{doctorid,jdbcType=VARCHAR}
+    and Number = #{number,jdbcType=VARCHAR}
+
   </update>
   <update id="updateByPrimaryKey" parameterType="com.gm.hosptial.pojo.numberinfo">
     update numberinfo
-    set Number = #{number,jdbcType=VARCHAR},
-      Sumnumber = #{sumnumber,jdbcType=INTEGER}
+    set
+      Sumnumber = sumnumber-1
     where DoctorID = #{doctorid,jdbcType=VARCHAR}
+    and Number = #{number,jdbcType=VARCHAR}
   </update>
 </mapper>

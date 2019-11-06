@@ -40,12 +40,13 @@ public class PatientController {
     private HttpSession session;
 
     @RequestMapping("register")
-    public String PRegister(String name,String password,String email)
+    public String PRegister(String account,String name,String password,String email)
     {
 
         String s="";
         patientinfo patientinfo = new patientinfo();
-        patientinfo.setPatientid(name);
+        patientinfo.setPatientname(name);
+        patientinfo.setPatientid(account);
         patientinfo.setPassword(password);
         patientinfo.setPatientphone(email);
         boolean f=patientService.register(patientinfo);
@@ -54,19 +55,36 @@ public class PatientController {
 
             s= "login";
         }
+        else {
+            s="";
+        }
         return s;
     }
 
     @RequestMapping("login")
-    public String PLogin(String account, String password, Model model)
-    {
-        String s="";
+    public void PLogin(String account, String password, Model model,HttpServletResponse response) throws IOException {
+        String s="404";
         session=request.getSession();
         patientinfo patientinfo=patientService.Login(account,password);
             if (patientinfo!=null)
             {
                 session.setAttribute("patient",patientinfo);
                 s="index";
+
+                response.setCharacterEncoding("UTF-8");
+                response.setHeader("content-type","text/html;charset=utf-8");
+                response.setContentType("text/html;charset=utf-8");
+                response.sendRedirect("index.jsp");
+//                PrintWriter out=response.getWriter();
+//                out.print("<script language='javascript'>alert('"+str+"');window.location.href='"+str2+"'</script>");
+            }
+            else{
+                response.setCharacterEncoding("UTF-8");
+                response.setHeader("content-type","text/html;charset=utf-8");
+                response.setContentType("text/html;charset=utf-8");
+
+                PrintWriter out=response.getWriter();
+                out.print("<script language='javascript'>alert('登录失败');window.location.href='login.jsp'</script>");
             }
 
 //        else if (type.equals("d")){
@@ -83,7 +101,7 @@ public class PatientController {
 //                s="";
 //            }
 //        }
-        return s;
+
     }
 
     @RequestMapping("findPwd")
@@ -211,9 +229,9 @@ public class PatientController {
         String s="";
         session=request.getSession();
         patientinfo patientinfo= (com.gm.hosptial.pojo.patientinfo) session.getAttribute("patient");
-        appointrecord appointrecords=appointService.select(patientinfo.getPatientid());
-        doctorinfo doctorinfo=doctorService.getDoctor(appointrecords.getDoctorid());
-        session.setAttribute("doctor",doctorinfo);
+        List<appointrecord> appointrecords=appointService.selectap(patientinfo.getPatientid());
+//        doctorinfo doctorinfo=doctorService.getDoctor(appointrecords.getDoctorid());
+//        session.setAttribute("doctor",doctorinfo);
         session.setAttribute("record",appointrecords);
         return "orderList";
     }
@@ -412,85 +430,90 @@ public class PatientController {
         session=request.getSession();
         patientinfo patientinfo= (com.gm.hosptial.pojo.patientinfo) session.getAttribute("patient");
         int i=appointService.countnum(did)+1;
-        int j=0;
+        String j="";
         String string=i+"";
         String str2="/doctorInfo.do?did="+did+"";
-        appointrecord appointrecord1=new appointrecord(patientinfo.getPatientid()+did,patientinfo.getPatientid(),data,"1",string,did);
+        String s1=data.replace("-","");
+        appointrecord appointrecord1=new appointrecord(s1+patientinfo.getPatientid()+did,patientinfo.getPatientid(),data,"1",string,did);
         if (week.equals("星期日"))
         {
             if (am.equals("上午"))
             {
-                j=1;
+                j="SunAM";
             }else if (am.equals("下午"))
             {
-                j=8;
+                j="SunPM";
             }
         }
         else if (week.equals("星期一"))
         {
             if (am.equals("上午"))
             {
-                j=2;
+                j="MonAM";
             }else if (am.equals("下午"))
             {
-                j=9;
+                j="MonPM";
             }
         }
         else if (week.equals("星期二"))
         {
             if (am.equals("上午"))
             {
-                j=3;
+                j="ThurAM";
             }else if (am.equals("下午"))
             {
-                j=10;
+                j="ThurPM";
             }
         }
         else if (week.equals("星期三"))
         {
             if (am.equals("上午"))
             {
-                j=4;
+                j="WedAM";
             }else if (am.equals("下午"))
             {
-                j=11;
+                j="WedPM";
             }
         }
         else if (week.equals("星期四"))
         {
             if (am.equals("上午"))
             {
-                j=5;
+                j="TusAM";
             }else if (am.equals("下午"))
             {
-                j=12;
+                j="TusPM";
             }
         }
         else if (week.equals("星期五"))
         {
             if (am.equals("上午"))
             {
-                j=6;
+                j="FriAM";
             }else if (am.equals("下午"))
             {
-                j=13;
+                j="FriPM";
             }
         }
         else if (week.equals("星期六"))
         {
             if (am.equals("上午"))
             {
-                j=7;
+                j="SatAM";
             }else if (am.equals("下午"))
             {
-                j=14;
+                j="SatPM";
             }
         }
-        appointrecord appointrecord=appointService.select(patientinfo.getPatientid()+did);
+        appointrecord1.setDay(j);
+        appointrecord appointrecord=appointService.select(s1+patientinfo.getPatientid()+did);
         if (appointrecord==null)
         {
             boolean f=appointService.insertappoint(appointrecord1);
-            boolean b=appointService.upnum(j);
+            numberinfo numberinfo=new numberinfo();
+            numberinfo.setDoctorid(did);
+            numberinfo.setNumber(j);
+            boolean b=appointService.upnum(numberinfo);
             if(f==true)
             {
                 String str="您已成功预约:"+data+"的"+i+"号";
@@ -518,6 +541,33 @@ public class PatientController {
         }
 
 
+
+    }
+    @RequestMapping("Cancelorder")
+    public void Cancelorder(String aid,HttpServletResponse response) throws IOException {
+        appointrecord appointrecord=appointService.select(aid);
+        numberinfo numberinfo=new numberinfo();
+        numberinfo.setDoctorid(appointrecord.getDoctorid());
+        numberinfo.setNumber(appointrecord.getDay());
+        boolean f=appointService.deappointrecord(appointrecord.getAppointnumber());
+        boolean b=appointService.upnum1(numberinfo);
+        if (f==true && b==true)
+        {
+            String s="/searchList.do";
+            response.setCharacterEncoding("UTF-8");
+            response.setHeader("content-type","text/html;charset=utf-8");
+            response.setContentType("text/html;charset=utf-8");
+            PrintWriter out=response.getWriter();
+            out.print("<script language='javascript'>alert('取消成功');window.location.href='"+s+"'</script>");
+        }
+        else {
+            String s="/searchList.do";
+            response.setCharacterEncoding("UTF-8");
+            response.setHeader("content-type","text/html;charset=utf-8");
+            response.setContentType("text/html;charset=utf-8");
+            PrintWriter out=response.getWriter();
+            out.print("<script language='javascript'>alert('取消失败');window.location.href='"+s+"'</script>");
+        }
 
     }
 

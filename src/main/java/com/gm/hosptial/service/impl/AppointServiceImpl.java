@@ -3,10 +3,12 @@ package com.gm.hosptial.service.impl;
 import com.gm.hosptial.mapper.appointrecordMapper;
 import com.gm.hosptial.mapper.numberinfoMapper;
 import com.gm.hosptial.pojo.appointrecord;
+import com.gm.hosptial.pojo.numberinfo;
 import com.gm.hosptial.service.AppointService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author lkt
@@ -20,9 +22,20 @@ public class AppointServiceImpl implements AppointService {
     @Resource(name = "numberinfoMapper")
     private numberinfoMapper numberinfoMapper;
     @Override
-    public boolean upnum(int tid) {
+    public boolean upnum(numberinfo numberinfo) {
         boolean f=false;
-        int i=numberinfoMapper.updateByPrimaryKeySelective(tid);
+        int i=numberinfoMapper.updateByPrimaryKey(numberinfo);
+        if (i==1)
+        {
+            f=true;
+        }
+        return f;
+    }
+
+    @Override
+    public boolean upnum1(numberinfo numberinfo) {
+        boolean f=false;
+        int i=numberinfoMapper.updateByPrimaryKeySelective(numberinfo);
         if (i==1)
         {
             f=true;
@@ -36,7 +49,7 @@ public class AppointServiceImpl implements AppointService {
      * @return
      */
     @Override
-    public boolean insertappoint( appointrecord appointrecord) {
+    public boolean insertappoint(appointrecord appointrecord) {
         boolean boolen=false;
 
         int j=appointrecordMapper.insertSelective(appointrecord);
@@ -49,14 +62,25 @@ public class AppointServiceImpl implements AppointService {
 
     @Override
     public appointrecord select(String number) {
-        appointrecord appointrecord=appointrecordMapper.selectByPrimaryKey(number);
+        appointrecord appointrecord=appointrecordMapper.select(number);
         return appointrecord;
+    }
+
+    /**
+     * 查找患者预约记录
+     * @param patientid
+     * @return
+     */
+    @Override
+    public List<appointrecord> selectap(String patientid) {
+        List<appointrecord> list=appointrecordMapper.selectByPrimaryKey(patientid);
+        return list;
     }
 
     @Override
     public boolean upappointrecord( appointrecord appointrecord) {
         boolean bool=false;
-        appointrecord appointrecord1=appointrecordMapper.selectByPrimaryKey(appointrecord.getPatientid());
+        appointrecord appointrecord1=appointrecordMapper.select(appointrecord.getAppointnumber());
         if (appointrecord1!=null)
         {
             int i,j;
@@ -71,15 +95,15 @@ public class AppointServiceImpl implements AppointService {
     }
 
     @Override
-    public boolean deappointrecord(String patientid) {
+    public boolean deappointrecord(String number) {
         boolean f=false;
 
-        appointrecord appointrecord=appointrecordMapper.selectByPrimaryKey(patientid);
+        appointrecord appointrecord=appointrecordMapper.select(number);
         if ( appointrecord!=null)
         {
             int i,j;
 
-            j=appointrecordMapper.deleteByPrimaryKey(patientid);
+            j=appointrecordMapper.deleteByPrimaryKey(number);
             if(j==1)
             {
                 f=true;

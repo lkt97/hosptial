@@ -62,12 +62,12 @@ public class PatientServiceImpl implements PatientService {
         {
 
             int i=patientinfoMapper.insertSelective(patientinfo);
-            System.out.println(i);
+
             f=true;
         }
         else if (patientinfo1!=null)
         {
-            System.out.println("error!");
+           f=false;
         }
 
         return f;

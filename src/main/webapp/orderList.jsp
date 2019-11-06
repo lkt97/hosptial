@@ -73,12 +73,12 @@
                     </script>
                     ${sessionScope.remove("message")}
                 </c:if>
-                <%--<c:forEach items="${record}" var="record" >--%>
+                <c:forEach items="${record}" var="record" >
                     <div class="box">
                         <%--<div class="pic"><img src="${item.picpath}"></div>--%>
                         <table style="width: 28%">
-                            <tr><td>医生：</td><td><a href="showWeek?did=${item.did}">${doctor.doctorname}</a></td></tr>
-                            <tr><td>职称：</td><td><a href="searchOffice?office=${item.office}">${doctor.doctorjobtitle}</a></td></tr>
+                            <tr><td>医生(点击查看)：</td><td><a href="/doctorInfo.do?did=${record.doctorid}">${record.doctorid}</a></td></tr>
+                            <%--<tr><td>职称：</td><td><a href="searchOffice?office=${item.office}"></a></td></tr>--%>
                             <%--<tr><td>诊室：</td><td>${item.room}</td></tr>--%>
                             <%--<tr><td>诊费：</td><td>${item.fee}.00元</td></tr>--%>
                         </table>
@@ -87,20 +87,18 @@
                             <tr><td>预约时间：</td><td>${record.appointtime}</td></tr>
                             <%--<tr><td>就诊时间：</td><td>${item.visitdate} ${item.visitnoon} ${item.visittime}</td></tr>--%>
                             <tr><td>序号：</td><td>${record.number}号</td></tr>
-                            <tr><td>状态：</td><td>${record.appointstatus}</td></tr>
+                            <tr><td>星期：</td><td>${record.day}</td></tr>
                         </table>
                         <%--<c:if test="${item.state=='1'}">--%>
                         <div class="operate">
-                            <div><button type="button" data-ampm="${item.visitnoon}" data-date="${item.visitdate}" data-rid="${item.rid}" data-wid="${item.wid}" class="btn btn-primary btn-xs" style="margin-top: 20px;" data-toggle="modal" data-target="#myModal">
-                                修改预约
-                            </button></div>
-                            <div><button type="button" data-rid="${record.appointnumber}"  class="btn btn-warning btn-xs" style="margin-top: 20px;" data-toggle="modal" data-target="#myModal">
+
+                            <div><a href="/Cancelorder.do?aid=${record.appointnumber}"><button type="button" class="btn btn-warning btn-xs" style="margin-top: 20px;">
                                 取消预约
-                            </button></div>
+                            </button></a></div>
                         </div>
                             <%--</c:if>--%>
                     </div>
-                <%--</c:forEach>--%>
+                </c:forEach>
 
 
                 <%--修改预约和取消--%>

@@ -6,19 +6,19 @@ import com.gm.hosptial.pojo.appointrecord;
 import java.util.List;
 
 public interface appointrecordMapper {
-    int deleteByPrimaryKey(String patientid);
+    int deleteByPrimaryKey(String number);
 
     int insert(appointrecord record);
 
     int insertSelective(appointrecord record);
 
-    appointrecord selectByPrimaryKey(String number);
+    List<appointrecord> selectByPrimaryKey(String patientid);
 
     int updateByPrimaryKeySelective(appointrecord record);
 
     int updateByPrimaryKey(appointrecord record);
 
-    appointrecord select(String patientid);
+    appointrecord select(String number);
 
     List<appointrecord> selectpa(String docid);
     int count(String doctorid);

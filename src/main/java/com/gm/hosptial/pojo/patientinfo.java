@@ -11,7 +11,7 @@ public class patientinfo {
 
     private Integer patientstatus;//预约状态
 
-    private String id;//身份证号码
+
 
     private String password;//患者登录密码
 
@@ -28,7 +28,7 @@ public class patientinfo {
         this.patientphone = patientphone;
         this.patientsex = patientsex;
 
-        this.id = id;
+
         this.password = password;
 
     }
@@ -40,7 +40,7 @@ public class patientinfo {
         this.patientphone = patientphone;
         this.patientsex = patientsex;
         this.patientstatus = patientstatus;
-        this.id = id;
+
         this.password = password;
 
     }
@@ -54,7 +54,7 @@ public class patientinfo {
                 ", patientphone='" + patientphone + '\'' +
                 ", patientsex='" + patientsex + '\'' +
                 ", patientstatus=" + patientstatus +
-                ", id='" + id + '\'' +
+
                 ", password='" + password + '\'' +
                 ", freezetime=" + freezetime +
                 '}';
@@ -101,13 +101,6 @@ public class patientinfo {
         this.patientstatus = patientstatus;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id == null ? null : id.trim();
-    }
 
     public String getPassword() {
         return password;

@@ -171,9 +171,9 @@
                                         </c:forEach>
                                         </tr>
                                     <tr align="center"><td height="90">下午</td>
-                                    <c:forEach items="${pm}" var="pm">
+                                    <c:forEach items="${pm}" var="pm" varStatus="i">
                                         <c:if test="${pm ne 0}">
-                                            <td align="center"><a href="">可预约<br>号源${pm}个</a></td>
+                                            <td align="center"><a href="/order.do?data=${dates.get(i.count-1)}&week=${date.get(i.count-1)}&am=下午&did=${doctor.doctorid}">可预约<br>号源${pm}个</a></td>
                                         </c:if>
                                         <c:if test="${pm eq 0}">
                                             <td align="center">不可预约<br></td>

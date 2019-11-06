@@ -147,7 +147,7 @@
     <div class="form-bottom">
         <form role="form" action="/register.do" method="post" class="login-form">
             <div class="form-group col-xs-12">
-                <label class="sr-only" for="userEmail">userEmail</label>账号(*):<input
+                <label class="sr-only" for="userEmail">userEmail</label>账号(身份证号):<input
                     style="font-weight: bold" type="text" name="account"
                      class="form-control input-control clearfix"
                     required onkeyup="isCheckEmail()" /><span id="accountTip"></span>
@@ -163,6 +163,7 @@
                     style="font-weight: bold" type="text" name="name"
                     id="userName" class="form-username form-control" required />
             </div>
+
             <div class="form-group col-xs-12">
                 <label class="sr-only" >password</label>密码(*):<input
                     style="font-weight: bold" type="password" name="password"

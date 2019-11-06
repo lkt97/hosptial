@@ -92,7 +92,7 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Override
     public appointrecord appointAffirm(String did) {
-        appointrecord apps=appdM.selectByPrimaryKey(did);
+        appointrecord apps=appdM.select(did);
         return apps;
     }
 

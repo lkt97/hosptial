@@ -21,7 +21,7 @@ Q<%@ page language="java" contentType="text/html; charset=UTF-8"
                                href="register.jsp"><strong>注册</strong></a>
                         </c:if>
                         <c:if test="${sessionScope.patient != null}">
-                            <a class="navbar-brand1" style="font-size: 12px;" href=""><strong><font color="#fff">欢迎您,${patient.patientid}</font></strong></a>
+                            <a class="navbar-brand1" style="font-size: 12px;" href=""><strong><font color="#fff">欢迎您,${patient.patientname}</font></strong></a>
                             <a class="navbar-brand1" style="font-size: 12px;"
                                href="/logout.do"><strong>注销</strong></a>
                         </c:if>
