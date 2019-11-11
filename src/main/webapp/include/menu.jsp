@@ -13,7 +13,7 @@
             <li><a class="list-group-item1" href="/searchOffice.do"><font color="#fff">按科室挂号</font></a></li>
             <li><a class="list-group-item1" href="/searchDoctor.do"><font color="#fff">按医生挂号</font></a></li>
             <li><a class="list-group-item1" href="/searchList.do"><font color="#fff">我的预约</font></a></li>
-            <li><a class="list-group-item1" href="<%=request.getContextPath()%>/integrity.jsp"><font color="#fff">诚信度</font></a></li>
+            <%--<li><a class="list-group-item1" href="<%=request.getContextPath()%>/integrity.jsp"><font color="#fff">诚信度</font></a></li>--%>
             <!-- <li><a class="list-group-item1" href="/ssm_pro/orderIndex"><font color="#fff">快速预约</font></a></li> -->
             <li><a class="list-group-item1" href="<%=request.getContextPath()%>/modifyPwd.jsp"><font color="#fff">修改密码</font></a></li>
         </ul>

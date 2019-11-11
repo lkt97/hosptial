@@ -73,4 +73,12 @@
     where DoctorID = #{doctorid,jdbcType=VARCHAR}
     and Number = #{number,jdbcType=VARCHAR}
   </update>
+
+  <update id="update" parameterType="com.gm.hosptial.pojo.numberinfo">
+    update numberinfo
+    set
+      Sumnumber =#{sumnumber}
+
+    where Number = #{number,jdbcType=VARCHAR}
+  </update>
 </mapper>

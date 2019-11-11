@@ -10,10 +10,12 @@
     <result column="DoctorSpecialty" jdbcType="VARCHAR" property="doctorspecialty" />
     <result column="DoctorJobTitle" jdbcType="VARCHAR" property="doctorjobtitle" />
     <result column="DocPassword" jdbcType="VARCHAR" property="docpassword" />
+    <result column="doctorsex" jdbcType="VARCHAR" property="doctorsex" />
+    <result column="doctorage" jdbcType="VARCHAR" property="doctorage" />
   </resultMap>
   <sql id="Base_Column_List">
     DoctorID, DoctorName, DoctorPhone, DoctorDeptID, DoctorStatus, DoctorSpecialty,
-    DoctorJobTitle, DocPassword
+    DoctorJobTitle, DocPassword, doctorsex, doctorage
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
@@ -54,11 +56,11 @@
   <insert id="insert" parameterType="com.gm.hosptial.pojo.doctorinfo">
     insert into doctorinfo (DoctorID,  DoctorName,
       DoctorPhone, DoctorDeptID, DoctorStatus, 
-      DoctorSpecialty, DoctorJobTitle, DocPassword
+      DoctorSpecialty, DoctorJobTitle, DocPassword, doctorsex, doctorage
       )
     values (#{doctorid,jdbcType=VARCHAR}, #{doctorname,jdbcType=VARCHAR},
       #{doctorphone,jdbcType=VARCHAR}, #{doctordeptid,jdbcType=VARCHAR}, #{doctorstatus,jdbcType=INTEGER}, 
-      #{doctorspecialty,jdbcType=VARCHAR}, #{doctorjobtitle,jdbcType=VARCHAR}, #{docpassword,jdbcType=VARCHAR}
+      #{doctorspecialty,jdbcType=VARCHAR}, #{doctorjobtitle,jdbcType=VARCHAR}, #{docpassword,jdbcType=VARCHAR},#{doctorsex,jdbcType=VARCHAR}, #{doctorage,jdbcType=VARCHAR},
       )
   </insert>
   <insert id="insertSelective" parameterType="com.gm.hosptial.pojo.doctorinfo">
@@ -88,6 +90,12 @@
       <if test="docpassword != null">
         DocPassword,
       </if>
+      <if test="doctorsex != null">
+        doctorsex,
+      </if>
+      <if test="doctorage != null">
+        doctorage,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="doctorid != null">
@@ -113,6 +121,12 @@
       </if>
       <if test="docpassword != null">
         #{docpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorsex != null">
+        #{doctorsex,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorage != null">
+        #{doctorage,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -140,6 +154,12 @@
       <if test="docpassword != null">
         DocPassword = #{docpassword,jdbcType=VARCHAR},
       </if>
+      <if test="doctorsex != null">
+        doctorsex = #{doctorsex,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorage != null">
+        doctorage = #{doctorage,jdbcType=VARCHAR},
+      </if>
     </set>
     where DoctorID = #{doctorid,jdbcType=VARCHAR}
   </update>
@@ -153,6 +173,8 @@
       DoctorSpecialty = #{doctorspecialty,jdbcType=VARCHAR},
       DoctorJobTitle = #{doctorjobtitle,jdbcType=VARCHAR},
       DocPassword = #{docpassword,jdbcType=VARCHAR}
+      doctorsex = #{doctorsex,jdbcType=VARCHAR},
+      doctorage = #{doctorage,jdbcType=VARCHAR}
     where DoctorID = #{doctorid,jdbcType=VARCHAR}
   </update>
 </mapper>

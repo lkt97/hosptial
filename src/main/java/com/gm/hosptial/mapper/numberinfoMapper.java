@@ -18,4 +18,6 @@ public interface numberinfoMapper {
     int updateByPrimaryKey(numberinfo record);
 
     List<numberinfo> select(String doctorid);
+
+    int update(numberinfo numberinfo);
 }

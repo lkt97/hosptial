@@ -72,5 +72,11 @@ public interface PatientService {
      */
     public List<numberinfo> searchnum(String doctorid);
 
+    /**
+     * 更新号源
+     * @return
+     */
+    public boolean updatenum(numberinfo numberinfo);
+
 
 }

@@ -258,7 +258,8 @@ public class PatientController {
     @RequestMapping("doctorInfo")
     public String doctorInfo(String did,Model model)
     {
-
+        scheduleinfo scheduleinfo=patientService.searchsc(did);
+        numberinfo numberinfo=new numberinfo();
         doctorinfo doctorinfo=doctorService.getDoctor(did);
         model.addAttribute("doctor",doctorinfo);
         List<String> week = new ArrayList<>();
@@ -275,6 +276,127 @@ public class PatientController {
             week.add(result+"<br>"+dateToWeek(result));
             dates.add(result);
         }
+
+        if (date.get(0).equals("星期日"))
+        {
+            if (scheduleinfo.getSatam()!=0)
+            {
+                numberinfo.setDoctorid(did);
+                numberinfo.setSumnumber(10);
+                numberinfo.setNumber("SatAM");
+                patientService.updatenum(numberinfo);
+            }
+            else if (scheduleinfo.getSatpm()!=0)
+            {
+                numberinfo.setDoctorid(did);
+                numberinfo.setSumnumber(10);
+                numberinfo.setNumber("SatPM");
+                patientService.updatenum(numberinfo);
+            }
+        }
+        else if (date.get(0).equals("星期一"))
+        {
+            if (scheduleinfo.getSunam()!=0)
+            {
+                numberinfo.setDoctorid(did);
+                numberinfo.setSumnumber(10);
+                numberinfo.setNumber("SunAM");
+                patientService.updatenum(numberinfo);
+            }
+            else if (scheduleinfo.getSunpm()!=0)
+            {
+                numberinfo.setDoctorid(did);
+                numberinfo.setSumnumber(10);
+                numberinfo.setNumber("SunPM");
+                patientService.updatenum(numberinfo);
+            }
+        }
+        else if (date.get(0).equals("星期二"))
+        {
+            if (scheduleinfo.getMonam()!=0)
+            {
+                numberinfo.setDoctorid(did);
+                numberinfo.setSumnumber(10);
+                numberinfo.setNumber("MonAM");
+                patientService.updatenum(numberinfo);
+            }
+            else if (scheduleinfo.getMonpm()!=0)
+            {
+                numberinfo.setDoctorid(did);
+                numberinfo.setSumnumber(10);
+                numberinfo.setNumber("MonPM");
+                patientService.updatenum(numberinfo);
+            }
+        }
+        else if (date.get(0).equals("星期三"))
+        {
+            if (scheduleinfo.getThuram()!=0)
+            {
+                numberinfo.setDoctorid(did);
+                numberinfo.setSumnumber(10);
+                numberinfo.setNumber("ThurAM");
+                patientService.updatenum(numberinfo);
+            }
+            else if (scheduleinfo.getThurpm()!=0)
+            {
+                numberinfo.setDoctorid(did);
+                numberinfo.setSumnumber(10);
+                numberinfo.setNumber("ThurPM");
+                patientService.updatenum(numberinfo);
+            }
+        }
+        else if (date.get(0).equals("星期四"))
+        {
+            if (scheduleinfo.getWedam()!=0)
+            {
+                numberinfo.setDoctorid(did);
+                numberinfo.setSumnumber(10);
+                numberinfo.setNumber("WedAM");
+                patientService.updatenum(numberinfo);
+            }
+            else if (scheduleinfo.getWedpm()!=0)
+            {
+                numberinfo.setDoctorid(did);
+                numberinfo.setSumnumber(10);
+                numberinfo.setNumber("WedPM");
+                patientService.updatenum(numberinfo);
+            }
+        }
+        else if (date.get(0).equals("星期五"))
+        {
+            if (scheduleinfo.getTueam()!=0)
+            {
+                numberinfo.setDoctorid(did);
+                numberinfo.setSumnumber(10);
+                numberinfo.setNumber("TueAM");
+                patientService.updatenum(numberinfo);
+            }
+            else if (scheduleinfo.getTuepm()!=0)
+            {
+                numberinfo.setDoctorid(did);
+                numberinfo.setSumnumber(10);
+                numberinfo.setNumber("TuePM");
+                patientService.updatenum(numberinfo);
+            }
+        }
+        else if (date.get(0).equals("星期六"))
+        {
+            if (scheduleinfo.getFriam()!=0)
+            {
+                numberinfo.setDoctorid(did);
+                numberinfo.setSumnumber(10);
+                numberinfo.setNumber("FriAM");
+                patientService.updatenum(numberinfo);
+            }
+            else if (scheduleinfo.getFripm()!=0)
+            {
+                numberinfo.setDoctorid(did);
+                numberinfo.setSumnumber(10);
+                numberinfo.setNumber("FriPM");
+                patientService.updatenum(numberinfo);
+            }
+        }
+
         System.out.println(date.get(0));
         model.addAttribute("week",week);
         model.addAttribute("date",date);

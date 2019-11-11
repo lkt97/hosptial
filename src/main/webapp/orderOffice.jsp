@@ -14,14 +14,14 @@
 
         <div class="search">
             <h1>科室列表</h1>
-            <form id="office" action="/searchOffice.do" method="post">
-                <input  value="${office}" name="office"  autocomplete="off" class="" placeholder="科室名称">
-                <input id="start" hidden value="1" name="start">
-                <button type="submit">查找科室</button>
-            </form>
+            <%--<form id="office" action="/searchOffice.do" method="post">--%>
+                <%--<input  value="${office}" name="office"  autocomplete="off" class="" placeholder="科室名称">--%>
+                <%--<input id="start" hidden value="1" name="start">--%>
+                <%--<button type="submit">查找科室</button>--%>
+            <%--</form>--%>
             <style>
                 .search{
-                    height:150px;
+                    height:50px;
                     border-bottom: 2px #2e2e2e solid;
                 }
                 .search input{
@@ -176,8 +176,8 @@
             <a href="${rootPath}/searchOffice.do?currentPage=${page.nextPage}&pageSize=${page.pageSize}">下一页</a>
             <a href="${rootPath}/searchOffice.do?currentPage=${page.lastPage}&pageSize=${page.pageSize}">尾页</a>
              <input type="text" name="jumpPage" size="4"><button id="jumpPageBtn">跳转</button>
-            每页条数:<input id="pageSizeSelect" type="text" value="${page.pageSize}" size="4"><button
-                id="pageSizeSelect">修改</button>
+            <%--每页条数:<input id="pageSizeSelect" type="text" value="${page.pageSize}" size="4"><button--%>
+                <%--id="pageSizeSelect">修改</button>--%>
          </span>
         </div>
         </fieldset>

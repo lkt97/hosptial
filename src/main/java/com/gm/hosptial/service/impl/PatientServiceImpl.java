@@ -122,9 +122,6 @@ public class PatientServiceImpl implements PatientService {
     public List<doctorinfo> searchdo(Page page) {
 
         List<doctorinfo> doctors=doctorinfoMapper.selectp(page);
-
-
-
         return doctors;
     }
 
@@ -153,5 +150,20 @@ public class PatientServiceImpl implements PatientService {
         return list;
     }
 
-
+    /**
+     * 更新号源
+     *
+     * @param numberinfo
+     * @return
+     */
+    @Override
+    public boolean updatenum(numberinfo numberinfo) {
+        boolean f=false;
+        int i=numberinfoMapper.update(numberinfo);
+        if (i==1)
+        {
+            f=true;
+        }
+        return f;
+    }
 }

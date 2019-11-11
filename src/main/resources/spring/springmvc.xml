@@ -22,11 +22,13 @@
     <!-- 使用mvc的注解，不用配置适配器和映射器 -->
     <mvc:annotation-driven/>
 
+
+
     <!-- 扫描 controller -->
-    <!--<context:component-scan base-package="com.linhs.ssm" use-default-filters="false">-->
-        <!--&lt;!&ndash; 设置只扫描有Controller注解的类&ndash;&gt;-->
-        <!--<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>-->
-    <!--</context:component-scan>-->
+    <context:component-scan base-package="com.gm.hosptial" use-default-filters="false">
+        <!-- 设置只扫描有Controller注解的类-->
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
 
     <!-- 视图解析器 -->
     <!-- jsp视图解析器,classpath下得有jstl包 -->
