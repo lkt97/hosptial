@@ -44,7 +44,7 @@ public interface PatientService {
      * 查询部门数量
      * @return
      */
-    public int countde();
+    public int countde(Page page);
 
     /**
      * 查找部门

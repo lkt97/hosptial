@@ -105,16 +105,15 @@ public class PatientServiceImpl implements PatientService {
     @Override
     public List<departmentinfo> searchde(Page page) {
 
-
         List<departmentinfo> departments=departmentinfoMapper.select(page);
         return departments;
 
     }
 
     @Override
-    public int countde() {
+    public int countde(Page page) {
         int i=0;
-        i=departmentinfoMapper.count();
+        i=departmentinfoMapper.count(page);
         return i;
     }
 

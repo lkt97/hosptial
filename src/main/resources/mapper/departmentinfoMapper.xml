@@ -21,14 +21,25 @@
 
     select
     *
-    from departmentinfo limit #{beginIndex},#{pageSize};
-
+    <if test="office==null">
+        from departmentinfo limit #{beginIndex},#{pageSize};
+    </if>
+    <if test="office!=null">
+        from departmentinfo
+        where DepartmentName like '%${office}%'
+    </if>
   </select>
 
   <select id="count" resultType="java.lang.Integer">
     select
     count(*)
-    from departmentinfo
+      <if test="office==null">
+          from departmentinfo
+      </if>
+      <if test="office!=null">
+          from departmentinfo
+          where DepartmentName like '%${office}%'
+      </if>
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from departmentinfo

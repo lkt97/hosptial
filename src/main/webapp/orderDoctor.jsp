@@ -14,15 +14,15 @@
 
         <div class="search">
             <h1>按医生挂号</h1>
-            <%--<form id="doctor" action="searchDoctor" method="post">--%>
-                <%--<input  value="${doctor}" name="doctor"  autocomplete="off" class="" placeholder="查找医生">--%>
-                <%--<input id="start" hidden value="1" name="start">--%>
-                <%--<input id="order" hidden value="doctor" name="order">--%>
-                <%--<button type="submit">查找医生</button>--%>
-            <%--</form>--%>
+            <form id="doctor" action="/searchDoctor.do" method="post">
+                <input  value="${doctor}" name="doctor"  autocomplete="off" class="" placeholder="查找医生">
+                <input id="start" hidden value="1" name="start">
+                <input id="order" hidden value="doctor" name="order">
+                <button type="submit">查找医生</button>
+            </form>
             <style>
                 .search{
-                    height:50px;
+                    height:150px;
                     border-bottom: 2px #2e2e2e solid;
                 }
                 .search input{

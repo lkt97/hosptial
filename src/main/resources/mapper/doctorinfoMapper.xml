@@ -32,7 +32,12 @@
     <if test="office!=null">
       where DoctorDeptID=#{office}
     </if>
-    limit #{beginIndex},#{pageSize};
+    <if test="doctor==null">
+      limit #{beginIndex},#{pageSize};
+    </if>
+    <if test="doctor!=null">
+     where DoctorName like '%${doctor}%'
+    </if>
   </select>
 
   <select id="count" resultType="java.lang.Integer">
@@ -41,6 +46,9 @@
     from doctorinfo
     <if test="office!=null">
       where DoctorDeptID=#{office}
+    </if>
+    <if test="doctor!=null">
+      where DoctorName like '%${doctor}%'
     </if>
   </select>
 

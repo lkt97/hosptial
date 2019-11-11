@@ -20,5 +20,5 @@ public interface departmentinfoMapper {
 
     List<departmentinfo> select(Page page);
 
-    int count();
+    int count(Page page);
 }

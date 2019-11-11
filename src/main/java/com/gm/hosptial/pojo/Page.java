@@ -28,6 +28,16 @@ public class Page {
 
     private String office;
 
+    private String doctor;
+
+    public String getDoctor() {
+        return doctor;
+    }
+
+    public void setDoctor(String doctor) {
+        this.doctor = doctor;
+    }
+
     public String getOffice() {
         return office;
     }

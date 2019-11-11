@@ -182,18 +182,23 @@ public class PatientController {
     }
 
     @RequestMapping("searchOffice")
-    public String searchOffice()
+    public String searchOffice(String office)
     {
         Integer currentPage = request.getParameter("currentPage") == null ? 1 : Integer.parseInt(request.getParameter("currentPage"));
         Integer pageSize = request.getParameter("pageSize") == null ? 8 : Integer.parseInt(request.getParameter("pageSize"));
         String s="";
+
         Page page=new Page();
+        if (office!=null)
+        {
+            page.setOffice(office);
+        }
         page.setPageSize(pageSize);
         page.setCurrentPage(currentPage);
         Integer beginIndex = (currentPage - 1) * pageSize;
         page.setBeginIndex(beginIndex);
         List<departmentinfo> departments=patientService.searchde(page);
-        int i=patientService.countde();
+        int i=patientService.countde(page);
 
         Page page1=new Page(i,currentPage,pageSize,departments);
         System.out.println(page1);
@@ -202,12 +207,16 @@ public class PatientController {
     }
 
     @RequestMapping("searchDoctor")
-    public String searchDoctor(String office)
+    public String searchDoctor(String office,String doctor)
     {
         Integer currentPage = request.getParameter("currentPage") == null ? 1 : Integer.parseInt(request.getParameter("currentPage"));
         Integer pageSize = request.getParameter("pageSize") == null ? 6: Integer.parseInt(request.getParameter("pageSize"));
         String s="";
         Page page=new Page();
+        if (doctor!=null)
+        {
+            page.setDoctor(doctor);
+        }
         page.setPageSize(pageSize);
         page.setCurrentPage(currentPage);
         Integer beginIndex = (currentPage - 1) * pageSize;

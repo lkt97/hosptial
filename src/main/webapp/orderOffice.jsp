@@ -14,14 +14,14 @@
 
         <div class="search">
             <h1>科室列表</h1>
-            <%--<form id="office" action="/searchOffice.do" method="post">--%>
-                <%--<input  value="${office}" name="office"  autocomplete="off" class="" placeholder="科室名称">--%>
-                <%--<input id="start" hidden value="1" name="start">--%>
-                <%--<button type="submit">查找科室</button>--%>
-            <%--</form>--%>
+            <form id="office" action="/searchOffice.do" method="post">
+                <input  value="${office}" name="office"  autocomplete="off" class="" placeholder="科室名称">
+                <input id="start" hidden value="1" name="start">
+                <button type="submit">查找科室</button>
+            </form>
             <style>
                 .search{
-                    height:50px;
+                    height:150px;
                     border-bottom: 2px #2e2e2e solid;
                 }
                 .search input{
