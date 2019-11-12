@@ -22,6 +22,12 @@
     from numberinfo
     where DoctorID = #{doctorid,jdbcType=VARCHAR}
   </select>
+  <select id="selectpa" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from numberinfo
+    where DoctorID = #{doctorid,jdbcType=VARCHAR} and Number = #{number,jdbcType=VARCHAR}
+  </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from numberinfo
@@ -80,5 +86,13 @@
       Sumnumber =#{sumnumber}
 
     where Number = #{number,jdbcType=VARCHAR}
+  </update>
+  <update id="updates" parameterType="com.gm.hosptial.pojo.numberinfo">
+    update numberinfo
+    set
+      Sumnumber =#{sumnumber}
+
+    where  DoctorID = #{doctorid,jdbcType=VARCHAR}
+    and Number = #{number,jdbcType=VARCHAR}
   </update>
 </mapper>

@@ -23,6 +23,12 @@
     from doctorinfo
     where DoctorID = #{doctorid,jdbcType=VARCHAR}
   </select>
+  <select id="selectByname" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from doctorinfo
+    where DoctorName like '%${doctorname}%'
+  </select>
 
   <select id="selectp" parameterType="java.lang.Integer" resultMap="BaseResultMap">
 
@@ -39,6 +45,16 @@
      where DoctorName like '%${doctor}%'
     </if>
   </select>
+  <select id="selectdep" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+
+  select
+  *
+  from doctorinfo
+  <if test="office!=null">
+    where DoctorDeptID=#{office}
+  </if>
+  limit #{beginIndex},#{pageSize};
+</select>
 
   <select id="count" resultType="java.lang.Integer">
     select
@@ -66,9 +82,16 @@
       DoctorPhone, DoctorDeptID, DoctorStatus, 
       DoctorSpecialty, DoctorJobTitle, DocPassword, doctorsex, doctorage
       )
-    values (#{doctorid,jdbcType=VARCHAR}, #{doctorname,jdbcType=VARCHAR},
-      #{doctorphone,jdbcType=VARCHAR}, #{doctordeptid,jdbcType=VARCHAR}, #{doctorstatus,jdbcType=INTEGER}, 
-      #{doctorspecialty,jdbcType=VARCHAR}, #{doctorjobtitle,jdbcType=VARCHAR}, #{docpassword,jdbcType=VARCHAR},#{doctorsex,jdbcType=VARCHAR}, #{doctorage,jdbcType=VARCHAR},
+    values (#{doctorid,jdbcType=VARCHAR},
+    #{doctorname,jdbcType=VARCHAR},
+      #{doctorphone,jdbcType=VARCHAR},
+      #{doctordeptid,jdbcType=VARCHAR},
+      #{doctorstatus,jdbcType=INTEGER},
+      #{doctorspecialty,jdbcType=VARCHAR},
+      #{doctorjobtitle,jdbcType=VARCHAR},
+      #{docpassword,jdbcType=VARCHAR},
+      #{doctorsex,jdbcType=VARCHAR},
+      #{doctorage,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.gm.hosptial.pojo.doctorinfo">
@@ -180,7 +203,7 @@
       DoctorStatus = #{doctorstatus,jdbcType=INTEGER},
       DoctorSpecialty = #{doctorspecialty,jdbcType=VARCHAR},
       DoctorJobTitle = #{doctorjobtitle,jdbcType=VARCHAR},
-      DocPassword = #{docpassword,jdbcType=VARCHAR}
+      DocPassword = #{docpassword,jdbcType=VARCHAR},
       doctorsex = #{doctorsex,jdbcType=VARCHAR},
       doctorage = #{doctorage,jdbcType=VARCHAR}
     where DoctorID = #{doctorid,jdbcType=VARCHAR}

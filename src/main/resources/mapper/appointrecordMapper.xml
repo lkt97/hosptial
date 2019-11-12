@@ -22,11 +22,11 @@
 
   </select>
 
-  <select id="selectpa" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectpa" parameterType="Page" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from appointrecord
-    where DoctorID = #{doctorid,jdbcType=VARCHAR}
+    where DoctorID = #{office} limit #{beginIndex},#{pageSize}
   </select>
   <select id="count" resultType="java.lang.Integer">
     select

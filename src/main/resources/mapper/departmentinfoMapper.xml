@@ -16,6 +16,12 @@
     from departmentinfo
     where DepartmentID = #{departmentid,jdbcType=VARCHAR}
   </select>
+  <select id="selectByPrimaryKeytwo" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from departmentinfo
+    where DepartmentName = #{departmentname,jdbcType=VARCHAR}
+  </select>
 
   <select id="select" parameterType="java.lang.Integer" resultMap="BaseResultMap">
 
@@ -33,13 +39,13 @@
   <select id="count" resultType="java.lang.Integer">
     select
     count(*)
-      <if test="office==null">
-          from departmentinfo
-      </if>
-      <if test="office!=null">
-          from departmentinfo
-          where DepartmentName like '%${office}%'
-      </if>
+    <if test="office==null">
+      from departmentinfo
+    </if>
+    <if test="office!=null">
+      from departmentinfo
+      where DepartmentName like '%${office}%'
+    </if>
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from departmentinfo

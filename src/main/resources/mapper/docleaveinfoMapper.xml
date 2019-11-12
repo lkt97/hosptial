@@ -3,30 +3,41 @@
 <mapper namespace="com.gm.hosptial.mapper.docleaveinfoMapper">
   <resultMap id="BaseResultMap" type="com.gm.hosptial.pojo.docleaveinfo">
     <result column="DoctorID" jdbcType="VARCHAR" property="doctorid" />
+    <result column="DleID" jdbcType="INTEGER" property="dleid" />
     <result column="LeaStaTime" jdbcType="INTEGER" property="leastatime" />
     <result column="LeaDayNum" jdbcType="INTEGER" property="leadaynum" />
     <result column="TimeStatus" jdbcType="INTEGER" property="timestatus" />
     <result column="tbDoctorID" jdbcType="VARCHAR" property="tbdoctorid" />
   </resultMap>
   <sql id="Base_Column_List">
-    DoctorID, LeaStaTime, LeaDayNum,TimeStatus, tbDoctorID,Flag
+    DleID,DoctorID, LeaStaTime, LeaDayNum,TimeStatus, tbDoctorID,Flag
   </sql>
+  <select id="count" resultType="java.lang.Integer">
+    select
+    count(*)
+    from docleaveinfo where DoctorID = #{doctorid,jdbcType=VARCHAR}
+  </select>
   <select id="selectByPrimaryKey" parameterType="com.gm.hosptial.pojo.doctorinfo" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from docleaveinfo
-    where DoctorID = #{doctorid,jdbcType=VARCHAR} and Flag = 0
+    where DleID = #{dleid,jdbcType=VARCHAR} and Flag = 0
   </select>
-  <select id="select" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="select" parameterType="Page" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from docleaveinfo
+    where DoctorID = #{office} limit #{beginIndex},#{pageSize}
+  </select>
+  <select id="selectdoc" parameterType="Page" resultMap="BaseResultMap">
+    select
+    *
+    from docleaveinfo
+    where  Flag=0 limit #{beginIndex},#{pageSize}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="com.gm.hosptial.pojo.docleaveinfo">
     delete from docleaveinfo
-    where DoctorID=#{doctorid,jdbcType=VARCHAR}
-     and LeaStaTime= #{leastatime,jdbcType=INTEGER} and LeaDayNum= #{leadaynum,jdbcType=INTEGER}
-     and tbDoctorID= #{tbdoctorid,jdbcType=VARCHAR} and Flag = 0
+    where DleID = #{dleid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.gm.hosptial.pojo.docleaveinfo">
     insert into docleaveinfo (DoctorID, LeaStaTime, LeaDayNum,
@@ -78,7 +89,20 @@
       LeaStaTime=#{leastatime,jdbcType=INTEGER},
       LeaDayNum#{leadaynum,jdbcType=INTEGER},
       TimeStatus=#{timestatus,jdbcType=INTEGER},
-      tbDoctorID=#{tbdoctorid,jdbcType=VARCHAR}
-    where DoctorID = #{doctorid,jdbcType=VARCHAR} and Flag = 0
+      tbDoctorID=#{tbdoctorid,jdbcType=VARCHAR},
+      Flag=1
+    where DleID = #{dleid,jdbcType=INTEGER}
+  </update>
+  <update id="updatesave" parameterType="com.gm.hosptial.pojo.docleaveinfo">
+     update docleaveinfo
+      set
+      Flag=1
+    where DleID = #{dleid,jdbcType=INTEGER}
+  </update>
+  <update id="updateno" parameterType="com.gm.hosptial.pojo.docleaveinfo">
+     update docleaveinfo
+      set
+      Flag=2
+    where DleID = #{dleid,jdbcType=INTEGER}
   </update>
 </mapper>
