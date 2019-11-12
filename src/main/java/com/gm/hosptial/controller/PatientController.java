@@ -40,8 +40,7 @@ public class PatientController {
     private HttpSession session;
 
     @RequestMapping("register")
-    public String PRegister(String account,String name,String password,String email)
-    {
+    public void PRegister(String account,String name,String password,String email,HttpServletResponse response) throws IOException {
 
         String s="";
         patientinfo patientinfo = new patientinfo();
@@ -54,11 +53,19 @@ public class PatientController {
         if (f==true) {
 
             s= "login";
+            response.setCharacterEncoding("UTF-8");
+            response.setHeader("content-type","text/html;charset=utf-8");
+            response.setContentType("text/html;charset=utf-8");
+            response.sendRedirect("login.jsp");
         }
         else {
-            s="";
+            response.setCharacterEncoding("UTF-8");
+            response.setHeader("content-type","text/html;charset=utf-8");
+            response.setContentType("text/html;charset=utf-8");
+            PrintWriter out=response.getWriter();
+            out.print("<script language='javascript'>alert('注册失败');window.location.href='register.jsp'</script>");
         }
-        return s;
+
     }
 
     @RequestMapping("login")
