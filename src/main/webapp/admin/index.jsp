@@ -96,31 +96,48 @@
     </div>
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" style="margin-top: 100px;" role="document">
-            <form class=" form-horizontal" action="/myPwd.do"  method="post">
-                <div class="h3 alert-danger "></div>
-                <input hidden name="action" value="doctor">
+            <form class="form-horizontal" action="/adminup.do" method="post">
+                <input id="action" hidden value="add" name="action">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="DoctorName" class="col-sm-2 control-label">医生姓名</label>
+                        <div class="col-sm-10">
+                            <input   name="DoctorName" class="form-control" id="DoctorName" placeholder="医生姓名">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="doctorage" class="col-sm-2 control-label">年龄</label>
+                        <div class="col-sm-10">
+                            <input type="number" name="doctorage" class="form-control" id="doctorage" placeholder="年龄">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="DoctorPhone" class="col-sm-2 control-label">医生电话</label>
+                        <div class="col-sm-10">
+                            <input   name="DoctorPhone" class="form-control" id="DoctorPhone" placeholder="医生电话">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="doctorsex" class="col-sm-2 control-label">性别</label>
+                        <div class="col-sm-10" >
+                            <select class="form-control" id="doctorsex" name="doctorsex">
+                                <option>男</option>
+                                <option>女</option>
+                            </select>
+                        </div>
+                    </div>
+
                 <div class="form-group">
-                    <label for="jmm" class="col-sm-2 control-label">旧密码</label>
-                    <div class="col-sm-10">
-                        <input name="jmm"  type="password" class="form-control" id="jmm" placeholder="旧密码">
+                    <label for="DoctorSpecialty" class="col-sm-2 control-label">描述</label>
+                    <div class="col-sm-10" >
+                        <textarea id="DoctorSpecialty" name="DoctorSpecialty" class="form-control" rows="3" placeholder="请输入医生描述信息"></textarea>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="xmm" class="col-sm-2 control-label">新密码</label>
-                    <div class="col-sm-10">
-                        <input name="xmm"  type="password" class="form-control" id="xmm" placeholder="新密码">
-                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button  type="submit" class="btn btn-primary order">确定</button>
                 </div>
-                <div class="form-group">
-                    <label for="qdmm" class="col-sm-2 control-label">确定密码</label>
-                    <div class="col-sm-10">
-                        <input name="qdmm"  type="password" class="form-control" id="qdmm" placeholder="确定密码">
-                    </div>
                 </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button  type="submit" class="btn btn-primary order">确定</button>
-            </div>
             </form>
         </div>
     </div>

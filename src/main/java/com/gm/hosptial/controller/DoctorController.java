@@ -152,7 +152,7 @@ public class DoctorController {
         return s;
     }
     @RequestMapping("UpDoctor")//更新医生信息
-    public String upDoctor(String name,String account,String phone){
+    public String upDoctor(String name,String account,String phone,String doctorsex,String doctorage){
         String s="doctor/myInfo";
         HttpSession session=request.getSession();
         if( session.getAttribute("doctorid")!=null){
@@ -161,6 +161,8 @@ public class DoctorController {
         doc.setDoctorname(name);
         doc.setDoctorphone(phone);
         doc.setDoctorspecialty(account);
+        doc.setDoctorage(doctorage);
+        doc.setDoctorsex(doctorsex);
         doctorService.upDoctor(doc);
         session.setAttribute("doctor",doc);
         }

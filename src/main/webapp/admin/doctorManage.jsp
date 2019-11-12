@@ -185,7 +185,6 @@
                                     <select class="form-control" id="DoctorJobTitle" name="DoctorJobTitle">
                                         <option>医师</option>
                                         <option>主任</option>
-                                        <option>专家</option>
                                     </select>
                                 </div>
                             </div>

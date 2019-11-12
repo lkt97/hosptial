@@ -278,6 +278,17 @@ public class AdminController {
         dep.setDepartmentname(officename);
         dep.setDepartmentintroduction(description);
         adminService.addepaDrtment(dep);
+        doctorinfo doc=new doctorinfo();
+        doc.setDoctorname("");
+        doc.setDoctorstatus(1);
+        doc.setDoctorsex("男");
+        doc.setDoctorage("21");
+        doc.setDoctorspecialty("");
+        doc.setDoctorid(officeid);
+        doc.setDocpassword(officeid);
+        doc.setDoctorjobtitle("科室主任");
+        doc.setDoctordeptid(officeid);
+        adminService.addDoctor(doc);
         }
         return office("1","6");
     }
@@ -398,5 +409,20 @@ public class AdminController {
             s="admin/login";
         }
         return s;
+    }
+    @RequestMapping("adminup")
+    public String adminup(String DoctorName,String doctorage,String DoctorPhone,String doctorsex,String DoctorSpecialty){
+        String s="";
+        HttpSession session=request.getSession();
+        if (session.getAttribute("admin")!=null){
+            doctorinfo admin=(doctorinfo) session.getAttribute("admin");
+            admin.setDoctorname(DoctorName);
+            admin.setDoctorage(doctorage);
+            admin.setDoctorphone(DoctorPhone);
+            admin.setDoctorsex(doctorsex);
+            admin.setDoctorspecialty(DoctorSpecialty);
+            doctorService.upDoctor(admin);
+        }
+        return myinfo();
     }
 }
