@@ -39,7 +39,7 @@
                                         就诊
                                     </button>
                                 </a>
-                                    <a href="/pdDel.do?"appointnumber=${item.appointnumber}>
+                                    <a href="/pdDel.do?appointnumber=${item.appointnumber}">
                                         <button type="button" data-rid=" " data-pid=" " data-action="sy"   class="btn btn-danger btn-xs"  data-toggle="modal" data-target="#myModal">
                                             爽约
                                         </button>

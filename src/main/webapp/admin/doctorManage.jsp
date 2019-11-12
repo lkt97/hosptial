@@ -183,8 +183,7 @@
                                 <label for="DoctorJobTitle" class="col-sm-2 control-label">医生职称</label>
                                 <div class="col-sm-10" >
                                     <select class="form-control" id="DoctorJobTitle" name="DoctorJobTitle">
-                                        <option>医师</option>
-                                        <option>主任</option>
+                                        <option>医生</option>
                                     </select>
                                 </div>
                             </div>
