@@ -11,8 +11,6 @@ public class patientinfo {
 
     private Integer patientstatus;//预约状态
 
-
-
     private String password;//患者登录密码
 
     private Integer freezetime;//解冻时间
@@ -21,26 +19,21 @@ public class patientinfo {
     }
 
     public patientinfo(String patientid, String patientname, String patientphone, String patientsex,
-                        String id, String password) {
+                       String password) {
         this.patientid = patientid;
-
         this.patientname = patientname;
         this.patientphone = patientphone;
         this.patientsex = patientsex;
-
-
         this.password = password;
 
     }
     public patientinfo(String patientid, String patientname, String patientphone, String patientsex,
-                       Integer patientstatus, String id, String password) {
+                       Integer patientstatus, String password) {
         this.patientid = patientid;
-
         this.patientname = patientname;
         this.patientphone = patientphone;
         this.patientsex = patientsex;
         this.patientstatus = patientstatus;
-
         this.password = password;
 
     }
@@ -49,12 +42,10 @@ public class patientinfo {
     public String toString() {
         return "patientinfo{" +
                 "patientid='" + patientid + '\'' +
-
                 ", patientname='" + patientname + '\'' +
                 ", patientphone='" + patientphone + '\'' +
                 ", patientsex='" + patientsex + '\'' +
                 ", patientstatus=" + patientstatus +
-
                 ", password='" + password + '\'' +
                 ", freezetime=" + freezetime +
                 '}';
