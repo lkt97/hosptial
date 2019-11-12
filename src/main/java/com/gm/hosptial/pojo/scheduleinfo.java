@@ -5,8 +5,6 @@ public class scheduleinfo {
 
     private String departmentname;
 
-
-
     private Integer sunam;
 
     private Integer monam;
@@ -34,6 +32,28 @@ public class scheduleinfo {
     private Integer fripm;
 
     private Integer satpm;
+
+    public scheduleinfo() {
+    }
+
+    public scheduleinfo(String doctorid, String departmentname, Integer sunam, Integer monam, Integer tueam, Integer wedam, Integer thuram, Integer friam, Integer satam, Integer sunpm, Integer monpm, Integer tuepm, Integer wedpm, Integer thurpm, Integer fripm, Integer satpm) {
+        this.doctorid = doctorid;
+        this.departmentname = departmentname;
+        this.sunam = sunam;
+        this.monam = monam;
+        this.tueam = tueam;
+        this.wedam = wedam;
+        this.thuram = thuram;
+        this.friam = friam;
+        this.satam = satam;
+        this.sunpm = sunpm;
+        this.monpm = monpm;
+        this.tuepm = tuepm;
+        this.wedpm = wedpm;
+        this.thurpm = thurpm;
+        this.fripm = fripm;
+        this.satpm = satpm;
+    }
 
     public String getDoctorid() {
         return doctorid;

@@ -10,6 +10,29 @@ public class docleaveinfo {
 
     private Integer leadaynum;
 
+    private Integer dleid;
+
+    @Override
+    public String toString() {
+        return "docleaveinfo{" +
+                "doctorid='" + doctorid + '\'' +
+                ", flag=" + flag +
+                ", leastatime=" + leastatime +
+                ", leadaynum=" + leadaynum +
+                ", dleid=" + dleid +
+                ", timestatus=" + timestatus +
+                ", tbdoctorid='" + tbdoctorid + '\'' +
+                '}';
+    }
+
+    public Integer getDleid() {
+        return dleid;
+    }
+
+    public void setDleid(Integer depid) {
+        this.dleid = depid;
+    }
+
     private Integer timestatus;
 
     private String tbdoctorid;

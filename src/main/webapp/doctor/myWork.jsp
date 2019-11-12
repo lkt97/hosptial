@@ -38,7 +38,7 @@
                         float: left;
                         margin: 20px auto;
                         border-radius: 8px;
-                        width: 680px;
+                        width: 800px;
                         border: 1px #000 solid;
                     }
                     .ysjs .title{
@@ -93,36 +93,34 @@
                     <div class="ysjj1">
                     </div>
                     <div class="title2">
-                        <table>
-                            <tr>
-                                <th></th>
-                                <th>星期日</th>
-                                <th>星期一</th>
-                                <th>星期二</th>
-                                <th>星期三</th>
-                                <th>星期四</th>
-                                <th>星期五</th>
-                                <th>星期六</th>
+                        <table width="800" align="center" border="1"><tr><td></td>
+                            <td align="center">星期日</td>
+                            <td align="center">星期一</td>
+                            <td align="center">星期二</td>
+                            <td align="center">星期三</td>
+                            <td align="center">星期四</td>
+                            <td align="center">星期五</td>
+                            <td align="center">星期六</td>
+                        </tr>
+                            <tr align="center">
+                                <td height="90">上午</td>
+                                <td  align="center"><a>${doctorsch.sunam==0?"无":doctorsch.sunam}</a></td>
+                                <td  align="center"><a>${doctorsch.monam==0?"无":doctorsch.monam}</a></td>
+                                <td  align="center"><a>${doctorsch.tueam==0?"无":doctorsch.tueam}</a></td>
+                                <td  align="center"><a>${doctorsch.wedam==0?"无":doctorsch.wedam}</a></td>
+                                <td  align="center"><a>${doctorsch.thuram==0?"无":doctorsch.thuram}</a></td>
+                                <td  align="center"><a>${doctorsch.friam==0?"无":doctorsch.friam}</a></td>
+                                <td  align="center"><a>${doctorsch.satam==0?"无":doctorsch.satam}</a></td>
                             </tr>
-                            <tr>
-                                <th><a>上午</a></th>
-                                <th><a href="">${doctorsch.sunam==0?"无":doctorsch.sunam}</a></th>
-                                <th><a>${doctorsch.monam==0?"无":doctorsch.monam}</a></th>
-                                <th><a>${doctorsch.tueam==0?"无":doctorsch.tueam}</a></th>
-                                <th><a>${doctorsch.wedam==0?"无":doctorsch.wedam}</a></th>
-                                <th><a>${doctorsch.thuram==0?"无":doctorsch.thuram}</a></th>
-                                <th><a>${doctorsch.friam==0?"无":doctorsch.friam}</a></th>
-                                <th><a>${doctorsch.satam==0?"无":doctorsch.satam}</a></th>
-                            </tr>
-                            <tr>
-                                <th><a>下午</a></th>
-                                <th><a>${doctorsch.sunpm==0?"无":doctorsch.sunpm}</a></th>
-                                <th><a>${doctorsch.monpm==0?"无":doctorsch.monpm}</a></th>
-                                <th><a>${doctorsch.tuepm==0?"无":doctorsch.tuepm}</a></th>
-                                <th><a>${doctorsch.wedpm==0?"无":doctorsch.wedpm}</a></th>
-                                <th><a>${doctorsch.thurpm==0?"无":doctorsch.thurpm}</a></th>
-                                <th><a>${doctorsch.fripm==0?"无":doctorsch.fripm}</a></th>
-                                <th><a>${doctorsch.satpm==0?"无":doctorsch.satpm}</a></th>
+                            <tr align="center">
+                                <td height="90">下午</td>
+                                <td  align="center"><a>${doctorsch.sunpm==0?"无":doctorsch.sunpm}</a></td>
+                                <td  align="center"><a>${doctorsch.monpm==0?"无":doctorsch.monpm}</a></td>
+                                <td  align="center"><a>${doctorsch.tuepm==0?"无":doctorsch.tuepm}</a></td>
+                                <td  align="center"><a>${doctorsch.wedpm==0?"无":doctorsch.wedpm}</a></td>
+                                <td  align="center"><a>${doctorsch.thurpm==0?"无":doctorsch.thurpm}</a></td>
+                                <td  align="center"><a>${doctorsch.fripm==0?"无":doctorsch.fripm}</a></td>
+                                <td  align="center"><a>${doctorsch.satpm==0?"无":doctorsch.satpm}</a></td>
                             </tr>
                         </table>
                     </div>
@@ -130,7 +128,7 @@
                 <style>
                     .schedule{
                         text-align: center;
-                        width: 80%;
+                        width: 800px;
                         border: 1px #0065AF solid;
                     }
                     .schedule:after{
@@ -273,16 +271,16 @@
                     }
                 </style>
 
-                <script>
-                    $(function () {
-                        $('#myModal').on('show.bs.modal', function (event) {
-                            var  a=$(event.relatedTarget);
-                            var wid =a .data('wid');
-                            console.log(wid);
-                            $("#wid").val(wid);
-                        });
-                    })
-                </script>
+                <%--<script>--%>
+                    <%--$(function () {--%>
+                        <%--$('#myModal').on('show.bs.modal', function (event) {--%>
+                            <%--var  a=$(event.relatedTarget);--%>
+                            <%--var wid =a .data('wid');--%>
+                            <%--console.log(wid);--%>
+                            <%--$("#wid").val(wid);--%>
+                        <%--});--%>
+                    <%--})--%>
+                <%--</script>--%>
             </div>
 
             <%--显示预约的号源信息--%>

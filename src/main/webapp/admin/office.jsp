@@ -14,12 +14,12 @@
     <div id="page-inner">
         <div class="search">
             <h1>科室列表</h1>
-            <div class="alert-danger">${message}</div>
+            <div class="alert-danger"></div>
                 <button type="button" style="color: #eeeeee"  class="btn btn-primary btn-xs"  data-toggle="modal" data-target="#myModal">
                     添加科室
                 </button>
-            <form id="office" action="office" method="post" style="margin-top: 10px">
-                <input  value="${office}" name="office"  autocomplete="off" class="" placeholder="科室名称">
+            <form id="office" action="/Foffice.do" method="post" style="margin-top: 10px">
+                <input  value="" name="office"  autocomplete="off" class="" placeholder="科室名称">
                 <input id="start" hidden value="1" name="start">
                 <button type="submit">查找科室</button>
             </form>
@@ -49,20 +49,19 @@
         </div>
 
         <div id="offices">
-            <c:forEach items="${offices}" var="item" varStatus="id">
-                <a href="officeDetail?office=${item.officename} ">
+            <c:forEach items="${page.datas}" var="item" varStatus="id">
+                <a href=" ">
                     <div class="office-item">
                         <div class="office-name">
-                            <h3>${item.officename}</h3>
+                            <h3>${item.departmentname}</h3>
                         </div>
                         <div>
-                            <p>${item.doctornum}位医生</p>
+                            <p>${item.departmentintroduction}</p>
                             <p  class="office-click">详细信息</p>
                         </div>
                     </div>
                 </a>
             </c:forEach>
-
             <style>
                 #offices:after{
                     content: "";
@@ -91,6 +90,18 @@
                     cursor: pointer;
                 }
             </style>
+        </div>
+        <div>
+            <span style="float:right">
+			            总共${page.totalRecords}条记录 共${page.totalPages}页 当前第${page.currentPage }页
+			            <a href="/office.do?currentPage=${page.firstPage}&pageSize=${page.pageSize}">首页</a>
+			            <a href="/office.do?currentPage=${page.prePage }&pageSize=${page.pageSize}">上一页</a>
+			            <a href="/office.do?currentPage=${page.nextPage }&pageSize=${page.pageSize}">下一页</a>
+			            <a href="office.jsp?currentPage=${page.lastPage }&pageSize=${page.pageSize}">尾页</a>
+			             <input type="text" name="jumpPage" size="4"><button id="jumpPageBtn">跳转</button>
+			            每页条数:<input id="pageSizeSelect" type="text" value="${page.pageSize}" size="4"><button
+                    id="pageSizeSelect">修改</button>
+			         </span>
         </div>
         <c:if test="${pages.totalPage > 0}">
             <form id="pagination">
@@ -180,17 +191,23 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title" id="myModalLabel">添加科室</h4>
                     </div>
-                    <form class="form-horizontal" action='office' method='post'>
+                    <form class="form-horizontal" action="/addOffice.do" method="post">
                         <input id="action" hidden value="add" name="action">
                         <div class="modal-body">
                             <div class="form-group">
-                                <label for="officename" class="col-sm-2 control-label">名称</label>
+                            <label for="officename" class="col-sm-2 control-label">科室id</label>
+                            <div class="col-sm-10">
+                                <input   name="officeid" class="form-control" id="officeid" placeholder="名称">
+                            </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="officename" class="col-sm-2 control-label">科室名称</label>
                                 <div class="col-sm-10">
                                     <input   name="officename" class="form-control" id="officename" placeholder="名称">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="description" class="col-sm-2 control-label">描述</label>
+                                <label for="description" class="col-sm-2 control-label">科室描述</label>
                                 <div class="col-sm-10" >
                                     <textarea id="description" name="description" class="form-control" rows="3" placeholder="请输入科室描述信息"></textarea>
                                 </div>

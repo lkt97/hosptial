@@ -24,7 +24,7 @@
                     <td>操作</td>
                 </tr>
                 </thead>
-                <c:forEach var="item" items="${palist}">
+                <c:forEach var="item" items="${page.datas}">
                     <tr>
                         <td>${item.appointtime}</td>
                         <td>${item.appointnumber}</td>
@@ -38,23 +38,31 @@
                                     <button type="button" data-rid=" " data-pid=" " data-action="finish"  class="btn btn-success btn-xs"  data-toggle="modal" data-target="#myModal">
                                         就诊
                                     </button>
-                                    </a>
-                                    <a href="">
-                                    <button type="button" data-rid=" " data-pid=" " data-action="sy"   class="btn btn-danger btn-xs"  data-toggle="modal" data-target="#myModal">
-                                        爽约
-                                    </button>
+                                </a>
+                                    <a href="/pdDel.do?"appointnumber=${item.appointnumber}>
+                                        <button type="button" data-rid=" " data-pid=" " data-action="sy"   class="btn btn-danger btn-xs"  data-toggle="modal" data-target="#myModal">
+                                            爽约
+                                        </button>
                                     </a>
                                 </td>
                             </c:when>
-                            <c:otherwise><td></td></c:otherwise>
                         </c:choose>
                     </tr>
                 </c:forEach>
-                <script>
-
-                </script>
             </table>
 
+            <div>
+                <span style="float:right">
+			            总共${page.totalRecords}条记录 共${page.totalPages}页 当前第${page.currentPage }页
+			            <a href="/palist.do?currentPage=${page.firstPage}&pageSize=${page.pageSize}">首页</a>
+			            <a href="/palist.do?currentPage=${page.prePage }&pageSize=${page.pageSize}">上一页</a>
+			            <a href="/palist.do?currentPage=${page.nextPage }&pageSize=${page.pageSize}">下一页</a>
+			            <a href="/palist.do?currentPage=${page.lastPage }&pageSize=${page.pageSize}">尾页</a>
+			             <input type="text" name="jumpPage" size="4"><button id="jumpPageBtn">跳转</button>
+			            每页条数:<input id="pageSizeSelect" type="text" value="${page.pageSize}" size="4"><button
+                        id="pageSizeSelect">修改</button>
+			         </span>
+            </div>
         </div>
     </div>
 </div>

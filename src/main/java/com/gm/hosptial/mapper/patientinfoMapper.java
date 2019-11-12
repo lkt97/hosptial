@@ -1,5 +1,6 @@
 package com.gm.hosptial.mapper;
 
+import com.gm.hosptial.pojo.Page;
 import com.gm.hosptial.pojo.patientinfo;
 
 import java.util.HashMap;
@@ -15,6 +16,10 @@ public interface patientinfoMapper {
     patientinfo selectByPrimaryKey(String patientid);
 
     List<patientinfo> select();
+
+    List<patientinfo> selects(Page page);
+
+    int count();
 
     int updateByPrimaryKeySelective(patientinfo record);
 

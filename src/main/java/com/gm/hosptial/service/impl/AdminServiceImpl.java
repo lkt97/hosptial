@@ -4,6 +4,7 @@ import com.gm.hosptial.mapper.*;
 import com.gm.hosptial.pojo.*;
 import com.gm.hosptial.service.AdminService;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -29,10 +30,13 @@ public class AdminServiceImpl implements AdminService {
 
     @Resource(name = "patientinfoMapper")
     private patientinfoMapper paM;
+
+    @Resource(name = "numberinfoMapper")
+    private numberinfoMapper numM;
     @Override
     public boolean addepaDrtment(departmentinfo dep) {
         int n=0;
-        if (depM.selectByPrimaryKey(dep.getDepartmentid())!=null)
+        if (depM.selectByPrimaryKey(dep.getDepartmentid())==null)
         {
             n=depM.insert(dep);
         }
@@ -43,19 +47,33 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
+    public int countdepaDrtment() {
+        Page page=new Page();
+        return depM.count(page);
+    }
+
+    @Override
+    public List<departmentinfo> getdepaDrtmentlist(Page page) {
+        List<departmentinfo> dep=depM.select(page);
+        return dep;
+    }
+
+    @Override
     public departmentinfo getdepaDrtment(String dep) {
 
         return depM.selectByPrimaryKey(dep);
     }
 
     @Override
+    public departmentinfo getdepaDrtmenttwo(String dep) {
+
+        return depM.selectByPrimaryKeytwo(dep);
+    }
+
+    @Override
     public boolean addDoctor(doctorinfo dinfo) {
         int n =0;
-        if (depM.selectByPrimaryKey(dinfo.getDocpassword())!=null){
-            if(docM.selectByPrimaryKey(dinfo.getDoctorid())==null){
-                n=docM.insert(dinfo);
-            }
-        }
+        n=docM.insert(dinfo);
         if(n==0)
             return false;
         else
@@ -106,15 +124,40 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public List<patientinfo> getPatientinfo() {
-        List<patientinfo> palist=paM.select();
+    public boolean setNumber(numberinfo number) {
+        int n=0;
+        if (numM.selectpa(number)!=null){
+        n=numM.updates(number);
+        }
+        else{
+            n=numM.insert(number);
+        }
+        if (n==0)
+        return false;
+        else
+            return true;
+    }
+
+    @Override
+    public List<patientinfo> getPatientinfo(Page page) {
+        List<patientinfo> palist=paM.selects(page);
         return palist;
+    }
+
+    @Override
+    public int gcountPatientinfo() {
+        return paM.count();
     }
 
     @Override
     public List<doctorinfo> getDoctorinfo() {
         List<doctorinfo> doclist=docM.select();
         return doclist;
+    }
+
+    @Override
+    public List<doctorinfo> getDoctorinfos(doctorinfo doctorinfo) {
+        return docM.selectByname(doctorinfo);
     }
 
     @Override
@@ -128,16 +171,33 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public List<docleaveinfo> getDocleaveinfo() {
-        List<docleaveinfo> doclist=docL.select();
+    public List<docleaveinfo> getDocleaveinfo(Page page) {
+        List<docleaveinfo> doclist=docL.selectdoc(page);
         return doclist;
     }
 
     @Override
-    public boolean setDocleaveinfo(docleaveinfo docl) {
+    public docleaveinfo getDocleaveinfo(docleaveinfo docleaveinfo) {
+        return docL.selectByPrimaryKey(docleaveinfo);
+    }
+
+    @Override
+    public boolean setNoDocleaveinfo(docleaveinfo docl) {
         int n=0;
         if(docL.selectByPrimaryKey(docl)!=null) {
-            n=docL.update(docl);
+            n=docL.updateno(docl);
+        }
+        if (n==0)
+            return false;
+        else
+            return true;
+    }
+
+    @Override
+    public boolean setSaveDocleaveinfo(docleaveinfo docl) {
+        int n=0;
+        if(docL.selectByPrimaryKey(docl)!=null) {
+            n=docL.updatesave(docl);
         }
         if (n==0)
         return false;

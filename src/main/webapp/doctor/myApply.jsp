@@ -19,29 +19,53 @@
                     <td>开始时间</td>
                     <td>申请天数</td>
                     <td>请假状态</td>
+                    <td>申请医生</td>
                     <td>调班医生</td>
                     <td>操作</td>
                 </tr>
                 </thead>
-                <c:forEach var="item" items="${doclist}">
+                <c:forEach var="item" items="${page.datas}">
                     <tr>
-                        <td>${item.doctorid}</td>
+                        <td>${item.dleid}</td>
                         <td>${item.leastatime}</td>
                         <td>${item.leadaynum}</td>
-                        <td>${item.flag==1?"已审批":"未通过"}</td>
+                        <c:if test="${item.flag==1}">
+                            <td>已审批</td>
+                        </c:if>
+                        <c:if test="${item.flag==0}">
+                            <td>未通过</td>
+                        </c:if>
+                        <c:if test="${item.flag==2}">
+                            <td>已拒绝</td>
+                        </c:if>
+                        <td>${item.doctorid}</td>
                         <td>${item.tbdoctorid}</td>
                         <td class="btn btn-info btn-link" data-aid=""data-toggle="modal" data-target="#myModal">
                             <c:if test="${item.flag==0}">
-                            <a href="/Docapplydel.do?did=${item.doctorid}&ltime=${item.leastatime}&lnum=${item.leadaynum}&tbdoc=${item.tbdoctorid}">取消</a>
+                            <a href="/Docapplydel.do?dleid=${item.dleid}">取消</a>
                             </c:if>
                             <c:if test="${item.flag==1}">
+                                不可取消
+                            </c:if>
+                            <c:if test="${item.flag==2}">
                                 不可取消
                             </c:if>
                         </td>
                     </tr>
                 </c:forEach>
-
             </table>
+            <div>
+                    <span style="float:right">
+                            总共${page.totalRecords}条记录 共${page.totalPages}页 当前第${page.currentPage }页
+                            <a href="/DocL.do?currentPage=${page.firstPage}&pageSize=${page.pageSize}">首页</a>
+                            <a href="/DocL.do?currentPage=${page.prePage }&pageSize=${page.pageSize}">上一页</a>
+                            <a href="/DocL.do?currentPage=${page.nextPage }&pageSize=${page.pageSize}">下一页</a>
+                            <a href="/DocL.do?currentPage=${page.lastPage }&pageSize=${page.pageSize}">尾页</a>
+                             <input type="text" name="jumpPage" size="4"><button id="jumpPageBtn">跳转</button>
+                            每页条数:<input id="pageSizeSelect" type="text" value="${page.pageSize}" size="4"><button
+                            id="pageSizeSelect">修改</button>
+                         </span>
+            </div>
             <%--取消--%>
             <%--<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">--%>
                 <%--<div class="modal-dialog" style="margin-top: 200px;" role="document">--%>

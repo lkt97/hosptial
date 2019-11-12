@@ -1,6 +1,7 @@
 package com.gm.hosptial.pojo;
 
 public class numberinfo {
+    private Integer tid;
     private String doctorid;
 
     private String number;
@@ -14,6 +15,23 @@ public class numberinfo {
                 ", number='" + number + '\'' +
                 ", sumnumber=" + sumnumber +
                 '}';
+    }
+
+    public numberinfo() {
+    }
+
+    public numberinfo( String doctorid, String number, Integer sumnumber) {
+        this.doctorid = doctorid;
+        this.number = number;
+        this.sumnumber = sumnumber;
+    }
+
+    public Integer getTid() {
+        return tid;
+    }
+
+    public void setTid(Integer tid) {
+        this.tid = tid;
     }
 
     public String getDoctorid() {

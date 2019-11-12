@@ -20,6 +20,6 @@ public interface appointrecordMapper {
 
     appointrecord select(String number);
 
-    List<appointrecord> selectpa(String docid);
+    List<appointrecord> selectpa(Page page);
     int count(String doctorid);
 }

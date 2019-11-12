@@ -20,4 +20,8 @@ public interface numberinfoMapper {
     List<numberinfo> select(String doctorid);
 
     int update(numberinfo numberinfo);
+
+    int updates(numberinfo numberinfo);
+
+    numberinfo selectpa(numberinfo record);
 }

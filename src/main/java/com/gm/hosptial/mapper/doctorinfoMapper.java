@@ -15,6 +15,8 @@ public interface doctorinfoMapper {
 
     doctorinfo selectByPrimaryKey(String doctorid);
 
+    List<doctorinfo> selectByname(doctorinfo record);
+
     List<doctorinfo> select();
 
     int updateByPrimaryKeySelective(doctorinfo record);
@@ -22,6 +24,8 @@ public interface doctorinfoMapper {
     int updateByPrimaryKey(doctorinfo record);
 
     List<doctorinfo> selectp(Page page);
+
+    List<doctorinfo> selectdep(Page page);
 
     int count(Page page);
 }

@@ -1,6 +1,4 @@
-<%@ page import="util.Util" %>
 <%@ page import="java.util.Calendar" %>
-<%@ page import="bean.WorkDay" %>
 <%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -18,29 +16,83 @@
 <div style="margin-top: 100px;margin-left: 300px">
     <div id="page-inner">
         <div class="ysjs">
-            <div class="title">
-                <div class="t">
-                    <span><a href="">${doctor.dname}</a></span>
-                    <span class="gender">${doctor.gender}</span>
-                    <span class="career">${doctor.career}</span>
-                    <span class="career">${doctor.age}岁</span>
-                </div>
-                <div class="b">
-                    <span>${doctor.office} （${doctor.room}）</span><span>出诊费：${doctor.fee}</span>
-                </div>
-                <img src="${doctor.picpath}">
-            </div>
-            <div class="content">
-                <div >
-                    <div>介绍：</div>
-                    <div>${doctor.description}</div>
-                </div>
+                    <div class="title">
+                        <div class="t">
+                            <span><a >${doctors.doctorname}</a></span>
+                            <span class="gender">医生ID：${doctors.doctorid}</span>
+                            <span class="career">科室：${depment.departmentname}</span>
+                            <span class="career">职称：${doctors.doctorjobtitle}</span>
+                        </div>
+                        <%--<img src="${doctor.picpath}">--%>
+                    </div>
+                    <div class="content">
+                        <div >
+                            <div>介绍：</div>
+                            <div>${doctors.doctorspecialty}</div>
+                        </div>
+                    </div>
+                    <style>
+                        .ysjs:after{
+                            content: "";
+                            clear: both;
+                            display: block;
+                        }
+                        .ysjs{
+                            float: left;
+                            margin: 20px auto;
+                            border-radius: 8px;
+                            width: 800px;
+                            border: 1px #000 solid;
+                        }
+                        .ysjs .title{
+                            margin: 20px;
+                            position: relative;
+                        }
+                        .ysjs .title:after{
+                            visibility: hidden;
+                            display: block;
+                            font-size: 0;
+                            content: "";
+                            clear: both;
+                            height: 0;
+                        }
+                        .ysjs .title .t span{
+                            margin: 20px;
+                            color: rgb(43,43,43);
+                            font-size: 30px;
+                            line-height: 30px;
+                        }
+                        .ysjs .title img{
+                            position: absolute;
+                            top: -20px;
+                            left: 480px;
+                            width: 100px;
+                            height: 125px;
+                        }
+                        .ysjs .title .t .gender{
+                            color:rgb(95, 156, 236);
+                        }
+                        .ysjs .title .t .career{
+                            font-size: 17px;
+                            margin-left: 30px;
+                            color:rgb(61,175,167);
+                        }
+                        .ysjs .content {
+                            border-top: 1px solid rgb(219, 219, 219);
+                            margin: 30px;
+                            text-align: left;
+                            width: 640px;
+                        }
+                        .ysjs .content div{
+                            padding-top: 10px;
+                        }
+                    </style>
             </div>
             <style>
                 .ysjs{
                     margin: 20px ;
                     border-radius: 8px;
-                    width: 680px;
+                    width: 700px;
                     border: 1px #000 solid;
                 }
                 .ysjs .title{
@@ -90,56 +142,46 @@
         <%--显示医生排班--%>
         <div class="schedule">
             <div class="week">
-                <div class="ysjj1">
-                    <div style="width: 30%;">
-                        <div class="ysjj">
-                            <div class="title1">医生介绍</div>
-                            <img src="${doctor.picpath}">
-                            <div class="title">
-                                <div><span class="name">${doctor.dname}</span><span class="career">${doctor.career}</span><span class="gender">${doctor.gender}</span></div>
-                                <p>介绍：${doctor.description}</p>
-                            </div>
-                            <div class="work">
-                                <div>上午</div>
-                                <div>下午</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div class="title2">
-                    <%
-                        List<WorkDay> workDays= (List<WorkDay>) request.getAttribute("workDays");
-                        StringBuffer sb=new StringBuffer();
-                        for(int i=0;i<7;i++){
-                            sb.append("<ul><li class='date'>");
-                            sb.append("星期");
-                            if("0".equals(workDays.get(i*2).getWorktime())){
-                                sb.append("天");
-                            }else {
-                                sb.append(workDays.get(i*2).getWorktime());
-                            }
-                            sb.append("</li>");
-                            for(int j=0;j<2;j++){
-                                sb.append("<li class='");
-                                sb.append(workDays.get(i*2+j).getState());
-                                sb.append("'><a style='display:block; height=100%' data-toggle=\"modal\" data-target=\"#myModal\" data-wid='");
-                                sb.append(workDays.get(i*2+j).getWid());
-                                sb.append("'><br>");
-                                sb.append(workDays.get(i*2+j).getState());
-                                sb.append("<br>号源数");
-                                sb.append(workDays.get(i*2+j).getNsnum());
-                                sb.append("</a></li>");
-                            }
-                            sb.append("</ul>");
-                        }
-                        out.write(sb.toString());
-                    %>
+                    <form class=" form-horizontal" action="/scheUp.do?doctorid=${doctors.doctorid}&departmentname=${depment.departmentid}"  method="post">
+                    <table width="800" align="center" border="1"><tr><td></td>
+                        <td align="center">星期日</td>
+                        <td align="center">星期一</td>
+                        <td align="center">星期二</td>
+                        <td align="center">星期三</td>
+                        <td align="center">星期四</td>
+                        <td align="center">星期五</td>
+                        <td align="center">星期六</td>
+                    </tr>
+                        <tr align="center">
+                            <td height="90">上午</td>
+                            <td  align="center"><input id="sunam" name="sunam" type="number" STYLE="width: 80px" value="${sche.sunam}"></td>
+                            <td  align="center"><input id="monam" name="monam" type="number" STYLE="width: 80px" value="${sche.monam}"></td>
+                            <td  align="center"><input id="tueam" name="tueam" type="number" STYLE="width: 80px" value="${sche.tueam}"></td>
+                            <td  align="center"><input id="wedam" name="wedam" type="number" STYLE="width: 80px" value="${sche.wedam}"></td>
+                            <td  align="center"><input id="thuram" name="thuram" type="number" STYLE="width: 80px" value="${sche.thuram}"></td>
+                            <td  align="center"><input id="friam" name="friam" type="number" STYLE="width: 80px" value="${sche.friam}"></td>
+                            <td  align="center"><input id="satam" name="satam" type="number" STYLE="width: 80px" value="${sche.satam}"></td>
+                        </tr>
+                        <tr align="center">
+                            <td height="90">下午</td>
+                            <td  align="center"><input id="sunpm" name="sunpm" type="number" STYLE="width: 80px" value="${sche.sunpm}"></td>
+                            <td  align="center"><input id="monpm" name="monpm" type="number" STYLE="width: 80px" value="${sche.monpm}"></td>
+                            <td  align="center"><input id="tuepm" name="tuepm" type="number" STYLE="width: 80px" value="${sche.tuepm}"></td>
+                            <td  align="center"><input id="wedpm" name="wedpm" type="number" STYLE="width: 80px" value="${sche.wedpm}"></td>
+                            <td  align="center"><input id="thurpm" name="thurpm" type="number" STYLE="width: 80px" value="${sche.thurpm}"></td>
+                            <td  align="center"><input id="fripm" name="fripm" type="number" STYLE="width: 80px" value="${sche.fripm}"></td>
+                            <td  align="center"><input id="satpm" name="satpm" type="number" STYLE="width: 80px" value="${sche.satpm}"></td>
+                        </tr>
+                    </table>
+                        <button type="submit"  class="btn btn-primary  center-block" style="width: 150px">设置排班</button>
+                    </form>
                 </div>
             </div>
             <style>
                 .schedule{
                     text-align: center;
-                    width: 80%;
+                    width: 100%;
                     border: 1px #0065AF solid;
                 }
                 .schedule:after{
@@ -292,7 +334,7 @@
                         <form class="form-horizontal" action='scheduleManage' method='post'>
                             <input id="action" hidden value="alter" name="action">
                             <input id="wid" hidden  name="wid">
-                            <input  hidden  name="did" value="${doctor.did}">
+                            <input  hidden  name="did" value="">
                             <div class="modal-body">
                                 <div class="form-group">
                                     <label for="nsnum" class="col-sm-2 control-label">号源数</label>
@@ -318,16 +360,7 @@
                     </div>
                 </div>
             </div>
-            <script>
-                $(function () {
-                    $('#myModal').on('show.bs.modal', function (event) {
-                        var  a=$(event.relatedTarget);
-                        var wid =a .data('wid');
-                        console.log(wid);
-                        $("#wid").val(wid);
-                    });
-                })
-            </script>
+
         </div>
     </div>
 </div>

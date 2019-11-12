@@ -38,7 +38,7 @@
                         float: left;
                         margin: 20px auto;
                         border-radius: 8px;
-                        width: 700px;
+                        width: 800px;
                         border: 1px #000 solid;
                     }
                     .ysjs .title{

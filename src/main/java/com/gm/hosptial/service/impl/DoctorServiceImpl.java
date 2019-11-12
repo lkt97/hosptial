@@ -80,13 +80,27 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Override
     public docleaveinfo getleaveDoctor(String did) {
-
-        return null;
+        docleaveinfo doc=new docleaveinfo();
+        doc.setDoctorid(did);
+        return docL.selectByPrimaryKey(doc);
     }
 
     @Override
-    public List<appointrecord> getappoint(String docid) {
-        List<appointrecord> app=appdM.selectpa(docid);
+    public List<docleaveinfo> getleaveDoctorlis(Page page) {
+        return docL.select(page);
+    }
+
+    @Override
+    public int countdeleleave(String did) {
+        docleaveinfo doc=new docleaveinfo();
+        doc.setDoctorid(did);
+        return docL.count(doc);
+    }
+
+    @Override
+    public List<appointrecord> getappoint(String docid,Page page) {
+        page.setOffice(docid);
+        List<appointrecord> app=appdM.selectpa(page);
         return app;
     }
 
@@ -96,6 +110,10 @@ public class DoctorServiceImpl implements DoctorService {
         return apps;
     }
 
+    @Override
+    public int appointcount(String did) {
+        return appdM.count(did);
+    }
 
     @Override
     public boolean setappointAffirm(visitrecord vis) {

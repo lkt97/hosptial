@@ -9,128 +9,120 @@
 <jsp:include page="include/menu.jsp"/>
 <script src="scripts/echarts.min.js"></script>
 <div style="margin-top: 100px;margin-left: 300px">
-    <div id="page-inner">
-        <div ><button class="btn btn-success">打印</button></div>
-        <div id="main1" style="width: 600px;height: 400px;float: left"></div>
-        <div id="main2" style="width: 600px;height: 400px;float: left"></div>
-        <div id="main3" style="width: 600px;height: 400px;float: left"></div>
 
-            <script type="text/javascript">
-                $(".btn").bind('click',function () {
-                    console.log("打印");
-                    var newstr = document.getElementById("page-inner").innerHTML;//得到需要打印的元素HTML
-                    var imgDom = $(newstr);
-                    $('#wrapper').hide();//将左边的菜单隐藏
-                    $('.navbar1').hide();//上边的导航栏隐藏
-                    $('body').append(imgDom);
-                    window.print();
-                    imgDom.remove();
-                    $('#wrapper').show();
-                    $('.navbar1').show();
-                });
-            $.post("<%=request.getContextPath()%>/count",{action:"1"},
-                function(data){
-                    console.log(data);
-                    var myChart1 = echarts.init(document.getElementById("main1"));
-                    option = {
-                        color: ['#3398DB'],
-                        tooltip : {trigger: 'axis', axisPointer : {type : 'shadow'}},
-                        grid: {left: '3%', right: '4%', bottom: '3%', containLabel: true},
-                        xAxis : [{type : 'category', data : ['科室', '诊室', '医生', '患者'], axisTick: {alignWithLabel: true}}],
-                        yAxis : [{type : 'value'}],
-                        series : [{name:'数量', type:'bar', barWidth: '60%', data:data}]
-                    };
-                    myChart1.setOption(option);
-                });
-            $.post("<%=request.getContextPath()%>/count",{action:"2"},
-                function(data){
-                    console.log(data);
-                    var myChart1 = echarts.init(document.getElementById("main2"));
-                    //  app.title = '坐标轴刻度与标签对齐';
-                    option = {
-                        color: ['#40bfdb'],
-                        tooltip : {
-                            trigger: 'axis',
-                            axisPointer : {            // 坐标轴指示器，坐标轴触发有效
-                                type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+    <div style="margin-top: 100px">
+        <div id="page-inner">
+            <div class="container">
+                <div class="h3 alert-info info">我的信息</div>
+                <div class="row">
+                    <div class="ysjs ">
+                        <div class="title">
+                            <div class="t">
+                                <span><a >${admin.doctorname}</a></span>
+                                <span class="gender">医生ID：${admin.doctorid}</span>
+                                <span class="career">科室：${depment.departmentname}</span>
+                                <span class="career">职称：${admin.doctorjobtitle}</span>
+                            </div>
+                            <%--<img src="${doctor.picpath}">--%>
+                        </div>
+                        <div class="content">
+                            <div >
+                                <div>介绍：</div>
+                                <div>${admin.doctorspecialty}</div>
+                            </div>
+                        </div>
+                        <style>
+                            .ysjs:after{
+                                content: "";
+                                clear: both;
+                                display: block;
                             }
-                        },
-                        grid: {
-                            left: '3%',
-                            right: '4%',
-                            bottom: '3%',
-                            containLabel: true
-                        },
-                        xAxis : [
-                            {
-                                type : 'category',
-                                data : data.data,
-                                axisTick: {
-                                    alignWithLabel: true
-                                }
+                            .ysjs{
+                                float: left;
+                                margin: 20px auto;
+                                border-radius: 8px;
+                                width: 800px;
+                                border: 1px #000 solid;
                             }
-                        ],
-                        yAxis : [
-                            {
-                                type : 'value'
+                            .ysjs .title{
+                                margin: 20px;
+                                position: relative;
                             }
-                        ],
-                        series : [
-                            {
-                                name:'预约量',
-                                type:'bar',
-                                barWidth: '60%',
-                                data:data.data1
+                            .ysjs .title:after{
+                                visibility: hidden;
+                                display: block;
+                                font-size: 0;
+                                content: "";
+                                clear: both;
+                                height: 0;
                             }
-                        ]
-                    };
-                    myChart1.setOption(option);
-                });
-            $.post("<%=request.getContextPath()%>/count",{action:"3"},
-                function(data){
-                    console.log(data);
-                    var myChart1 = echarts.init(document.getElementById("main3"));
-                    //  app.title = '坐标轴刻度与标签对齐';
-                    option = {
-                        color: ['#7049db'],
-                        tooltip : {
-                            trigger: 'axis',
-                            axisPointer : {            // 坐标轴指示器，坐标轴触发有效
-                                type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                            .ysjs .title .t span{
+                                margin: 20px;
+                                color: rgb(43,43,43);
+                                font-size: 30px;
+                                line-height: 30px;
                             }
-                        },
-                        grid: {
-                            left: '3%',
-                            right: '4%',
-                            bottom: '3%',
-                            containLabel: true
-                        },
-                        xAxis : [
-                            {
-                                type : 'category',
-                                data : ['星期天','星期一','星期二','星期三','星期四','星期五','星期六'],
-                                axisTick: {
-                                    alignWithLabel: true
-                                }
+                            .ysjs .title img{
+                                position: absolute;
+                                top: -20px;
+                                left: 480px;
+                                width: 100px;
+                                height: 125px;
                             }
-                        ],
-                        yAxis : [
-                            {
-                                type : 'value'
+                            .ysjs .title .t .gender{
+                                color:rgb(95, 156, 236);
                             }
-                        ],
-                        series : [
-                            {
-                                name:'预约量',
-                                type:'bar',
-                                barWidth: '60%',
-                                data:data
+                            .ysjs .title .t .career{
+                                font-size: 17px;
+                                margin-left: 30px;
+                                color:rgb(61,175,167);
                             }
-                        ]
-                    };
-                    myChart1.setOption(option);
-                });
-        </script>
+                            .ysjs .content {
+                                border-top: 1px solid rgb(219, 219, 219);
+                                margin: 30px;
+                                text-align: left;
+                                width: 640px;
+                            }
+                            .ysjs .content div{
+                                padding-top: 10px;
+                            }
+                        </style>
+                    </div>
+                </div>
+                <button type="button" style="color: #eeeeee"  class="btn btn-primary btn-xs"  data-toggle="modal" data-target="#myModal">
+                   更新资料
+                </button></div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" style="margin-top: 100px;" role="document">
+            <form class=" form-horizontal" action="/myPwd.do"  method="post">
+                <div class="h3 alert-danger "></div>
+                <input hidden name="action" value="doctor">
+                <div class="form-group">
+                    <label for="jmm" class="col-sm-2 control-label">旧密码</label>
+                    <div class="col-sm-10">
+                        <input name="jmm"  type="password" class="form-control" id="jmm" placeholder="旧密码">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="xmm" class="col-sm-2 control-label">新密码</label>
+                    <div class="col-sm-10">
+                        <input name="xmm"  type="password" class="form-control" id="xmm" placeholder="新密码">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="qdmm" class="col-sm-2 control-label">确定密码</label>
+                    <div class="col-sm-10">
+                        <input name="qdmm"  type="password" class="form-control" id="qdmm" placeholder="确定密码">
+                    </div>
+                </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button  type="submit" class="btn btn-primary order">确定</button>
+            </div>
+            </form>
+        </div>
     </div>
 </div>
 

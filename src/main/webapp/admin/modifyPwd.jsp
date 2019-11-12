@@ -1,5 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="bean.WorkDay" %>
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -16,8 +15,8 @@
         <div class="container">
             <div class="h3 alert-info ">修改密码</div>
             <div class="col-lg-8">
-                <form class=" form-horizontal" action="<%=request.getContextPath()%>/modifyPwd"  method="post">
-                    <div class="h3 alert-danger ">${message}</div>
+                <form class=" form-horizontal" action="/adminPwd.do"  method="post">
+                    <div class="h3 alert-danger "></div>
                     <input hidden name="action" value="admin">
                     <div class="form-group">
                         <label for="jmm" class="col-sm-2 control-label">旧密码</label>

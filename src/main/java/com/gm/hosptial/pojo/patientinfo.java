@@ -11,8 +11,6 @@ public class patientinfo {
 
     private Integer patientstatus;//预约状态
 
-
-
     private String password;//患者登录密码
 
     private Integer freezetime;//解冻时间
@@ -28,7 +26,6 @@ public class patientinfo {
         this.patientphone = patientphone;
         this.patientsex = patientsex;
 
-
         this.password = password;
 
     }
@@ -40,7 +37,6 @@ public class patientinfo {
         this.patientphone = patientphone;
         this.patientsex = patientsex;
         this.patientstatus = patientstatus;
-
         this.password = password;
 
     }
@@ -54,7 +50,6 @@ public class patientinfo {
                 ", patientphone='" + patientphone + '\'' +
                 ", patientsex='" + patientsex + '\'' +
                 ", patientstatus=" + patientstatus +
-
                 ", password='" + password + '\'' +
                 ", freezetime=" + freezetime +
                 '}';
@@ -100,7 +95,6 @@ public class patientinfo {
     public void setPatientstatus(Integer patientstatus) {
         this.patientstatus = patientstatus;
     }
-
 
     public String getPassword() {
         return password;

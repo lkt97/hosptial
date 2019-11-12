@@ -142,7 +142,7 @@
             <p class="text-danger"
                id="errorTip">${message}</p>
         </div>
-        <form role="form" action="<%=request.getContextPath()%>/login" method="post" class="login-form">
+        <form role="form" action="/adminlogin.do" method="post" class="login-form">
             <div class="form-group col-xs-12">
                 <label class="sr-only" ></label>账号(*):<input
                     style="font-weight: bold" type="text" name="account"

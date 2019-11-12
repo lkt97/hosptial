@@ -17,12 +17,18 @@ public interface DoctorService {
     public boolean leaveDoctor(docleaveinfo dlinfo);
     //查看医生请假
     public docleaveinfo getleaveDoctor(String did);
+    //查看医生请假
+    public List<docleaveinfo> getleaveDoctorlis(Page page);
     //医生取消请假
     public boolean deleleaveDoctor(docleaveinfo dlinfo);
+    //医生请假总数
+    public int countdeleleave(String did);
     //获取预约
-    public List<appointrecord> getappoint(String docid);
+    public List<appointrecord> getappoint(String docid,Page page);
     //获取某病人预约信息
     public appointrecord appointAffirm(String did);
+    //获取某病人预约信息总数
+    public int appointcount(String did);
     //确认预约，并生成就诊信息（）
     public boolean setappointAffirm(visitrecord vis);
     //根据患者id和医生id获得就诊信息

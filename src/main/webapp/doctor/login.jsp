@@ -140,9 +140,9 @@
         </div>
         <div class="pull-right-bottom">
             <p class="text-danger"
-               id="errorTip">${message}</p>
+               id="errorTip"></p>
         </div>
-        <form role="form" action="/login .do" method="post" class="login-form">
+        <form role="form" action="/doclogin.do" method="post" class="login-form">
             <div class="form-group col-xs-12">
                 <label class="sr-only" ></label>账号(*):<input
                     style="font-weight: bold" type="text" name="account"

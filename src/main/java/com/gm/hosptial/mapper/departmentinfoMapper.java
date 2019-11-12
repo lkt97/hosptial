@@ -14,6 +14,8 @@ public interface departmentinfoMapper {
 
     departmentinfo selectByPrimaryKey(String departmentid);
 
+    departmentinfo selectByPrimaryKeytwo(String departmentname);
+
     int updateByPrimaryKeySelective(departmentinfo record);
 
     int updateByPrimaryKey(departmentinfo record);
