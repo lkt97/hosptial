@@ -123,6 +123,12 @@
                     text-align: center;
                     border: 1px #000000 solid;
                 }
+
+                .td1{
+                    color: #23527c;
+                    text-decoration: underline;
+                }
+
             </style>
         </div>
         <%--显示医生排班--%>
@@ -151,32 +157,32 @@
 
                             <table width="800" align="center" border="1"><tr><td></td>
                                 <c:forEach items="${week}" var="week">
-                                    <td  align="center">${week}</td>
+                                    <td  align="center" style="list-style: none; background-color: #eeeeee;height: 40%;border-left: #0065AF 1px solid;">${week}</td>
                                 </c:forEach>
                             </tr>
 
   <%--//                              <td align="center">${week.get(0)}<br>${date.get(0)}</td><td>${week.get(1)}<br>${date.get(1)}</td><td>${week.get(2)}<br>${date.get(2)}</td><td>${week.get(3)}<br>${date.get(3)}</td><td>${week.get(4)}<br>${date.get(4)}</td><td>${week.get(5)}<br>${date.get(5)}</td><td>${week.get(6)}<br>${date.get(6)}</td></tr>--%>
 
 
-                                <tr align="center"><td height="90">上午</td>
+                                <tr align="center"><td height="90" style="list-style: none; background-color: #eeeeee;border-left: #0065AF 1px solid;">上午</td>
                                        <c:forEach items="${am}" var="am" varStatus="i">
                                            <%--href="/order.do?data=${dates.get(i.count-1)}&week=${date.get(i.count-1)}"--%>
                                            <c:if test="${am ne 0}">
-                                                   <td align="center"><a href="/order.do?data=${dates.get(i.count-1)}&week=${date.get(i.count-1)}&am=上午&did=${doctor.doctorid}">可预约<br>号源${am}个</a></td>
+                                                   <td align="center"  style="background: rgb(219, 255, 211)!important;color: rgb(61, 175, 167);cursor: pointer;"><a href="/order.do?data=${dates.get(i.count-1)}&week=${date.get(i.count-1)}&am=上午&did=${doctor.doctorid}">可预约<br>号源${am}个</a></td>
                                                </c:if>
                                                <c:if test="${am eq 0}">
-                                                   <td align="center">不可预约<br></td>
+                                                   <td align="center" style="background: rgb(208, 222, 251)!important;color: rgb(20, 82, 205)!important;">不可预约<br></td>
                                                </c:if>
 
                                         </c:forEach>
                                         </tr>
-                                    <tr align="center"><td height="90">下午</td>
+                                    <tr align="center"><td height="90" style="list-style: none; background-color: #eeeeee;border-left: #0065AF 1px solid;">下午</td>
                                     <c:forEach items="${pm}" var="pm" varStatus="i">
                                         <c:if test="${pm ne 0}">
-                                            <td align="center"><a href="/order.do?data=${dates.get(i.count-1)}&week=${date.get(i.count-1)}&am=下午&did=${doctor.doctorid}">可预约<br>号源${pm}个</a></td>
+                                            <td align="center" style="background: rgb(219, 255, 211)!important;color: rgb(61, 175, 167);cursor: pointer;"><a href="/order.do?data=${dates.get(i.count-1)}&week=${date.get(i.count-1)}&am=下午&did=${doctor.doctorid}">可预约<br>号源${pm}个</a></td>
                                         </c:if>
                                         <c:if test="${pm eq 0}">
-                                            <td align="center">不可预约<br></td>
+                                            <td align="center" style="background: rgb(208, 222, 251)!important;color: rgb(20, 82, 205)!important;">不可预约<br></td>
                                         </c:if>
                                     </c:forEach>
                                 </tr>
