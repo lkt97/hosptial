@@ -350,14 +350,14 @@ public class PatientController {
             {
                 numberinfo.setDoctorid(did);
                 numberinfo.setSumnumber(10);
-                numberinfo.setNumber("ThurAM");
+                numberinfo.setNumber("TueAM");
                 patientService.updatenum(numberinfo);
             }
             else if (scheduleinfo.getThurpm()!=0)
             {
                 numberinfo.setDoctorid(did);
                 numberinfo.setSumnumber(10);
-                numberinfo.setNumber("ThurPM");
+                numberinfo.setNumber("TuePM");
                 patientService.updatenum(numberinfo);
             }
         }
@@ -384,14 +384,14 @@ public class PatientController {
             {
                 numberinfo.setDoctorid(did);
                 numberinfo.setSumnumber(10);
-                numberinfo.setNumber("TueAM");
+                numberinfo.setNumber("ThurAM");
                 patientService.updatenum(numberinfo);
             }
             else if (scheduleinfo.getTuepm()!=0)
             {
                 numberinfo.setDoctorid(did);
                 numberinfo.setSumnumber(10);
-                numberinfo.setNumber("TuePM");
+                numberinfo.setNumber("ThurPM");
                 patientService.updatenum(numberinfo);
             }
         }
@@ -597,10 +597,10 @@ public class PatientController {
         {
             if (am.equals("上午"))
             {
-                j="ThurAM";
+                j="TueAM";
             }else if (am.equals("下午"))
             {
-                j="ThurPM";
+                j="TuePM";
             }
         }
         else if (week.equals("星期三"))
@@ -617,10 +617,10 @@ public class PatientController {
         {
             if (am.equals("上午"))
             {
-                j="TusAM";
+                j="ThurAM";
             }else if (am.equals("下午"))
             {
-                j="TusPM";
+                j="ThurPM";
             }
         }
         else if (week.equals("星期五"))
