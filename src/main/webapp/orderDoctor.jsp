@@ -126,85 +126,33 @@
             </style>
         </div>
 <%--分页--%>
-    <c:if test="${pages.totalPage > 0}">
-<form id="pagination">
+        <div>
+        <span style="float:right">
+            总共${page.totalRecords}条记录 共${page.totalPages}页 当前第${page.currentPage }页
+            <a href="${rootPath}/searchDoctor.do?currentPage=${page.firstPage}&pageSize=${page.pageSize}">首页</a>
+            <a href="${rootPath}/searchDoctor.do?currentPage=${page.prePage}&pageSize=${page.pageSize}">上一页</a>
+            <a href="${rootPath}/searchDoctor.do?currentPage=${page.nextPage}&pageSize=${page.pageSize}">下一页</a>
+            <a href="${rootPath}/searchDoctor.do?currentPage=${page.lastPage}&pageSize=${page.pageSize}">尾页</a>
+             <input type="text" name="jumpPage" size="4"><button id="jumpPageBtn">跳转</button>
+            <%--每页条数:<input id="pageSizeSelect" type="text" value="${page.pageSize}" size="4"><button--%>
+                <%--id="pageSizeSelect">修改</button>--%>
+         </span>
+        </div>
 
-    <ul class="pagination">
-        <li <c:if test="${pages.currentPage < 1}">class="disabled"</c:if>><a
-                onclick="jump('${pages.prePage }')">&laquo;</a></li>
-        <c:forEach begin="${pages.pageNumStart }" end="${pages.pageNumEnd }"
-                   varStatus="status">
-            <li>
-                <a <c:if test="${status.index == pages.currentPage }">class="disabled"</c:if>
-                    onclick="jump('${status.index }')">
-                        ${status.index } </a>
-            </li>
-        </c:forEach>
-        <li
-                <c:if test="${pages.currentPage> pages.totalPage}">class="disabled"</c:if>>
-            <a onclick="jump('${pages.nextPage }')">&raquo;</a>
-        </li>
-        <li><input class="text-input" id="index"></li>
-        <li><a onclick="jumpInput()">Go</a></li>
-        <li><a class="disabled">共${pages.totalPage}页${pages.totalRecord}条记录</a>
-
+        <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
         <script>
-            function jump(index) {
-                $("#start").val(index);
-                $("#doctor").submit();
-            }
-            function jumpInput() {
-                var index=$("#index").val();
-                var match = /^[1-9][0-9]*[0-9]*$/;
-                if(match.test(index)){
-                    jump(index);
-                }else {
-                    alert("请输入数字！")
-                }
-            }
-        </script>
-        <style>
-            #pagination{
-                width: 90%;
-                text-align: center;
-            }
-            .pagination {
-                display: inline-block;
-                padding-left: 0;
-                margin: 21px 0;
-                border-radius: 4px;
-            }.pagination li{
-                 display: inline;
-             }
+            $(document).ready(function () {
+                $("#jumpPageBtn").click(function () {
+                    var pageNo = $("input[name=jumpPage]").val();
+                    window.location.href = "${rootPath}/searchDoctor.do?currentPage=" + pageNo + "&pageSize=${page.pageSize}";
+                })
 
-            .pagination a{
-                border-radius: 6px;
-                color: #eb6864;
-                cursor: pointer;
-                padding: 14px 16px;
-                font-size: 19px;
-                line-height: 1.3333333;
-                border: 1px solid #dddddd;
-                margin-left: -1px;
-            }
-            .pagination a:hover{
-                background-color: #eeeeee;
-            }
-            .pagination input{
-                border: 1px solid #dddddd;
-                width: 60px;
-                padding: 8px 12px;
-                font-size: 15px;
-                line-height: 1.5;
-                color: #777777;
-            }
-            .pagination .disabled{
-                cursor: not-allowed;
-            }
-        </style>
-    </ul>
-</form>
-</c:if>
+                $("#pageSizeSelect").change(function () {
+                    var pageSize = $("#pageSizeSelect").val();
+                    window.location.href = "${rootPath}/searchDoctor.do?pageSize=" + pageSize;
+                })
+            })
+        </script>
     </div>
 </div>
 

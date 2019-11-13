@@ -572,7 +572,7 @@ public class PatientController {
         String string=i+"";
         String str2="/doctorInfo.do?did="+did+"";
         String s1=data.replace("-","");
-        appointrecord appointrecord1=new appointrecord(s1+patientinfo.getPatientid()+did,patientinfo.getPatientid(),data,"1",string,did);
+        appointrecord appointrecord1=new appointrecord(s1+patientinfo.getPatientid()+did,patientinfo.getPatientid(),data,"未就诊",string,did);
         if (week.equals("星期日"))
         {
             if (am.equals("上午"))

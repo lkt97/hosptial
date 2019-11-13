@@ -50,7 +50,6 @@
             opacity: 0.8;
             color: #fff;
         }
-
         .text-danger {
             color: #b94a48;
         }

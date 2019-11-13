@@ -35,14 +35,17 @@
     select
     *
     from doctorinfo
+    where
     <if test="office!=null">
-      where DoctorDeptID=#{office}
+       DoctorDeptID=#{office}
+        and DoctorJobTitle like '医生'
     </if>
-    <if test="doctor==null">
-      limit #{beginIndex},#{pageSize};
-    </if>
+    <if test="doctor==null and office==null">
+      DoctorJobTitle like '医生'
+      limit #{beginIndex},#{pageSize}
+  </if>
     <if test="doctor!=null">
-     where DoctorName like '%${doctor}%'
+      DoctorName like '%${doctor}%'
     </if>
   </select>
   <select id="selectdep" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -51,7 +54,7 @@
   *
   from doctorinfo
   <if test="office!=null">
-    where DoctorDeptID=#{office}
+    where DoctorDeptID=#{office} and DoctorJobTitle like '医生'
   </if>
   limit #{beginIndex},#{pageSize};
 </select>
@@ -61,7 +64,7 @@
     count(*)
     from doctorinfo
     <if test="office!=null">
-      where DoctorDeptID=#{office}
+      where DoctorDeptID=#{office} and DoctorJobTitle like '医生'
     </if>
     <if test="doctor!=null">
       where DoctorName like '%${doctor}%'

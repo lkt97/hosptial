@@ -30,7 +30,7 @@ public class MyFilter implements Filter {
         String uri = req.getRequestURI().substring(req.getContextPath().length());//请求的页面
         String url=req.getHeader("referer");//之前的页面
         if(req.getSession().getAttribute("patient")==null&&patient.contains(uri)){
-            req.getSession().setAttribute("message","请先登录!");
+//            req.getSession().setAttribute("message","请先登录!");
             req.getSession().setAttribute("url",url);
 //            System.out.println(req.getSession().getAttribute("url"));
             HttpServletResponse resp= (HttpServletResponse) servletResponse;
