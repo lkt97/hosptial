@@ -20,7 +20,6 @@
                     <td>申请天数</td>
                     <td>请假状态</td>
                     <td>申请医生</td>
-                    <td>调班医生</td>
                     <td>操作</td>
                 </tr>
                 </thead>
@@ -39,7 +38,6 @@
                             <td>已拒绝</td>
                         </c:if>
                         <td>${item.doctorid}</td>
-                        <td>${item.tbdoctorid}</td>
                         <td class="btn btn-info btn-link" data-aid=""data-toggle="modal" data-target="#myModal">
                             <c:if test="${item.flag==0}">
                             <a href="/Docapplydel.do?dleid=${item.dleid}">取消</a>

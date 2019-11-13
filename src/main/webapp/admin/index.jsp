@@ -96,6 +96,11 @@
     </div>
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" style="margin-top: 100px;" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">更新信息</h4>
+            </div>
             <form class="form-horizontal" action="/adminup.do" method="post">
                 <input id="action" hidden value="add" name="action">
                 <div class="modal-body">
@@ -120,7 +125,7 @@
                     <div class="form-group">
                         <label for="doctorsex" class="col-sm-2 control-label">性别</label>
                         <div class="col-sm-10" >
-                            <select class="form-control" id="doctorsex" name="doctorsex">
+                            <select class="form-control"  id="doctorsex" name="doctorsex">
                                 <option>男</option>
                                 <option>女</option>
                             </select>
@@ -139,6 +144,7 @@
                 </div>
                 </div>
             </form>
+            </div>
         </div>
     </div>
 </div>

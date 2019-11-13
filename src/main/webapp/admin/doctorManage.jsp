@@ -48,7 +48,7 @@
         </div>
 
         <div class="doctors">
-            <c:forEach items="${doclist}" var="item">
+            <c:forEach items="${page.datas}" var="item">
                 <div class="ysjs">
                     <div class="title">
                         <div class="t">
@@ -69,7 +69,18 @@
                     </div>
                 </div>
             </c:forEach>
-
+            <div>
+                <span style="float:right">
+			            总共${page.totalRecords}条记录 共${page.totalPages}页 当前第${page.currentPage }页
+			            <a href="/Doclist.do?currentPage=${page.firstPage}&pageSize=${page.pageSize}">首页</a>
+			            <a href="/Doclist.do?currentPage=${page.prePage }&pageSize=${page.pageSize}">上一页</a>
+			            <a href="/Doclist.do?currentPage=${page.nextPage }&pageSize=${page.pageSize}">下一页</a>
+			            <a href="/Doclist.do?currentPage=${page.lastPage }&pageSize=${page.pageSize}">尾页</a>
+			             <input type="text" name="jumpPage" size="4"><button id="jumpPageBtn">跳转</button>
+			            每页条数:<input id="pageSizeSelect" type="text" value="${page.pageSize}" size="4"><button
+                        id="pageSizeSelect">修改</button>
+			         </span>
+            </div>
             <style>
                 .doctors:after{
                     content: "";

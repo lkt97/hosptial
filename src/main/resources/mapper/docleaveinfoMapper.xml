@@ -33,7 +33,7 @@
     select
     *
     from docleaveinfo
-    where  Flag=0 limit #{beginIndex},#{pageSize}
+    where  tbDoctorID=#{office} and Flag=0 limit #{beginIndex},#{pageSize}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="com.gm.hosptial.pojo.docleaveinfo">
     delete from docleaveinfo

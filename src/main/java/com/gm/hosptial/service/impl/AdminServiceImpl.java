@@ -150,9 +150,14 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public List<doctorinfo> getDoctorinfo() {
-        List<doctorinfo> doclist=docM.select();
+    public List<doctorinfo> getDoctorinfo(Page page) {
+        List<doctorinfo> doclist=docM.selectdep(page);
         return doclist;
+    }
+
+    @Override
+    public int countDoctorinfo(Page page) {
+        return docM.count(page);
     }
 
     @Override

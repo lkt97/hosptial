@@ -58,7 +58,7 @@ public class AdminController {
         return s;
     }
     @RequestMapping("Doclist")
-    public String Doclist(){
+    public String Doclist(String currentPage,String pageSize){
         String s="admin/doctorManage";
         HttpSession session=request.getSession();
         if(session.getAttribute("adminid")!=null){
@@ -66,14 +66,28 @@ public class AdminController {
         doctorinfo doczr=doctorService.getDoctor(docid);
         departmentinfo dep=adminService.getdepaDrtment(doczr.getDoctordeptid());
         session.setAttribute("depment",dep);
-        List<doctorinfo> doclist=adminService.getDoctorinfo();
-        for(doctorinfo doc:doclist){
-            if (!doc.getDoctordeptid().equals(doczr.getDoctordeptid())){
-                doclist.remove(doc);
-            }
-        }
+        Integer currentPages;
+        Integer pageSizes;
+        if(currentPage==null)
+            currentPages=1;
+        else
+            currentPages=Integer.valueOf(currentPage);
+        if (pageSize==null)
+            pageSizes=6;
+        else
+            pageSizes=Integer.valueOf(pageSize);
+        Page page=new Page();
+        page.setPageSize(pageSizes);
+        page.setCurrentPage(currentPages);
+        page.setBeginIndex((currentPages - 1) * pageSizes);
+        Page p=new Page();
+        p.setOffice(doczr.getDoctordeptid());
+        page.setOffice(doczr.getDoctordeptid());
+        int totalRecords =adminService.countDoctorinfo(p);
+        List<doctorinfo> doclist=adminService.getDoctorinfo(page);
+        Page repage=new Page(totalRecords,currentPages,pageSizes,doclist);
 
-        request.setAttribute("doclist",doclist);
+        request.setAttribute("page",repage);
         }else{
             s="admin/login";
         }
@@ -143,7 +157,7 @@ public class AdminController {
                     out.print("<script language='javascript'>alert('增加成功');window.location.href='"+str2+"'</script>");
 
         }
-        return Doclist();
+        return Doclist("1","6");
     }
     @RequestMapping("paAllList")
     public String paAllList(String currentPage,String pageSize){
@@ -188,7 +202,9 @@ public class AdminController {
             doc.setDoctorname(doctor);
             List<doctorinfo> doclist=adminService.getDoctorinfos(doc);
 
-            request.setAttribute("doclist",doclist);
+            Page repage=new Page(doclist.size(),1,doclist.size(),doclist);
+
+            request.setAttribute("page",repage);
         }else{
             s="admin/login";
         }

@@ -32,7 +32,7 @@
                         <td>${item.leastatime}</td>
                         <td>${item.leadaynum}</td>
                         <td>${item.flag==1?"已审批":"未通过"}</td>
-                        <td>${item.tbdoctorid}</td>
+                        <td>${item.doctorid}</td>
                         <td>
                             <c:if test="${item.flag==0}">
                                 <a href="/doclSave.do?dleid=${item.dleid}">

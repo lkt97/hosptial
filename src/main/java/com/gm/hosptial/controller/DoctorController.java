@@ -182,7 +182,7 @@ public class DoctorController {
             docls.setFlag(0);
             docls.setLeastatime(Integer.valueOf(name));
             docls.setLeadaynum(Integer.valueOf(account));
-            docls.setTbdoctorid(tbdoc);
+            docls.setTbdoctorid(doc.getDoctordeptid());
             docls.setTimestatus(1);
 
             docleaveinfo doclea = doctorService.getleaveDoctor(doc.getDoctorid());

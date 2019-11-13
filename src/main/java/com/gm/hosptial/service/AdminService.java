@@ -32,7 +32,9 @@ public interface AdminService {
     //管理员获得患者总数
     public int gcountPatientinfo();
     //管理员查看医生信息
-    public List<doctorinfo> getDoctorinfo();
+    public List<doctorinfo> getDoctorinfo(Page page);
+    //管理员查看医生信息总数
+    public int countDoctorinfo(Page page);
     //管理员查看医生信息
     public List<doctorinfo> getDoctorinfos(doctorinfo doctorinfo);
     //管理员解冻/冻结用户
