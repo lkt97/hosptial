@@ -4,7 +4,6 @@
     <title>注册--在线预约挂号系统</title>
     <style>
         body{
-            background-image: url("images/1.jpg");
             background-size: 100%;
             text-align: center;
         }
@@ -161,7 +160,21 @@
                         id="userEmail" class="form-control input-control clearfix"
                         /><span id="emailTip"></span>
                 </div>
-
+                <div class="form-group">
+                    <label for="doctorage" class="col-sm-2 control-label">年龄</label>
+                    <div class="col-sm-10">
+                        <input type="number" name="doctorage" class="form-control" id="doctorage" placeholder="年龄">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="doctorsex" class="col-sm-2 control-label">性别</label>
+                    <div class="col-sm-10" >
+                        <select class="form-control" id="doctorsex" name="doctorsex">
+                            <option>男</option>
+                            <option>女</option>
+                        </select>
+                    </div>
+                </div>
                 <div class="form-group col-xs-12">
                     <button type="submit" class="btn" id="btn">更新</button>
                 </div>

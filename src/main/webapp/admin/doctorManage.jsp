@@ -184,7 +184,6 @@
                                 <div class="col-sm-10" >
                                     <select class="form-control" id="DoctorJobTitle" name="DoctorJobTitle">
                                         <option>医生</option>
-                                        <option>主任</option>
                                     </select>
                                 </div>
                             </div>
