@@ -63,11 +63,12 @@
     select
     count(*)
     from doctorinfo
+    where  DoctorJobTitle like '医生'
     <if test="office!=null">
-      where DoctorDeptID=#{office} and DoctorJobTitle like '医生'
+      and DoctorDeptID=#{office}
     </if>
     <if test="doctor!=null">
-      where DoctorName like '%${doctor}%'
+      and DoctorName like '%${doctor}%'
     </if>
   </select>
 
